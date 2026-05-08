@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { ArrowUpRight } from 'lucide-react';
+import { ShareButtons } from './ShareButtons';
 
 interface CauseCardProps {
   title: string;
@@ -31,6 +32,13 @@ export const CauseCard: React.FC<CauseCardProps> = ({ title, description, image,
           <span className="px-4 py-1.5 bg-brand-accent text-brand-footer rounded-full text-[9px] font-black uppercase tracking-widest shadow-lg">
             {tag}
           </span>
+        </div>
+        
+        {/* Share Buttons Overlay */}
+        <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-all translate-y-2 group-hover:translate-y-0 duration-300">
+          <div className="bg-white/90 dark:bg-dark-surface/90 backdrop-blur-sm p-3 rounded-2xl shadow-xl">
+             <ShareButtons title={title} />
+          </div>
         </div>
       </div>
       <div className="flex justify-between items-start gap-4 px-2">

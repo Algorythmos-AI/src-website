@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { Users, Droplets, BookOpen, Heart, MapPin, ArrowRight } from 'lucide-react';
+import { ShareButtons } from '../components/ShareButtons';
 
 const StatCard = ({ icon: Icon, value, label, desc }: any) => (
   <motion.div 
@@ -27,8 +28,13 @@ const StoryCard = ({ image, title, category, quote, author }: any) => (
     viewport={{ once: true }}
     className="group"
   >
-    <div className="aspect-[16/10] rounded-[2.5rem] overflow-hidden mb-8 shadow-xl">
+    <div className="aspect-[16/10] rounded-[2.5rem] overflow-hidden mb-8 shadow-xl relative">
       <img src={image} alt={title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" referrerPolicy="no-referrer" />
+      <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity translate-y-2 group-hover:translate-y-0 duration-300">
+        <div className="bg-white/90 dark:bg-dark-surface/90 backdrop-blur-sm p-3 rounded-2xl shadow-xl">
+           <ShareButtons title={title} className="text-brand-ink dark:text-dark-ink" />
+        </div>
+      </div>
     </div>
     <span className="text-[10px] uppercase font-bold tracking-[0.3em] text-brand-secondary dark:text-dark-secondary mb-3 block">{category}</span>
     <h3 className="text-3xl font-serif font-bold text-brand-primary dark:text-dark-primary mb-4 group-hover:text-brand-secondary dark:group-hover:text-dark-secondary transition-colors italic leading-tight">
