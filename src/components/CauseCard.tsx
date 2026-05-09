@@ -34,7 +34,7 @@ export const CauseCard: React.FC<CauseCardProps> = ({ title, description, image,
             {tag}
           </span>
         </div>
-        <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+        <div className="absolute top-4 right-4 md:opacity-0 md:group-hover:opacity-100 md:focus-within:opacity-100 transition-opacity">
           <div className="bg-white/95 dark:bg-dark-surface/95 px-3 py-2 rounded-full shadow-sm">
             <ShareButtons title={title} />
           </div>

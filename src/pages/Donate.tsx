@@ -29,7 +29,7 @@ export const Donate = () => {
       <section className="py-20 md:py-28 px-6 bg-brand-surface dark:bg-dark-surface/40 border-b border-brand-primary/5 dark:border-white/5">
         <div className="max-w-4xl mx-auto">
           <p className="text-brand-secondary dark:text-dark-secondary text-xs font-bold uppercase tracking-[0.3em] mb-4">Support our work</p>
-          <h1 className="text-4xl md:text-6xl font-serif font-bold text-brand-primary dark:text-dark-primary leading-tight mb-6">
+          <h1 className="text-balance text-4xl md:text-6xl font-serif font-bold text-brand-primary dark:text-dark-primary leading-tight mb-6">
             Stand with rural Sudan.
           </h1>
           <p className="text-lg md:text-xl text-brand-ink/70 dark:text-dark-ink/70 leading-relaxed max-w-3xl">
@@ -84,7 +84,7 @@ export const Donate = () => {
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              className="bg-brand-surface dark:bg-dark-surface rounded-2xl p-8 md:p-10 border border-brand-primary/10 dark:border-white/10 shadow-sm"
+              className="bg-brand-surface dark:bg-dark-surface rounded-2xl p-6 sm:p-8 md:p-10 border border-brand-primary/10 dark:border-white/10 shadow-sm"
             >
               {/* Frequency */}
               <div className="mb-8">
@@ -111,7 +111,7 @@ export const Donate = () => {
               {/* Tiers */}
               <div className="mb-6">
                 <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-ink/55 dark:text-dark-ink/60 mb-3">Choose an amount (USD)</p>
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-2 gap-2.5 sm:gap-3">
                   {TIERS.map(tier => {
                     const isSelected = !customAmount && selectedAmount === tier.amount;
                     return (
@@ -123,7 +123,7 @@ export const Donate = () => {
                           setCustomAmount('');
                         }}
                         aria-pressed={isSelected}
-                        className={`relative text-left p-4 rounded-lg border transition-all ${
+                        className={`relative text-left p-3.5 sm:p-4 rounded-lg border transition-all ${
                           isSelected
                             ? 'border-brand-primary dark:border-dark-primary bg-brand-primary/5 dark:bg-dark-primary/10'
                             : 'border-brand-primary/15 dark:border-white/10 hover:border-brand-primary/40 dark:hover:border-dark-primary/40'
@@ -134,7 +134,7 @@ export const Donate = () => {
                             Suggested
                           </span>
                         )}
-                        <p className="text-2xl font-serif font-bold text-brand-primary dark:text-dark-primary mb-1">${tier.amount}</p>
+                        <p className="text-xl sm:text-2xl font-serif font-bold text-brand-primary dark:text-dark-primary mb-1">${tier.amount}</p>
                         <p className="text-[10px] uppercase tracking-widest font-bold text-brand-ink/60 dark:text-dark-ink/60 mb-1">{tier.label}</p>
                         <p className="text-xs text-brand-ink/60 dark:text-dark-ink/60 leading-snug">{tier.description}</p>
                       </button>

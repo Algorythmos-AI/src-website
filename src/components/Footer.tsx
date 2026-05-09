@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export const Footer = () => {
   return (
-    <footer className="bg-brand-footer text-brand-surface/60 pt-20 pb-10 border-t border-white/5">
+    <footer className="bg-brand-footer text-brand-surface/60 pt-16 sm:pt-20 pb-10 sm:pb-12 site-footer-safe border-t border-white/5">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-12 mb-14">
           {/* Brand */}

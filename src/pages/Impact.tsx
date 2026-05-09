@@ -51,7 +51,7 @@ const StoryCard: React.FC<StoryCardProps> = ({ image, title, category, quote, au
         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
         referrerPolicy="no-referrer"
       />
-      <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+      <div className="absolute top-4 right-4 md:opacity-0 md:group-hover:opacity-100 md:focus-within:opacity-100 transition-opacity">
         <div className="bg-white/95 dark:bg-dark-surface/95 px-3 py-2 rounded-full shadow-sm">
           <ShareButtons title={title} className="text-brand-ink dark:text-dark-ink" />
         </div>
@@ -112,7 +112,7 @@ export const Impact = () => {
           <p className="text-brand-secondary dark:text-dark-secondary text-xs font-bold uppercase tracking-[0.3em] mb-4">
             Transparency & accountability
           </p>
-          <h1 className="text-4xl md:text-6xl font-serif font-bold text-brand-primary dark:text-dark-primary leading-tight mb-6">
+          <h1 className="text-balance text-4xl md:text-6xl font-serif font-bold text-brand-primary dark:text-dark-primary leading-tight mb-6">
             Our impact, audited and reported.
           </h1>
           <p className="text-lg md:text-xl text-brand-ink/70 dark:text-dark-ink/70 leading-relaxed max-w-3xl">

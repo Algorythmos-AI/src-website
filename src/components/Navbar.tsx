@@ -81,18 +81,18 @@ export const Navbar = () => {
         </div>
 
         {/* Mobile Toggle & Mobile Theme Toggle */}
-        <div className="flex items-center gap-4 md:hidden">
+        <div className="flex items-center gap-2 md:hidden">
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-full hover:bg-white/10 transition-colors text-white"
-            aria-label="Toggle Theme"
+            className="p-2.5 rounded-md hover:bg-white/10 transition-colors text-white touch-manipulation"
+            aria-label="Toggle theme"
           >
             {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
           </button>
 
           <button
             type="button"
-            className="text-white p-2"
+            className="text-white p-2.5 rounded-md hover:bg-white/10 transition-colors touch-manipulation"
             onClick={() => setIsOpen(!isOpen)}
             aria-label={isOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={isOpen}
@@ -111,7 +111,7 @@ export const Navbar = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="absolute top-full left-0 w-full bg-brand-primary dark:bg-dark-bg border-t border-white/10 p-6 flex flex-col gap-4 md:hidden shadow-lg"
+            className="absolute top-full left-0 w-full bg-brand-primary dark:bg-dark-bg border-t border-white/10 px-6 py-4 flex flex-col md:hidden shadow-lg max-h-[calc(100vh-4rem)] overflow-y-auto"
           >
             {navLinks.map((link) => (
               <NavLink
@@ -119,8 +119,8 @@ export const Navbar = () => {
                 to={link.path}
                 onClick={() => setIsOpen(false)}
                 className={({ isActive }) =>
-                  `text-lg font-medium transition-colors ${
-                    isActive ? 'text-brand-accent' : 'text-white'
+                  `block py-3 text-base font-medium transition-colors border-b border-white/5 last:border-0 ${
+                    isActive ? 'text-brand-accent' : 'text-white hover:text-brand-accent'
                   }`
                 }
               >
@@ -130,7 +130,7 @@ export const Navbar = () => {
             <Link
               to="/donate"
               onClick={() => setIsOpen(false)}
-              className="mt-2 flex justify-center items-center gap-2 bg-white text-brand-primary px-5 py-3 rounded-md text-sm font-bold uppercase tracking-[0.15em]"
+              className="mt-4 flex justify-center items-center gap-2 bg-white text-brand-primary px-5 py-3.5 rounded-md text-sm font-bold uppercase tracking-[0.15em]"
             >
               Donate
             </Link>

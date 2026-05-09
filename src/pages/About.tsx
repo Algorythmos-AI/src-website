@@ -27,18 +27,18 @@ export const About = () => {
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="text-brand-secondary dark:text-dark-secondary text-xs font-bold uppercase tracking-[0.3em] mb-4"
+            className="text-brand-secondary dark:text-dark-secondary text-[10px] sm:text-xs font-bold uppercase tracking-[0.18em] sm:tracking-[0.3em] mb-4"
           >
             Founded 2015 · Headquartered in Paris · Operating in North Sudan
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-6xl font-serif font-bold mb-6 text-brand-primary dark:text-dark-primary leading-tight"
+            className="text-balance text-3xl sm:text-4xl md:text-6xl font-serif font-bold mb-6 text-brand-primary dark:text-dark-primary leading-tight"
           >
             A decade of resilience and rural reform.
           </motion.h1>
-          <p className="text-lg md:text-xl text-brand-ink/70 dark:text-dark-ink/70 leading-relaxed max-w-3xl">
+          <p className="text-base sm:text-lg md:text-xl text-brand-ink/70 dark:text-dark-ink/70 leading-relaxed max-w-3xl">
             Founded by the Sudanese diaspora in Paris and rooted in North Sudan's rural heartlands, SRC delivers education, water, health, and peacebuilding programs in partnership with local communities — and represents their voices at United Nations forums in Geneva and beyond.
           </p>
         </div>
