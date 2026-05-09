@@ -11,13 +11,12 @@ export const About = () => {
     { icon: <Globe size={22} />, title: 'Localization', desc: 'Sudanese problems are solved by Sudanese teams, supported by global standards.' },
   ];
 
-  const board = [
-    { name: 'Dr. Amel Osman', role: 'Executive Director' },
-    { name: 'Tariq El-Bashir', role: 'Chair, Board of Trustees' },
-    { name: 'Nadia Idris', role: 'Director of Programs' },
-    { name: 'Mohamed Suleiman', role: 'Director of Finance & Compliance' },
-    { name: 'Hawa Ahmed', role: 'Head of Field Operations' },
-    { name: 'Yusuf Khalid', role: 'General Counsel' },
+  const leadership = [
+    { name: 'Obeid NAEIM', role: 'President', image: '/Our-Leadership/Obeid-NAEIM.png' },
+    { name: 'Elzubier MOHAMED', role: 'Secretary General', image: '/Our-Leadership/Elzubier-MOHAMED.png' },
+    { name: 'Nasradine Ibrahim', role: 'Treasurer', image: '/Our-Leadership/Nasradine-Ibrahim.png' },
+    { name: 'Musab ALALIM', role: 'Project Manager & Awareness Officer', image: '/Our-Leadership/Musab-ALALIM.png' },
+    { name: 'Assamani BASHIR', role: 'Official Spokesperson', image: '/Our-Leadership/Assamani-BASHIR.png' },
   ];
 
   return (
@@ -106,27 +105,49 @@ export const About = () => {
         </div>
       </section>
 
-      {/* Board / Leadership */}
+      {/* Leadership */}
       <section className="py-20 md:py-28 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="max-w-2xl mb-14">
-            <p className="text-brand-secondary dark:text-dark-secondary text-xs font-bold uppercase tracking-[0.3em] mb-4">Leadership</p>
+            <p className="text-brand-secondary dark:text-dark-secondary text-xs font-bold uppercase tracking-[0.3em] mb-4">Our leadership</p>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold leading-tight text-brand-primary dark:text-dark-primary">
-              Board of trustees.
+              The team behind SRC.
             </h2>
+            <p className="mt-6 text-brand-ink/65 dark:text-dark-ink/65 leading-relaxed max-w-xl">
+              Elected officers and senior staff guide the organization's mission, finances, and field operations.
+            </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {board.map(member => (
-              <div
-                key={member.name}
-                className="p-6 rounded-xl border border-brand-primary/10 dark:border-white/10 bg-brand-surface dark:bg-dark-surface hover:border-brand-primary/30 dark:hover:border-dark-primary/40 transition-colors"
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-8">
+            {leadership.map((person, i) => (
+              <motion.div
+                key={person.name}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{ delay: i * 0.06 }}
+                className="group"
               >
-                <p className="font-serif font-bold text-lg text-brand-primary dark:text-dark-primary mb-1">{member.name}</p>
-                <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-ink/55 dark:text-dark-ink/55">{member.role}</p>
-              </div>
+                <div className="aspect-square rounded-2xl overflow-hidden mb-4 bg-brand-surface dark:bg-dark-surface shadow-sm group-hover:shadow-md transition-shadow">
+                  <img
+                    src={person.image}
+                    alt={`Portrait of ${person.name}, ${person.role}`}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
+                  />
+                </div>
+                <p className="font-serif font-bold text-base md:text-lg text-brand-primary dark:text-dark-primary leading-tight">
+                  {person.name}
+                </p>
+                <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-ink/55 dark:text-dark-ink/55 mt-1.5">
+                  {person.role}
+                </p>
+              </motion.div>
             ))}
           </div>
-          <div className="mt-12">
+
+          <div className="mt-14">
             <Link
               to="/contact"
               className="inline-flex items-center gap-2 text-brand-primary dark:text-dark-primary font-bold text-sm uppercase tracking-widest border-b border-brand-primary/30 dark:border-dark-primary/40 pb-1 hover:border-brand-primary dark:hover:border-dark-primary transition-colors"

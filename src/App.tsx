@@ -107,11 +107,11 @@ const Home = () => {
           </blockquote>
           <div className="flex items-center justify-center gap-4">
             <div className="w-12 h-12 rounded-full bg-brand-primary dark:bg-dark-primary text-white flex items-center justify-center font-serif font-bold text-lg" aria-hidden="true">
-              AO
+              ON
             </div>
             <div>
-              <p className="font-serif font-bold text-brand-primary dark:text-dark-primary">Dr. Amel Osman</p>
-              <p className="text-[10px] uppercase tracking-[0.2em] text-brand-ink/50 dark:text-dark-ink/50 font-bold">Executive Director, SRC</p>
+              <p className="font-serif font-bold text-brand-primary dark:text-dark-primary">Obeid NAEIM</p>
+              <p className="text-[10px] uppercase tracking-[0.2em] text-brand-ink/50 dark:text-dark-ink/50 font-bold">President, SRC</p>
             </div>
           </div>
         </div>
