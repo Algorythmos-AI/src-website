@@ -4,7 +4,7 @@ import { ArrowRight, Play } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { VideoModal } from './VideoModal';
 
-const HERO_IMAGE = 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070&auto=format&fit=crop';
+const HERO_IMAGE = 'https://plus.unsplash.com/premium_photo-1699535657712-02fe404e916f?q=80&w=2070&auto=format&fit=crop';
 
 // Placeholder mission video — swap with the real SRC mission video URL when available.
 const MISSION_VIDEO_SRC = 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4';
@@ -57,7 +57,7 @@ export const Hero = () => {
             <div className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-xl bg-brand-surface dark:bg-dark-surface group">
               <img
                 src={HERO_IMAGE}
-                alt="Community gathering in rural Sudan"
+                alt="A rural village in North Sudan"
                 fetchPriority="high"
                 decoding="async"
                 className="w-full h-full object-cover"
@@ -84,7 +84,7 @@ export const Hero = () => {
               {/* Caption */}
               <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-brand-footer/90 to-transparent p-6 text-white pointer-events-none">
                 <p className="text-[10px] uppercase tracking-[0.25em] font-bold text-brand-accent mb-1">In the field</p>
-                <p className="text-sm font-medium leading-snug">North Kordofan · 2024</p>
+                <p className="text-sm font-medium leading-snug">North Sudan · 2025</p>
               </div>
             </div>
           </motion.div>

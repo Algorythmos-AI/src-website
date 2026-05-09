@@ -29,7 +29,7 @@ export const About = () => {
             animate={{ opacity: 1 }}
             className="text-brand-secondary dark:text-dark-secondary text-xs font-bold uppercase tracking-[0.3em] mb-4"
           >
-            Founded 2015 · Khartoum, Sudan
+            Founded 2015 · Headquartered in Paris · Operating in North Sudan
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 16 }}
@@ -39,7 +39,7 @@ export const About = () => {
             A decade of resilience and rural reform.
           </motion.h1>
           <p className="text-lg md:text-xl text-brand-ink/70 dark:text-dark-ink/70 leading-relaxed max-w-3xl">
-            Born from a grassroots initiative in North Kordofan, SRC has grown into a Sudan-wide nonprofit dedicated to the prosperity of rural communities — operating across fifteen states with local advisory boards in each.
+            Founded by the Sudanese diaspora in Paris and rooted in North Sudan's rural heartlands, SRC delivers education, water, health, and peacebuilding programs in partnership with local communities — and represents their voices at United Nations forums in Geneva and beyond.
           </p>
         </div>
       </section>
@@ -50,8 +50,8 @@ export const About = () => {
           <div className="relative">
             <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-md">
               <img
-                src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070&auto=format&fit=crop"
-                alt="Community gathering"
+                src="https://images.unsplash.com/photo-1596895307394-1d15bf597744?q=80&w=2070&auto=format&fit=crop"
+                alt="Community gathering in North Sudan"
                 loading="lazy"
                 decoding="async"
                 className="w-full h-full object-cover"
@@ -105,8 +105,28 @@ export const About = () => {
         </div>
       </section>
 
-      {/* Leadership */}
+      {/* International engagement */}
       <section className="py-20 md:py-28 px-6">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 items-start">
+          <div className="md:col-span-5">
+            <p className="text-brand-secondary dark:text-dark-secondary text-xs font-bold uppercase tracking-[0.3em] mb-4">International engagement</p>
+            <h2 className="text-3xl md:text-4xl font-serif font-bold leading-tight text-brand-primary dark:text-dark-primary">
+              From rural Sudan to the United Nations in Geneva.
+            </h2>
+          </div>
+          <div className="md:col-span-7 space-y-5 text-brand-ink/75 dark:text-dark-ink/75 leading-relaxed">
+            <p>
+              Operating from our Paris headquarters, SRC carries the priorities of rural Sudanese communities into international policy spaces. We attend the UN Human Rights Council and humanitarian coordination meetings in Geneva, working alongside member states and partner NGOs to advocate for sustained funding, civilian protection, and dignified humanitarian access.
+            </p>
+            <p>
+              Our delegation regularly participates in UNHCR pledging conferences, OCHA humanitarian roundtables, and side events at the UN General Assembly — bringing field-verified data and the testimony of community advisors directly into the rooms where policy is shaped.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Leadership */}
+      <section className="py-20 md:py-28 px-6 bg-brand-surface dark:bg-dark-surface/40 border-t border-brand-primary/5 dark:border-white/5">
         <div className="max-w-7xl mx-auto">
           <div className="max-w-2xl mb-14">
             <p className="text-brand-secondary dark:text-dark-secondary text-xs font-bold uppercase tracking-[0.3em] mb-4">Our leadership</p>

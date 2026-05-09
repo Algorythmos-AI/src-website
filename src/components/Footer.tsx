@@ -48,7 +48,7 @@ export const Footer = () => {
             <ul className="space-y-3 text-sm">
               <li className="flex items-start gap-3">
                 <MapPin size={14} className="mt-0.5 shrink-0 text-brand-accent" />
-                <span>Khartoum, Sudan</span>
+                <span>Headquarters · Paris, France<br /><span className="text-white/50 text-xs">Field operations · North Sudan</span></span>
               </li>
               <li className="flex items-center gap-3">
                 <Mail size={14} className="shrink-0 text-brand-accent" />
@@ -87,7 +87,7 @@ export const Footer = () => {
         </div>
 
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-[11px] tracking-wide text-white/40">
-          <p>© 2025 Sudanese Rural Community (SRC). Registered humanitarian nonprofit.</p>
+          <p>© 2025 Sudanese Rural Community (SRC). Registered nonprofit · Paris, France.</p>
           <div className="flex gap-6">
             <a href="#" className="hover:text-white transition-colors">Privacy</a>
             <a href="#" className="hover:text-white transition-colors">Terms</a>

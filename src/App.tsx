@@ -27,20 +27,20 @@ const Home = () => {
     {
       title: "Resilient Peacebuilding",
       tag: "Initiative",
-      image: "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?q=80&w=2070&auto=format&fit=crop",
+      image: "https://images.unsplash.com/photo-1608317544280-9e9916b8c54d?q=80&w=2070&auto=format&fit=crop",
       description: "Restoring communal harmony through traditional mediation and youth-led dialogue programs across Darfur and Kordofan."
     },
     {
       title: "Rural Education Centers",
       tag: "Development",
-      image: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=2073&auto=format&fit=crop",
-      description: "Constructing tech-enabled learning spaces for children in underserved rural districts, bridging the literacy gap."
+      image: "https://images.unsplash.com/photo-1596895307394-1d15bf597744?q=80&w=2070&auto=format&fit=crop",
+      description: "Tech-enabled learning spaces for children in underserved rural districts, bridging the literacy gap in North Sudan."
     },
     {
       title: "Emergency Water Relief",
       tag: "Humanitarian",
-      image: "https://images.unsplash.com/photo-1516939884455-1445c8652f83?q=80&w=1974&auto=format&fit=crop",
-      description: "Implementing solar-powered boreholes and sustainable water management systems for arid rural communities."
+      image: "https://images.unsplash.com/photo-1663876458229-4a7ac3e4be45?q=80&w=2070&auto=format&fit=crop",
+      description: "Solar-powered boreholes and sustainable water management for arid rural communities across North Sudan."
     }
   ];
 

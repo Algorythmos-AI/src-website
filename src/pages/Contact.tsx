@@ -57,7 +57,10 @@ export const Contact = () => {
                 <div>
                   <h3 className="font-bold text-brand-primary dark:text-dark-primary mb-1">Headquarters</h3>
                   <p className="text-sm text-brand-ink/70 dark:text-dark-ink/70 leading-relaxed">
-                    SRC Tower, North Kordofan District<br />Khartoum, Sudan
+                    Paris, France
+                  </p>
+                  <p className="text-xs text-brand-ink/50 dark:text-dark-ink/50 leading-relaxed mt-1">
+                    Field operations · North Sudan
                   </p>
                 </div>
               </li>
@@ -68,7 +71,7 @@ export const Contact = () => {
                 <div>
                   <h3 className="font-bold text-brand-primary dark:text-dark-primary mb-1">Office hours</h3>
                   <p className="text-sm text-brand-ink/70 dark:text-dark-ink/70 leading-relaxed">
-                    Sunday – Thursday<br />09:00 – 17:00 (EAT, UTC+2)
+                    Monday – Friday<br />09:00 – 18:00 (CET, UTC+1)
                   </p>
                 </div>
               </li>

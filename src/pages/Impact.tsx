@@ -84,14 +84,14 @@ export const Impact = () => {
       category: 'Water & sanitation',
       quote: 'Before the borehole, my children walked four hours each day for water. Now they are at the learning center, and I have a garden.',
       author: 'Fatima, community chairperson',
-      image: 'https://images.unsplash.com/photo-1547523199-469b3dc2a538?q=80&w=2070&auto=format&fit=crop',
+      image: 'https://images.unsplash.com/photo-1633215357805-310e47d9c72e?q=80&w=2070&auto=format&fit=crop',
     },
     {
       title: 'Learning without borders',
       category: 'Education',
       quote: 'The digital library in our village was something we only saw on television. SRC brought the world to our fingertips.',
       author: 'Ahmed, student (age 14)',
-      image: 'https://images.unsplash.com/photo-1588072432836-e10032774350?q=80&w=2072&auto=format&fit=crop',
+      image: 'https://images.unsplash.com/photo-1608317544280-9e9916b8c54d?q=80&w=2070&auto=format&fit=crop',
     },
   ];
 
