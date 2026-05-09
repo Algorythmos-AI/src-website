@@ -1,20 +1,52 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Sudanese Rural Community (SRC)
 
-# Run and deploy your AI Studio app
+A premium nonprofit website for the Sudanese Rural Community (SRC), focused on peacebuilding, education, humanitarian aid, and rural development in Sudan.
 
-This contains everything you need to run your app locally.
+## Tech stack
 
-View your app in AI Studio: https://ai.studio/apps/a078e21b-699f-4b16-a6a1-8e455070f408
+- React 19 + TypeScript
+- Vite 6
+- Tailwind CSS v4 (via `@tailwindcss/vite`)
+- React Router v7
+- Motion (`motion/react`)
+- Lucide icons
 
-## Run Locally
+## Run locally
 
-**Prerequisites:**  Node.js
+**Prerequisites:** Node.js 20+
 
+```bash
+npm install
+npm run dev
+```
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+The dev server runs on `http://localhost:3000`.
+
+## Scripts
+
+| Script | What it does |
+|---|---|
+| `npm run dev` | Start the Vite dev server with HMR |
+| `npm run build` | Type-check via `tsc` is in `lint`; this builds to `dist/` |
+| `npm run preview` | Serve the built `dist/` locally |
+| `npm run lint` | `tsc --noEmit` — strict type check |
+| `npm run clean` | Remove `dist/` |
+
+## Notes
+
+- **Donate page is a UI mock.** The credit card form on `/donate` is a visual placeholder only — no payment processor is wired up. Do **not** deploy this page as-is for live donations; integrate Stripe (or your processor of choice) before going public.
+- **Newsletter and contact forms** are inert placeholders that prevent default submission. Wire up to your transactional email / CRM provider when ready.
+- **Theme**: light/dark is toggled via the moon/sun in the navbar. The choice is persisted in `localStorage` and the initial theme is applied via an inline script in `index.html` to avoid a flash of unstyled content (FOUC). System `prefers-color-scheme` is honored when no choice has been saved.
+- **Routing**: client-side via `react-router-dom`. A `<ScrollToTop />` helper resets scroll on route change, and an `<ErrorBoundary>` wraps lazy-loaded routes so chunk-load failures show a recovery UI instead of a white screen.
+
+## Project structure
+
+```
+src/
+├── components/      Reusable UI (Navbar, Footer, Hero, ShareButtons, …)
+├── context/         Theme provider
+├── pages/           Route-level views (About, Work, Impact, Contact, Donate)
+├── App.tsx          Router shell + Home page
+├── main.tsx         Entry point
+└── index.css        Tailwind + theme tokens + custom dark variant
+```

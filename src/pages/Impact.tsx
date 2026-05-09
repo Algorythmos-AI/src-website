@@ -1,9 +1,16 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { Users, Droplets, BookOpen, Heart, MapPin, ArrowRight } from 'lucide-react';
+import { Users, Droplets, BookOpen, Heart, ArrowRight, type LucideIcon } from 'lucide-react';
 import { ShareButtons } from '../components/ShareButtons';
 
-const StatCard = ({ icon: Icon, value, label, desc }: any) => (
+interface StatCardProps {
+  icon: LucideIcon;
+  value: string;
+  label: string;
+  desc: string;
+}
+
+const StatCard: React.FC<StatCardProps> = ({ icon: Icon, value, label, desc }) => (
   <motion.div 
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
@@ -21,7 +28,15 @@ const StatCard = ({ icon: Icon, value, label, desc }: any) => (
   </motion.div>
 );
 
-const StoryCard = ({ image, title, category, quote, author }: any) => (
+interface StoryCardProps {
+  image: string;
+  title: string;
+  category: string;
+  quote: string;
+  author: string;
+}
+
+const StoryCard: React.FC<StoryCardProps> = ({ image, title, category, quote, author }) => (
   <motion.div 
     initial={{ opacity: 0, y: 30 }}
     whileInView={{ opacity: 1, y: 0 }}
@@ -29,7 +44,7 @@ const StoryCard = ({ image, title, category, quote, author }: any) => (
     className="group"
   >
     <div className="aspect-[16/10] rounded-[2.5rem] overflow-hidden mb-8 shadow-xl relative">
-      <img src={image} alt={title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" referrerPolicy="no-referrer" />
+      <img src={image} alt={title} loading="lazy" decoding="async" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" referrerPolicy="no-referrer" />
       <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity translate-y-2 group-hover:translate-y-0 duration-300">
         <div className="bg-white/90 dark:bg-dark-surface/90 backdrop-blur-sm p-3 rounded-2xl shadow-xl">
            <ShareButtons title={title} className="text-brand-ink dark:text-dark-ink" />
@@ -180,12 +195,16 @@ export const Impact = () => {
                   style={{ left: loc.x, top: loc.y }}
                   className="absolute"
                 >
-                  <div className="group relative">
-                    <div className="w-4 h-4 bg-brand-accent rounded-full shadow-[0_0_20px_rgba(255,208,99,0.8)] cursor-pointer" />
-                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 bg-white text-brand-ink px-3 py-1 rounded text-[10px] font-bold uppercase tracking-tighter opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                       {loc.label}
-                    </div>
-                  </div>
+                  <button
+                    type="button"
+                    aria-label={`${loc.label} field site`}
+                    className="group relative block focus:outline-none"
+                  >
+                    <span className="block w-4 h-4 bg-brand-accent rounded-full shadow-[0_0_20px_rgba(255,208,99,0.8)] cursor-pointer ring-offset-2 ring-offset-brand-footer group-focus-visible:ring-2 group-focus-visible:ring-white" />
+                    <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 bg-white text-brand-ink px-3 py-1 rounded text-[10px] font-bold uppercase tracking-tighter opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+                      {loc.label}
+                    </span>
+                  </button>
                 </motion.div>
               ))}
             </div>

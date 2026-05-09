@@ -62,20 +62,25 @@ export const Contact = () => {
           >
             <div className="absolute top-0 right-0 w-32 h-32 bg-brand-primary/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl" />
             
-            <form className="space-y-6 relative z-10">
+            <form
+              className="space-y-6 relative z-10"
+              onSubmit={(e) => {
+                e.preventDefault();
+              }}
+            >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="text-[10px] uppercase tracking-widest font-bold text-brand-primary/40">FullName</label>
-                  <input type="text" placeholder="John Doe" className="w-full bg-white/50 border border-brand-primary/10 px-6 py-4 rounded-xl text-sm focus:ring-1 focus:ring-brand-accent outline-none font-medium" />
+                  <label htmlFor="contact-name" className="text-[10px] uppercase tracking-widest font-bold text-brand-primary/40">Full Name</label>
+                  <input id="contact-name" name="name" type="text" autoComplete="name" required placeholder="John Doe" className="w-full bg-white/50 border border-brand-primary/10 px-6 py-4 rounded-xl text-sm focus:ring-1 focus:ring-brand-accent outline-none font-medium" />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-[10px] uppercase tracking-widest font-bold text-brand-primary/40">Email Address</label>
-                  <input type="email" placeholder="john@example.com" className="w-full bg-white/50 border border-brand-primary/10 px-6 py-4 rounded-xl text-sm focus:ring-1 focus:ring-brand-accent outline-none font-medium" />
+                  <label htmlFor="contact-email" className="text-[10px] uppercase tracking-widest font-bold text-brand-primary/40">Email Address</label>
+                  <input id="contact-email" name="email" type="email" autoComplete="email" required placeholder="john@example.com" className="w-full bg-white/50 border border-brand-primary/10 px-6 py-4 rounded-xl text-sm focus:ring-1 focus:ring-brand-accent outline-none font-medium" />
                 </div>
               </div>
               <div className="space-y-2">
-                <label className="text-[10px] uppercase tracking-widest font-bold text-brand-primary/40">Subject</label>
-                <select className="w-full bg-white/50 border border-brand-primary/10 px-6 py-4 rounded-xl text-sm focus:ring-1 focus:ring-brand-accent outline-none appearance-none font-medium">
+                <label htmlFor="contact-subject" className="text-[10px] uppercase tracking-widest font-bold text-brand-primary/40">Subject</label>
+                <select id="contact-subject" name="subject" className="w-full bg-white/50 border border-brand-primary/10 px-6 py-4 rounded-xl text-sm focus:ring-1 focus:ring-brand-accent outline-none appearance-none font-medium">
                   <option>Partnership Inquiry</option>
                   <option>Volunteer Application</option>
                   <option>Media & Press</option>
@@ -83,10 +88,10 @@ export const Contact = () => {
                 </select>
               </div>
               <div className="space-y-2">
-                <label className="text-[10px] uppercase tracking-widest font-bold text-brand-primary/40">Your Message</label>
-                <textarea rows={5} placeholder="How can we help you?" className="w-full bg-white/50 border border-brand-primary/10 px-6 py-4 rounded-xl text-sm focus:ring-1 focus:ring-brand-accent outline-none resize-none font-medium"></textarea>
+                <label htmlFor="contact-message" className="text-[10px] uppercase tracking-widest font-bold text-brand-primary/40">Your Message</label>
+                <textarea id="contact-message" name="message" rows={5} required placeholder="How can we help you?" className="w-full bg-white/50 border border-brand-primary/10 px-6 py-4 rounded-xl text-sm focus:ring-1 focus:ring-brand-accent outline-none resize-none font-medium"></textarea>
               </div>
-              <button className="w-full bg-brand-primary text-white py-5 rounded-2xl font-black text-xs uppercase tracking-[0.2em] flex items-center justify-center gap-3 hover:bg-opacity-90 transition-all shadow-xl shadow-brand-primary/20">
+              <button type="submit" className="w-full bg-brand-primary text-white py-5 rounded-2xl font-black text-xs uppercase tracking-[0.2em] flex items-center justify-center gap-3 hover:bg-opacity-90 transition-all shadow-xl shadow-brand-primary/20">
                 Send Message
                 <Send size={16} />
               </button>

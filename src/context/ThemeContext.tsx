@@ -9,20 +9,24 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
+const getInitialTheme = (): Theme => {
+  if (typeof window === 'undefined') return 'light';
+  try {
+    const saved = window.localStorage.getItem('theme');
+    if (saved === 'light' || saved === 'dark') return saved;
+  } catch {}
+  return window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+};
+
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [theme, setTheme] = useState<Theme>(() => {
-    const saved = localStorage.getItem('theme');
-    return (saved as Theme) || 'light';
-  });
+  const [theme, setTheme] = useState<Theme>(getInitialTheme);
 
   useEffect(() => {
     const root = window.document.documentElement;
-    if (theme === 'dark') {
-      root.classList.add('dark');
-    } else {
-      root.classList.remove('dark');
-    }
-    localStorage.setItem('theme', theme);
+    root.classList.toggle('dark', theme === 'dark');
+    try {
+      window.localStorage.setItem('theme', theme);
+    } catch {}
   }, [theme]);
 
   const toggleTheme = () => {

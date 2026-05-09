@@ -12,6 +12,8 @@ import { CauseCard } from './components/CauseCard';
 import { ImpactStats } from './components/ImpactStats';
 import { motion } from 'motion/react';
 import { ThemeProvider } from './context/ThemeContext';
+import { ErrorBoundary } from './components/ErrorBoundary';
+import { ScrollToTop } from './components/ScrollToTop';
 
 // Lazy load pages
 const About = lazy(() => import('./pages/About').then(m => ({ default: m.About })));
@@ -108,7 +110,7 @@ const Home = () => {
           </motion.h3>
           <div className="flex flex-col items-center">
             <div className="w-20 h-20 rounded-full border-2 border-brand-primary/10 dark:border-dark-primary/20 p-1 mb-4 shadow-xl">
-              <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=1974&auto=format&fit=crop" alt="Director" className="w-full h-full rounded-full object-cover grayscale brightness-90" />
+              <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=1974&auto=format&fit=crop" alt="Director" loading="lazy" decoding="async" className="w-full h-full rounded-full object-cover grayscale brightness-90" />
             </div>
             <p className="font-serif font-bold text-xl text-brand-primary dark:text-dark-primary">Dr. Amel Osman</p>
             <p className="text-xs uppercase tracking-[0.2em] text-brand-ink/50 dark:text-dark-ink/50 font-bold mt-1">Executive Director, SRC</p>
@@ -141,11 +143,11 @@ const Home = () => {
 };
 
 const NotFound = () => (
-  <div className="h-screen flex items-center justify-center bg-brand-bg px-6 text-center">
+  <div className="h-screen flex items-center justify-center bg-brand-bg dark:bg-dark-bg px-6 text-center transition-colors">
     <div>
-      <h1 className="text-9xl font-serif font-bold text-brand-primary/10">404</h1>
-      <p className="text-xl font-serif mb-8 text-brand-ink">The horizon you seek is not here.</p>
-      <Link to="/" className="bg-brand-primary text-white px-8 py-4 rounded-full text-sm font-medium">Return Home</Link>
+      <h1 className="text-9xl font-serif font-bold text-brand-primary/10 dark:text-dark-primary/20">404</h1>
+      <p className="text-xl font-serif mb-8 text-brand-ink dark:text-dark-ink">The horizon you seek is not here.</p>
+      <Link to="/" className="bg-brand-primary dark:bg-dark-primary text-white px-8 py-4 rounded-full text-sm font-medium">Return Home</Link>
     </div>
   </div>
 );
@@ -154,20 +156,23 @@ export default function App() {
   return (
     <ThemeProvider>
       <Router>
+        <ScrollToTop />
         <Navbar />
-        <Suspense fallback={<div className="h-screen flex items-center justify-center bg-brand-bg dark:bg-dark-bg transition-colors">
-          <div className="w-12 h-12 border-4 border-brand-primary dark:border-dark-primary border-t-transparent rounded-full animate-spin" />
-        </div>}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/work" element={<Work />} />
-            <Route path="/impact" element={<Impact />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/donate" element={<Donate />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Suspense>
+        <ErrorBoundary>
+          <Suspense fallback={<div className="h-screen flex items-center justify-center bg-brand-bg dark:bg-dark-bg transition-colors">
+            <div className="w-12 h-12 border-4 border-brand-primary dark:border-dark-primary border-t-transparent rounded-full animate-spin" />
+          </div>}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/work" element={<Work />} />
+              <Route path="/impact" element={<Impact />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/donate" element={<Donate />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
+        </ErrorBoundary>
         <Footer />
       </Router>
     </ThemeProvider>

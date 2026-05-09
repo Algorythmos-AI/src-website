@@ -28,7 +28,7 @@ export const Footer = () => {
               <li><Link to="/about" className="hover:text-brand-accent transition-colors">Who We Are</Link></li>
               <li><Link to="/work" className="hover:text-brand-accent transition-colors">Our Work</Link></li>
               <li><Link to="/impact" className="hover:text-brand-accent transition-colors">Our Impact</Link></li>
-              <li><Link to="/careers" className="hover:text-brand-accent transition-colors">Join the Team</Link></li>
+              <li><Link to="/contact" className="hover:text-brand-accent transition-colors">Contact</Link></li>
             </ul>
           </div>
 
@@ -49,13 +49,25 @@ export const Footer = () => {
           <div>
             <h5 className="font-bold mb-6 text-white text-xs uppercase tracking-[0.2em]">Newsletter</h5>
             <p className="text-[11px] mb-4 uppercase tracking-widest leading-relaxed">Subscribe for monthly impact reports.</p>
-            <form className="relative">
-              <input 
-                type="email" 
-                placeholder="Email Address" 
+            <form
+              className="relative"
+              onSubmit={(e) => {
+                e.preventDefault();
+              }}
+            >
+              <label htmlFor="newsletter-email" className="sr-only">Email address</label>
+              <input
+                id="newsletter-email"
+                name="email"
+                type="email"
+                required
+                placeholder="Email Address"
                 className="w-full bg-white/5 border border-white/10 px-4 py-3 rounded-sm text-[10px] focus:ring-1 focus:ring-brand-accent outline-none text-white uppercase tracking-widest"
               />
-              <button className="absolute right-1 top-1 bottom-1 bg-brand-secondary text-white text-[10px] font-bold px-4 rounded-sm hover:bg-opacity-90 transition-all uppercase tracking-widest">
+              <button
+                type="submit"
+                className="absolute right-1 top-1 bottom-1 bg-brand-secondary text-white text-[10px] font-bold px-4 rounded-sm hover:bg-opacity-90 transition-all uppercase tracking-widest"
+              >
                 Join
               </button>
             </form>

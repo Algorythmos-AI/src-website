@@ -6,12 +6,15 @@ import { useTheme } from '../context/ThemeContext';
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [scrolled, setScrolled] = useState(() =>
+    typeof window !== 'undefined' && window.scrollY > 50
+  );
   const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -74,13 +77,18 @@ export const Navbar = () => {
           <button
             onClick={toggleTheme}
             className="p-2 rounded-full hover:bg-white/10 transition-colors text-white"
+            aria-label="Toggle Theme"
           >
             {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
           </button>
-          
-          <button 
+
+          <button
+            type="button"
             className="text-white p-2"
             onClick={() => setIsOpen(!isOpen)}
+            aria-label={isOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isOpen}
+            aria-controls="mobile-nav"
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -91,6 +99,7 @@ export const Navbar = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
+            id="mobile-nav"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}

@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export const Hero = () => {
   return (
@@ -30,10 +31,13 @@ export const Hero = () => {
           <p className="text-lg opacity-80 max-w-md mb-10 leading-relaxed font-light">
             Empowering the heart of Sudan through sustainable development, humanitarian aid, and dedicated peacebuilding efforts.
           </p>
-          <button className="flex items-center gap-3 px-8 py-4 rounded-md text-white font-bold transition-all shadow-xl bg-brand-secondary dark:bg-dark-secondary hover:bg-opacity-90 transform hover:-translate-y-1 uppercase tracking-widest text-xs">
+          <Link
+            to="/donate"
+            className="inline-flex items-center gap-3 px-8 py-4 rounded-md text-white font-bold transition-all shadow-xl bg-brand-secondary dark:bg-dark-secondary hover:bg-opacity-90 transform hover:-translate-y-1 uppercase tracking-widest text-xs"
+          >
             Join us Today
             <ArrowRight size={18} />
-          </button>
+          </Link>
         </motion.div>
       </div>
 

@@ -2,7 +2,11 @@ node_modules/
 build/
 dist/
 coverage/
+.vite/
+*.tsbuildinfo
 .DS_Store
 *.log
+.idea/
+.vscode/
 .env*
 !.env.example

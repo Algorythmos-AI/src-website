@@ -1,5 +1,5 @@
-import React from 'react';
-import { Twitter, Linkedin, Facebook, Link2 } from 'lucide-react';
+import React, { useState } from 'react';
+import { Twitter, Linkedin, Facebook, Link2, Check } from 'lucide-react';
 import { motion } from 'motion/react';
 
 interface ShareButtonsProps {
@@ -8,31 +8,70 @@ interface ShareButtonsProps {
   className?: string;
 }
 
-export const ShareButtons: React.FC<ShareButtonsProps> = ({ title, url = window.location.href, className = "" }) => {
-  const shareLinks = [
-    {
-      name: 'Twitter',
-      icon: Twitter,
-      href: `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`,
-      color: 'hover:text-[#1DA1F2]'
-    },
-    {
-      name: 'LinkedIn',
-      icon: Linkedin,
-      href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`,
-      color: 'hover:text-[#0077b5]'
-    },
-    {
-      name: 'Facebook',
-      icon: Facebook,
-      href: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
-      color: 'hover:text-[#4267B2]'
-    }
-  ];
+const fallbackCopy = (text: string): boolean => {
+  try {
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.setAttribute('readonly', '');
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.select();
+    const ok = document.execCommand('copy');
+    document.body.removeChild(textarea);
+    return ok;
+  } catch {
+    return false;
+  }
+};
 
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(url);
-    // Optional: Add a toast notification here
+export const ShareButtons: React.FC<ShareButtonsProps> = ({ title, url, className = '' }) => {
+  const [copied, setCopied] = useState(false);
+
+  const resolveUrl = () => url ?? (typeof window !== 'undefined' ? window.location.href : '');
+
+  const shareLinks = (() => {
+    const target = resolveUrl();
+    return [
+      {
+        name: 'Twitter',
+        icon: Twitter,
+        href: `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(target)}`,
+        color: 'hover:text-[#1DA1F2]',
+      },
+      {
+        name: 'LinkedIn',
+        icon: Linkedin,
+        href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(target)}`,
+        color: 'hover:text-[#0077b5]',
+      },
+      {
+        name: 'Facebook',
+        icon: Facebook,
+        href: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(target)}`,
+        color: 'hover:text-[#4267B2]',
+      },
+    ];
+  })();
+
+  const copyToClipboard = async () => {
+    const target = resolveUrl();
+    if (!target) return;
+    let ok = false;
+    try {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(target);
+        ok = true;
+      } else {
+        ok = fallbackCopy(target);
+      }
+    } catch {
+      ok = fallbackCopy(target);
+    }
+    if (ok) {
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1500);
+    }
   };
 
   return (
@@ -47,19 +86,22 @@ export const ShareButtons: React.FC<ShareButtonsProps> = ({ title, url = window.
           whileHover={{ y: -2 }}
           whileTap={{ scale: 0.9 }}
           className={`text-brand-ink/40 dark:text-dark-ink/40 transition-colors ${link.color}`}
+          aria-label={`Share on ${link.name}`}
           title={`Share on ${link.name}`}
         >
           <link.icon size={14} />
         </motion.a>
       ))}
       <motion.button
+        type="button"
         onClick={copyToClipboard}
         whileHover={{ y: -2 }}
         whileTap={{ scale: 0.9 }}
         className="text-brand-ink/40 dark:text-dark-ink/40 hover:text-brand-primary dark:hover:text-dark-primary transition-colors"
-        title="Copy Link"
+        aria-label={copied ? 'Link copied' : 'Copy link'}
+        title={copied ? 'Copied!' : 'Copy Link'}
       >
-        <Link2 size={14} />
+        {copied ? <Check size={14} className="text-brand-secondary dark:text-dark-secondary" /> : <Link2 size={14} />}
       </motion.button>
     </div>
   );

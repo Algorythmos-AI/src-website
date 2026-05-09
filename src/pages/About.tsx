@@ -38,9 +38,11 @@ export const About = () => {
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
           <div className="relative">
             <div className="aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-2xl">
-              <img 
-                src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070&auto=format&fit=crop" 
-                alt="Community Meeting" 
+              <img
+                src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070&auto=format&fit=crop"
+                alt="Community Meeting"
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"
               />
@@ -105,7 +107,7 @@ export const About = () => {
           {[1,2,3].map(i => (
             <div key={i} className="group text-center">
               <div className="aspect-square rounded-full overflow-hidden mb-6 bg-brand-surface border-4 border-brand-surface grayscale group-hover:grayscale-0 transition-all transform group-hover:scale-105 shadow-xl">
-                 <img src={`https://i.pravatar.cc/300?u=src-${i}`} alt="Leader" className="w-full h-full object-cover" />
+                 <img src={`https://i.pravatar.cc/300?u=src-${i}`} alt="Leader" loading="lazy" decoding="async" className="w-full h-full object-cover" />
               </div>
               <h4 className="font-serif font-bold text-lg text-brand-primary">Trustee Member {i}</h4>
               <p className="text-[10px] text-brand-secondary font-bold tracking-widest uppercase mt-1">Expert Counsel</p>
