@@ -35,7 +35,14 @@ export const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto px-6 md:px-10 flex justify-between items-center">
         <Link to="/" className="flex items-center gap-3" aria-label="SRC home">
-          <span className="w-9 h-9 bg-white rounded-md flex items-center justify-center text-brand-primary font-serif font-bold text-base">S</span>
+          <img
+            src="/icon.png"
+            alt=""
+            width={36}
+            height={36}
+            decoding="async"
+            className="w-9 h-9 rounded-full bg-white p-0.5 shadow-sm"
+          />
           <span className="font-serif font-bold tracking-wide text-lg">SRC</span>
         </Link>
 

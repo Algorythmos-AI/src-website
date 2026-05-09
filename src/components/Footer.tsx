@@ -10,7 +10,15 @@ export const Footer = () => {
           {/* Brand */}
           <div className="md:col-span-4">
             <Link to="/" className="flex items-center gap-3 mb-5">
-              <span className="w-9 h-9 bg-white rounded-md flex items-center justify-center text-brand-footer font-serif font-bold text-base">S</span>
+              <img
+                src="/icon.png"
+                alt=""
+                width={36}
+                height={36}
+                decoding="async"
+                loading="lazy"
+                className="w-9 h-9 rounded-full bg-white p-0.5"
+              />
               <span className="font-serif font-bold tracking-wide text-lg text-white">SRC</span>
             </Link>
             <p className="text-sm leading-relaxed mb-6 max-w-sm">
