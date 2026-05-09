@@ -10,7 +10,6 @@ import { Footer } from './components/Footer';
 import { Hero } from './components/Hero';
 import { CauseCard } from './components/CauseCard';
 import { ImpactStats } from './components/ImpactStats';
-import { motion } from 'motion/react';
 import { ThemeProvider } from './context/ThemeContext';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { ScrollToTop } from './components/ScrollToTop';
@@ -45,50 +44,53 @@ const Home = () => {
     }
   ];
 
+  const partners = ['UNICEF', 'WFP', 'OCHA', 'OXFAM', 'IRC', 'UNHCR'];
+
   return (
     <main className="bg-brand-bg dark:bg-dark-bg transition-colors duration-300">
       <Hero />
-      
-      {/* Intro Section */}
-      <section className="py-24 px-6 md:py-32">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-          <div>
-            <motion.h2 
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="text-4xl md:text-5xl font-serif font-bold mb-8 leading-tight text-brand-primary dark:text-dark-primary"
-            >
-              For every <span className="italic font-normal">soul</span> in the heart of rural Sudan.
-            </motion.h2>
+
+      <ImpactStats />
+
+      {/* Mission */}
+      <section className="py-20 md:py-28 px-6">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16">
+          <div className="md:col-span-5">
+            <p className="text-brand-secondary dark:text-dark-secondary text-xs font-bold uppercase tracking-[0.3em] mb-4">Our mission</p>
+            <h2 className="text-3xl md:text-4xl font-serif font-bold leading-tight text-brand-primary dark:text-dark-primary">
+              Locally led. Globally supported.
+            </h2>
           </div>
-          <div>
-            <p className="text-lg text-brand-ink/70 dark:text-dark-ink/70 leading-relaxed font-light mb-8">
-              The Sudanese Rural Community (SRC) is more than an organization—it's a movement born from a deep love for our lands and its people. We work alongside local leaders to solve the most pressing challenges of our time.
+          <div className="md:col-span-7">
+            <p className="text-lg text-brand-ink/75 dark:text-dark-ink/75 leading-relaxed mb-6">
+              The Sudanese Rural Community (SRC) works alongside community advisory boards in fifteen states to deliver education, water, health, and peacebuilding programs designed by Sudanese communities themselves.
             </p>
-            <Link to="/about" className="text-brand-secondary dark:text-dark-secondary font-bold text-sm uppercase tracking-widest flex items-center gap-2 hover:translate-x-2 transition-transform">
-              Our Founding Story →
+            <p className="text-lg text-brand-ink/75 dark:text-dark-ink/75 leading-relaxed mb-8">
+              Our methodology is grounded in three principles: local ownership of every project, transparent reporting to donors and beneficiaries, and durable partnerships with traditional leaders, women's cooperatives, and youth councils.
+            </p>
+            <Link to="/about" className="inline-flex items-center gap-2 text-brand-primary dark:text-dark-primary font-bold text-sm uppercase tracking-widest border-b border-brand-primary/30 dark:border-dark-primary/40 pb-1 hover:border-brand-primary dark:hover:border-dark-primary transition-colors">
+              Read our founding story
             </Link>
           </div>
         </div>
       </section>
 
-      <ImpactStats />
-
-      {/* Causes Section */}
-      <section className="py-24 px-6 md:py-32">
+      {/* Programs */}
+      <section className="py-20 md:py-28 px-6 bg-brand-surface dark:bg-dark-surface/40 border-y border-brand-primary/5 dark:border-white/5">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-end gap-8 mb-20 px-2 text-brand-ink dark:text-dark-ink">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-14">
             <div className="max-w-xl">
-              <span className="text-brand-secondary dark:text-dark-secondary text-xs font-bold uppercase tracking-[0.3em] mb-4 block">Key Initiatives</span>
-              <h2 className="text-5xl md:text-6xl font-serif font-bold leading-[0.9]">Where your <span className="italic text-brand-secondary dark:text-dark-secondary font-normal">impact</span> flows.</h2>
+              <p className="text-brand-secondary dark:text-dark-secondary text-xs font-bold uppercase tracking-[0.3em] mb-4">Our programs</p>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold leading-tight text-brand-primary dark:text-dark-primary">
+                Where your support goes.
+              </h2>
             </div>
-            <Link to="/work" className="bg-brand-primary dark:bg-dark-primary text-white px-8 py-4 rounded-full text-sm font-bold uppercase tracking-widest hover:bg-opacity-90 transition-all shadow-xl shadow-brand-primary/10 dark:shadow-black/30">
-              View All Work
+            <Link to="/work" className="inline-flex items-center gap-2 bg-brand-primary dark:bg-dark-primary text-white px-6 py-3 rounded-lg text-xs font-bold uppercase tracking-widest hover:bg-opacity-90 transition-all">
+              View all programs
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
             {causes.map((cause, i) => (
               <CauseCard key={cause.title} {...cause} index={i} />
             ))}
@@ -96,47 +98,71 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Quote / Narrative Section */}
-      <section className="py-32 bg-brand-surface dark:bg-dark-surface/50 overflow-hidden relative border-y border-brand-primary/5 dark:border-white/5">
-        <div className="max-w-4xl mx-auto px-6 text-center relative">
-          <span className="text-[12rem] font-serif text-brand-primary/5 dark:text-dark-primary/5 absolute -top-16 left-0 select-none">"</span>
-          <motion.h3 
-             initial={{ opacity: 0, y: 20 }}
-             whileInView={{ opacity: 1, y: 0 }}
-             viewport={{ once: true }}
-             className="text-3xl md:text-5xl font-serif italic font-light leading-snug mb-12 text-brand-primary dark:text-dark-primary relative z-10"
-          >
-            Dignity is the foundation of peace. We don't just provide aid; we partner with rural communities to build the tools they need for their own prosperity.
-          </motion.h3>
-          <div className="flex flex-col items-center">
-            <div className="w-20 h-20 rounded-full border-2 border-brand-primary/10 dark:border-dark-primary/20 p-1 mb-4 shadow-xl">
-              <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=1974&auto=format&fit=crop" alt="Director" loading="lazy" decoding="async" className="w-full h-full rounded-full object-cover grayscale brightness-90" />
+      {/* Voice / Testimonial */}
+      <section className="py-20 md:py-28 px-6">
+        <div className="max-w-4xl mx-auto">
+          <p className="text-brand-secondary dark:text-dark-secondary text-xs font-bold uppercase tracking-[0.3em] mb-6 text-center">From our leadership</p>
+          <blockquote className="text-2xl md:text-3xl font-serif leading-snug text-brand-primary dark:text-dark-primary text-center mb-10">
+            “Dignity is the foundation of peace. We don't deliver aid — we partner with rural communities to build the tools they need for their own prosperity.”
+          </blockquote>
+          <div className="flex items-center justify-center gap-4">
+            <div className="w-12 h-12 rounded-full bg-brand-primary dark:bg-dark-primary text-white flex items-center justify-center font-serif font-bold text-lg" aria-hidden="true">
+              AO
             </div>
-            <p className="font-serif font-bold text-xl text-brand-primary dark:text-dark-primary">Dr. Amel Osman</p>
-            <p className="text-xs uppercase tracking-[0.2em] text-brand-ink/50 dark:text-dark-ink/50 font-bold mt-1">Executive Director, SRC</p>
+            <div>
+              <p className="font-serif font-bold text-brand-primary dark:text-dark-primary">Dr. Amel Osman</p>
+              <p className="text-[10px] uppercase tracking-[0.2em] text-brand-ink/50 dark:text-dark-ink/50 font-bold">Executive Director, SRC</p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Call to Action */}
-      <section className="py-24 px-6 text-center">
-         <motion.div
-           initial={{ opacity: 0, scale: 0.95 }}
-           whileInView={{ opacity: 1, scale: 1 }}
-           viewport={{ once: true }}
-           className="max-w-4xl mx-auto bg-brand-primary rounded-[3rem] p-12 md:p-24 text-white relative overflow-hidden"
-         >
-           <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
-           <div className="relative z-10">
-             <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6">Invest in Sudan's <span className="italic">Resilience</span>.</h2>
-             <p className="text-white/80 mb-10 max-w-lg mx-auto leading-relaxed">
-               Your support goes directly to rural projects that promote education, clean water, and community-led peace processes.
-             </p>
-             <Link to="/donate" className="inline-block bg-white text-brand-primary px-10 py-5 rounded-full font-bold text-lg hover:bg-brand-surface transition-all shadow-lg">
-               Donate to SRC
-             </Link>
-           </div>
-         </motion.div>
+      {/* Partners */}
+      <section className="py-16 px-6 border-y border-brand-primary/10 dark:border-white/5 bg-brand-surface/60 dark:bg-dark-surface/30">
+        <div className="max-w-7xl mx-auto">
+          <p className="text-center text-[10px] uppercase tracking-[0.3em] font-bold text-brand-ink/50 dark:text-dark-ink/50 mb-8">In partnership with</p>
+          <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
+            {partners.map(p => (
+              <span key={p} className="font-serif font-bold text-xl md:text-2xl text-brand-primary/40 dark:text-dark-primary/50 tracking-wide">
+                {p}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Transparency / Annual Report */}
+      <section className="py-20 md:py-24 px-6">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="bg-brand-primary dark:bg-dark-primary rounded-2xl p-10 md:p-12 text-white">
+            <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-brand-accent mb-3">Transparency</p>
+            <h3 className="text-2xl md:text-3xl font-serif font-bold mb-4 leading-tight">Annual Report 2024</h3>
+            <p className="text-white/80 leading-relaxed mb-6 text-sm md:text-base">
+              A complete breakdown of programs, finances, and impact across all fifteen states where SRC operates.
+            </p>
+            <a
+              href="#"
+              className="inline-flex items-center gap-2 bg-white text-brand-primary px-6 py-3 rounded-lg text-xs font-bold uppercase tracking-widest hover:bg-brand-surface transition-colors"
+            >
+              Read the report
+            </a>
+          </div>
+          <div className="bg-brand-surface dark:bg-dark-surface rounded-2xl p-10 md:p-12 border border-brand-primary/10 dark:border-white/5">
+            <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-brand-secondary dark:text-dark-secondary mb-3">Get involved</p>
+            <h3 className="text-2xl md:text-3xl font-serif font-bold mb-4 text-brand-primary dark:text-dark-primary leading-tight">
+              Stand with rural Sudan.
+            </h3>
+            <p className="text-brand-ink/70 dark:text-dark-ink/70 leading-relaxed mb-6 text-sm md:text-base">
+              Your support funds clean water, classrooms, and community-led peace councils where they're needed most.
+            </p>
+            <Link
+              to="/donate"
+              className="inline-flex items-center gap-2 bg-brand-primary dark:bg-dark-primary text-white px-6 py-3 rounded-lg text-xs font-bold uppercase tracking-widest hover:bg-opacity-90 transition-colors"
+            >
+              Donate to SRC
+            </Link>
+          </div>
+        </div>
       </section>
     </main>
   );

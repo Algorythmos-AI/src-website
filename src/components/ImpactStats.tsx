@@ -3,31 +3,30 @@ import { motion } from 'motion/react';
 
 export const ImpactStats = () => {
   const stats = [
-    { label: 'Lives Impacted', value: '12k+' },
-    { label: 'Active Projects', value: '45' },
-    { label: 'Rural Hubs', value: '18' },
+    { label: 'People reached', value: '125k+' },
+    { label: 'Active programs', value: '45' },
+    { label: 'Field sites', value: '18' },
     { label: 'Volunteers', value: '800+' },
   ];
 
   return (
-    <section className="py-12 flex items-center justify-center px-6 border-y border-brand-primary/5 bg-brand-surface dark:bg-dark-surface dark:border-white/5 transition-colors">
-      <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12 text-[10px] md:text-sm uppercase tracking-[0.2em] font-bold text-brand-primary dark:text-dark-primary">
+    <section className="py-12 md:py-14 px-6 border-y border-brand-primary/10 dark:border-white/5 bg-brand-surface/70 dark:bg-dark-surface/30 transition-colors">
+      <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4 text-center">
         {stats.map((stat, i) => (
-          <React.Fragment key={stat.label}>
-            <motion.div 
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="flex items-center gap-2"
-            >
-              <span className="text-2xl md:text-3xl font-serif font-black text-brand-accent dark:text-dark-accent">{stat.value}</span>
-              <span className="opacity-70 dark:text-white/70">{stat.label}</span>
-            </motion.div>
-            {i < stats.length - 1 && (
-              <div className="hidden lg:block w-1 h-1 rounded-full bg-brand-primary/20 dark:bg-dark-primary/20"></div>
-            )}
-          </React.Fragment>
+          <motion.div
+            key={stat.label}
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: i * 0.06 }}
+          >
+            <p className="text-3xl md:text-4xl font-serif font-bold text-brand-primary dark:text-dark-primary mb-1">
+              {stat.value}
+            </p>
+            <p className="text-[10px] md:text-xs uppercase tracking-[0.2em] font-bold text-brand-ink/55 dark:text-dark-ink/60">
+              {stat.label}
+            </p>
+          </motion.div>
         ))}
       </div>
     </section>

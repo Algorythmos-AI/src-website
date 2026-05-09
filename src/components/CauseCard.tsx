@@ -13,49 +13,50 @@ interface CauseCardProps {
 
 export const CauseCard: React.FC<CauseCardProps> = ({ title, description, image, tag, index }) => {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
+    <motion.article
+      initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
-      className="group"
+      viewport={{ once: true, margin: '-50px' }}
+      transition={{ duration: 0.5, delay: index * 0.08 }}
+      className="group flex flex-col"
     >
-      <div className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden mb-6 bg-brand-surface dark:bg-dark-surface shadow-xl group-hover:shadow-2xl transition-all duration-500">
+      <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-6 bg-brand-surface dark:bg-dark-surface shadow-sm group-hover:shadow-md transition-shadow">
         <img
           src={image}
           alt={title}
           loading="lazy"
           decoding="async"
-          className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
           referrerPolicy="no-referrer"
         />
-        <div className="absolute inset-0 bg-brand-primary/20 dark:bg-dark-primary/20 opacity-0 group-hover:opacity-100 transition-opacity" />
-        <div className="absolute top-6 left-6">
-          <span className="px-4 py-1.5 bg-brand-accent text-brand-footer rounded-full text-[9px] font-black uppercase tracking-widest shadow-lg">
+        <div className="absolute top-4 left-4">
+          <span className="px-3 py-1 bg-white/95 dark:bg-dark-surface/95 text-brand-primary dark:text-dark-primary rounded-full text-[10px] font-bold uppercase tracking-widest">
             {tag}
           </span>
         </div>
-        
-        {/* Share Buttons Overlay */}
-        <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-all translate-y-2 group-hover:translate-y-0 duration-300">
-          <div className="bg-white/90 dark:bg-dark-surface/90 backdrop-blur-sm p-3 rounded-2xl shadow-xl">
-             <ShareButtons title={title} />
+        <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+          <div className="bg-white/95 dark:bg-dark-surface/95 px-3 py-2 rounded-full shadow-sm">
+            <ShareButtons title={title} />
           </div>
         </div>
       </div>
-      <div className="flex justify-between items-start gap-4 px-2">
-        <div>
-          <h3 className="text-2xl font-serif font-bold mb-3 text-brand-primary dark:text-dark-primary group-hover:text-brand-secondary dark:group-hover:text-dark-secondary transition-colors leading-tight italic">
+      <div className="flex justify-between items-start gap-4">
+        <div className="flex-1">
+          <h3 className="text-xl md:text-2xl font-serif font-bold mb-3 text-brand-primary dark:text-dark-primary leading-tight">
             {title}
           </h3>
-          <p className="text-brand-ink/70 dark:text-dark-ink/70 text-sm leading-relaxed max-w-xs font-medium">
+          <p className="text-brand-ink/70 dark:text-dark-ink/70 text-sm leading-relaxed">
             {description}
           </p>
         </div>
-        <button className="p-4 bg-brand-surface dark:bg-dark-surface text-brand-primary dark:text-dark-primary rounded-2xl group-hover:bg-brand-secondary dark:group-hover:bg-dark-secondary group-hover:text-white dark:group-hover:text-white transition-all transform shadow-md hover:shadow-lg">
-          <ArrowUpRight size={22} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+        <button
+          type="button"
+          aria-label={`Read more about ${title}`}
+          className="shrink-0 p-3 rounded-full border border-brand-primary/15 dark:border-dark-primary/25 text-brand-primary dark:text-dark-primary group-hover:bg-brand-primary group-hover:text-white dark:group-hover:bg-dark-primary transition-colors"
+        >
+          <ArrowUpRight size={18} />
         </button>
       </div>
-    </motion.div>
+    </motion.article>
   );
 };

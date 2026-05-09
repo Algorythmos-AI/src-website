@@ -1,121 +1,198 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { Heart, CreditCard, Landmark, ArrowRight, Zap, Globe, Shield } from 'lucide-react';
+import { Heart, Globe, ShieldCheck, ArrowRight, Lock } from 'lucide-react';
+
+interface Tier {
+  amount: number;
+  label: string;
+  description: string;
+  recommended?: boolean;
+}
+
+const TIERS: Tier[] = [
+  { amount: 25, label: 'Friend', description: 'School supplies for one child for a term.' },
+  { amount: 50, label: 'Supporter', description: 'A month of clean water for a rural family.', recommended: true },
+  { amount: 100, label: 'Partner', description: 'Stipend for a community peace mediator.' },
+  { amount: 250, label: 'Champion', description: 'Solar lighting for a rural classroom.' },
+];
 
 export const Donate = () => {
-  const amounts = ['$25', '$50', '$100', '$250', '$500', 'Custom'];
-  
-  return (
-    <div className="bg-brand-bg pt-24 min-h-screen leading-normal font-sans">
-      <div className="max-w-7xl mx-auto px-6 py-24 grid grid-cols-1 lg:grid-cols-2 gap-20">
-        <div>
-          <motion.span 
-            initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-            className="text-brand-secondary text-xs font-bold uppercase tracking-[0.3em] mb-4 block"
-          >
-            Direct Support
-          </motion.span>
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-            className="text-5xl md:text-7xl font-serif font-bold mb-8 text-brand-primary leading-tight"
-          >
-            Be the <span className="italic text-brand-secondary">spark</span> for someone's future.
-          </motion.h1>
-          <p className="text-xl text-brand-ink/70 font-light leading-relaxed mb-12">
-            Your generous contribution empowers rural Sudanese communities with clean water, quality education, and resilient peace. Every dollar is a seed for prosperity.
-          </p>
+  const [selectedAmount, setSelectedAmount] = useState<number | null>(50);
+  const [customAmount, setCustomAmount] = useState('');
+  const [frequency, setFrequency] = useState<'one-time' | 'monthly'>('one-time');
 
-          <div className="space-y-8">
-            <div className="flex gap-6 items-start">
-               <div className="p-3 bg-brand-primary/10 rounded-2xl text-brand-primary">
-                 <Zap size={24} />
-               </div>
-               <div>
-                 <h4 className="font-serif font-bold text-lg mb-1 text-brand-primary uppercase tracking-wide">Immediate Impact</h4>
-                 <p className="text-sm text-brand-ink/50 font-medium">92% of every dollar goes directly to rural field programs and local project teams.</p>
-               </div>
-            </div>
-            <div className="flex gap-6 items-start">
-               <div className="p-3 bg-brand-accent/20 rounded-2xl text-brand-primary">
-                 <Globe size={24} />
-               </div>
-               <div>
-                 <h4 className="font-serif font-bold text-lg mb-1 text-brand-primary uppercase tracking-wide">Global Transparency</h4>
-                 <p className="text-sm text-brand-ink/50 font-medium">Monthly reports and project updates sent directly to your inbox so you can see the change.</p>
-               </div>
-            </div>
-            <div className="flex gap-6 items-start">
-               <div className="p-3 bg-brand-primary/10 rounded-2xl text-brand-primary">
-                 <Shield size={24} />
-               </div>
-               <div>
-                 <h4 className="font-serif font-bold text-lg mb-1 text-brand-primary uppercase tracking-wide">Secure Giving</h4>
-                 <p className="text-sm text-brand-ink/50 font-medium">Industry-standard encryption and secure payment processing for your peace of mind.</p>
-               </div>
-            </div>
+  const finalAmount = customAmount ? Number(customAmount) || 0 : selectedAmount ?? 0;
+
+  return (
+    <div className="bg-brand-bg dark:bg-dark-bg pt-24 transition-colors">
+      {/* Header */}
+      <section className="py-20 md:py-28 px-6 bg-brand-surface dark:bg-dark-surface/40 border-b border-brand-primary/5 dark:border-white/5">
+        <div className="max-w-4xl mx-auto">
+          <p className="text-brand-secondary dark:text-dark-secondary text-xs font-bold uppercase tracking-[0.3em] mb-4">Support our work</p>
+          <h1 className="text-4xl md:text-6xl font-serif font-bold text-brand-primary dark:text-dark-primary leading-tight mb-6">
+            Stand with rural Sudan.
+          </h1>
+          <p className="text-lg md:text-xl text-brand-ink/70 dark:text-dark-ink/70 leading-relaxed max-w-3xl">
+            Your contribution funds clean water, classrooms, and community-led peace councils — delivered by Sudanese teams in fifteen states.
+          </p>
+        </div>
+      </section>
+
+      {/* Giving section */}
+      <section className="py-20 md:py-28 px-6">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
+          {/* Left: principles */}
+          <div className="lg:col-span-5">
+            <p className="text-brand-secondary dark:text-dark-secondary text-xs font-bold uppercase tracking-[0.3em] mb-4">Why give to SRC</p>
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-brand-primary dark:text-dark-primary mb-10 leading-tight">
+              Direct impact, fully accounted for.
+            </h2>
+
+            <ul className="space-y-8">
+              <li className="flex gap-5 items-start">
+                <span className="shrink-0 w-11 h-11 rounded-lg bg-brand-primary/10 dark:bg-dark-primary/20 text-brand-primary dark:text-dark-primary flex items-center justify-center">
+                  <Heart size={20} />
+                </span>
+                <div>
+                  <h3 className="font-bold text-brand-primary dark:text-dark-primary mb-1">92% to programs</h3>
+                  <p className="text-sm text-brand-ink/70 dark:text-dark-ink/70 leading-relaxed">Of every dollar received, $0.92 reaches the field. The remaining $0.08 covers compliance, audit, and oversight.</p>
+                </div>
+              </li>
+              <li className="flex gap-5 items-start">
+                <span className="shrink-0 w-11 h-11 rounded-lg bg-brand-primary/10 dark:bg-dark-primary/20 text-brand-primary dark:text-dark-primary flex items-center justify-center">
+                  <Globe size={20} />
+                </span>
+                <div>
+                  <h3 className="font-bold text-brand-primary dark:text-dark-primary mb-1">Quarterly reporting</h3>
+                  <p className="text-sm text-brand-ink/70 dark:text-dark-ink/70 leading-relaxed">Every donor receives quarterly impact updates with project-level financials and beneficiary stories.</p>
+                </div>
+              </li>
+              <li className="flex gap-5 items-start">
+                <span className="shrink-0 w-11 h-11 rounded-lg bg-brand-primary/10 dark:bg-dark-primary/20 text-brand-primary dark:text-dark-primary flex items-center justify-center">
+                  <ShieldCheck size={20} />
+                </span>
+                <div>
+                  <h3 className="font-bold text-brand-primary dark:text-dark-primary mb-1">Independently audited</h3>
+                  <p className="text-sm text-brand-ink/70 dark:text-dark-ink/70 leading-relaxed">SRC's accounts are audited annually by an independent firm; the full report is published on this site.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          {/* Right: giving widget */}
+          <div className="lg:col-span-7">
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="bg-brand-surface dark:bg-dark-surface rounded-2xl p-8 md:p-10 border border-brand-primary/10 dark:border-white/10 shadow-sm"
+            >
+              {/* Frequency */}
+              <div className="mb-8">
+                <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-ink/55 dark:text-dark-ink/60 mb-3">Frequency</p>
+                <div className="inline-flex p-1 rounded-lg bg-brand-bg dark:bg-dark-bg/60 border border-brand-primary/10 dark:border-white/10">
+                  {(['one-time', 'monthly'] as const).map(f => (
+                    <button
+                      key={f}
+                      type="button"
+                      onClick={() => setFrequency(f)}
+                      className={`px-5 py-2 rounded-md text-xs font-bold uppercase tracking-widest transition-colors ${
+                        frequency === f
+                          ? 'bg-brand-primary dark:bg-dark-primary text-white'
+                          : 'text-brand-ink/60 dark:text-dark-ink/60 hover:text-brand-primary dark:hover:text-dark-primary'
+                      }`}
+                      aria-pressed={frequency === f}
+                    >
+                      {f === 'one-time' ? 'One-time' : 'Monthly'}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Tiers */}
+              <div className="mb-6">
+                <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-ink/55 dark:text-dark-ink/60 mb-3">Choose an amount (USD)</p>
+                <div className="grid grid-cols-2 gap-3">
+                  {TIERS.map(tier => {
+                    const isSelected = !customAmount && selectedAmount === tier.amount;
+                    return (
+                      <button
+                        key={tier.amount}
+                        type="button"
+                        onClick={() => {
+                          setSelectedAmount(tier.amount);
+                          setCustomAmount('');
+                        }}
+                        aria-pressed={isSelected}
+                        className={`relative text-left p-4 rounded-lg border transition-all ${
+                          isSelected
+                            ? 'border-brand-primary dark:border-dark-primary bg-brand-primary/5 dark:bg-dark-primary/10'
+                            : 'border-brand-primary/15 dark:border-white/10 hover:border-brand-primary/40 dark:hover:border-dark-primary/40'
+                        }`}
+                      >
+                        {tier.recommended && (
+                          <span className="absolute top-2 right-2 text-[8px] uppercase tracking-widest font-bold text-brand-secondary dark:text-dark-secondary">
+                            Suggested
+                          </span>
+                        )}
+                        <p className="text-2xl font-serif font-bold text-brand-primary dark:text-dark-primary mb-1">${tier.amount}</p>
+                        <p className="text-[10px] uppercase tracking-widest font-bold text-brand-ink/60 dark:text-dark-ink/60 mb-1">{tier.label}</p>
+                        <p className="text-xs text-brand-ink/60 dark:text-dark-ink/60 leading-snug">{tier.description}</p>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Custom amount */}
+              <div className="mb-8">
+                <label htmlFor="custom-amount" className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-ink/55 dark:text-dark-ink/60 mb-2 block">
+                  Or enter a custom amount
+                </label>
+                <div className="relative">
+                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-brand-ink/40 dark:text-dark-ink/40 font-medium">$</span>
+                  <input
+                    id="custom-amount"
+                    type="number"
+                    inputMode="decimal"
+                    min="1"
+                    placeholder="500"
+                    value={customAmount}
+                    onChange={(e) => {
+                      setCustomAmount(e.target.value);
+                      setSelectedAmount(null);
+                    }}
+                    className="w-full bg-brand-bg dark:bg-dark-bg/60 border border-brand-primary/15 dark:border-white/10 rounded-lg pl-9 pr-4 py-3 text-base font-medium text-brand-ink dark:text-dark-ink focus:ring-2 focus:ring-brand-accent outline-none"
+                  />
+                </div>
+              </div>
+
+              {/* CTA */}
+              <a
+                href="#"
+                aria-disabled="true"
+                onClick={(e) => e.preventDefault()}
+                className={`w-full inline-flex items-center justify-center gap-3 py-4 rounded-lg font-bold text-xs uppercase tracking-[0.2em] transition-colors ${
+                  finalAmount > 0
+                    ? 'bg-brand-primary dark:bg-dark-primary text-white hover:bg-opacity-90'
+                    : 'bg-brand-primary/30 dark:bg-dark-primary/30 text-white/70 cursor-not-allowed'
+                }`}
+              >
+                Continue with ${finalAmount > 0 ? finalAmount : '0'} {frequency === 'monthly' ? '/ month' : ''}
+                <ArrowRight size={16} />
+              </a>
+
+              <p className="mt-4 flex items-center justify-center gap-2 text-[10px] uppercase tracking-widest font-bold text-brand-ink/50 dark:text-dark-ink/50">
+                <Lock size={12} />
+                Donations processed securely · SSL encrypted
+              </p>
+
+              <p className="mt-6 text-xs text-brand-ink/55 dark:text-dark-ink/55 text-center leading-relaxed">
+                SRC is a registered nonprofit. Donations are tax-deductible where allowed by law. The secure payment portal is currently being finalized — please <a href="/contact" className="underline hover:text-brand-primary dark:hover:text-dark-primary">contact us</a> for wire transfer or partner-organization donations.
+              </p>
+            </motion.div>
           </div>
         </div>
-
-        <motion.div 
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          className="bg-brand-footer p-10 md:p-16 rounded-[3rem] text-white shadow-2xl relative"
-        >
-          <div className="absolute -top-10 -left-10 bg-brand-secondary w-20 h-20 rounded-full flex items-center justify-center animate-bounce shadow-xl">
-            <Heart size={32} className="fill-white" />
-          </div>
-
-          <h3 className="text-3xl font-serif font-bold mb-8 italic">Choose your impact</h3>
-          
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-10">
-            {amounts.map(amt => (
-              <button 
-                key={amt} 
-                className="py-4 border border-white/20 rounded-2xl hover:bg-brand-secondary hover:border-brand-secondary transition-all text-lg font-bold uppercase tracking-widest text-xs"
-              >
-                {amt}
-              </button>
-            ))}
-          </div>
-
-          <div className="space-y-6 mb-10">
-            <div className="relative">
-              <label className="text-[10px] uppercase tracking-widest font-bold text-brand-surface/40 mb-2 block">Card Information</label>
-              <div className="relative">
-                <CreditCard className="absolute left-4 top-1/2 -translate-y-1/2 text-brand-surface/30" size={18} />
-                <input 
-                  type="text" 
-                  placeholder="Card Number" 
-                  className="w-full bg-white/5 border border-white/10 rounded-xl py-4 pl-12 pr-4 text-xs font-bold tracking-widest focus:ring-1 focus:ring-brand-accent outline-none uppercase"
-                />
-              </div>
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-               <input 
-                  type="text" 
-                  placeholder="MM/YY" 
-                  className="w-full bg-white/5 border border-white/10 rounded-xl py-4 px-4 text-xs font-bold tracking-widest focus:ring-1 focus:ring-brand-accent outline-none uppercase"
-                />
-                <input 
-                  type="text" 
-                  placeholder="CVC" 
-                  className="w-full bg-white/5 border border-white/10 rounded-xl py-4 px-4 text-xs font-bold tracking-widest focus:ring-1 focus:ring-brand-accent outline-none uppercase"
-                />
-            </div>
-          </div>
-
-          <button className="w-full bg-brand-secondary py-5 rounded-2xl font-black text-xs uppercase tracking-[0.2em] flex items-center justify-center gap-3 hover:bg-opacity-90 transition-all shadow-xl shadow-black/20">
-            Complete Donation
-            <ArrowRight size={18} />
-          </button>
-
-          <div className="mt-12 flex justify-center items-center gap-6 opacity-20">
-            <Landmark size={24} />
-            <div className="h-4 w-px bg-white"></div>
-            <span className="font-black text-[10px] tracking-widest uppercase">Secure SSL</span>
-          </div>
-        </motion.div>
-      </div>
+      </section>
     </div>
   );
 };

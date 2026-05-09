@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import { Menu, X, Heart, Sun, Moon } from 'lucide-react';
+import { Menu, X, Sun, Moon } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useTheme } from '../context/ThemeContext';
 
@@ -19,56 +19,57 @@ export const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'About Us', path: '/about' },
-    { name: 'Our Work', path: '/work' },
-    { name: 'Our Impact', path: '/impact' },
+    { name: 'About', path: '/about' },
+    { name: 'Programs', path: '/work' },
+    { name: 'Impact', path: '/impact' },
     { name: 'Contact', path: '/contact' },
   ];
 
   return (
-    <nav 
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        scrolled 
-          ? 'bg-brand-primary dark:bg-dark-bg/90 backdrop-blur-md shadow-lg py-3' 
+    <nav
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 text-white ${
+        scrolled
+          ? 'bg-brand-primary/95 dark:bg-dark-bg/95 backdrop-blur-md shadow-sm py-3'
           : 'bg-brand-primary dark:bg-dark-bg py-5'
-      } text-white`}
+      }`}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-10 flex justify-between items-center">
-        <Link to="/" className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-brand-primary font-bold text-xl">S</div>
-          <span className="font-semibold tracking-wide text-lg">SRC</span>
+        <Link to="/" className="flex items-center gap-3" aria-label="SRC home">
+          <span className="w-9 h-9 bg-white rounded-md flex items-center justify-center text-brand-primary font-serif font-bold text-base">S</span>
+          <span className="font-serif font-bold tracking-wide text-lg">SRC</span>
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <NavLink
-              key={link.path}
-              to={link.path}
-              className={({ isActive }) =>
-                `text-sm font-medium transition-all opacity-90 hover:opacity-100 ${
-                  isActive ? 'border-b border-white' : ''
-                }`
-              }
-            >
-              {link.name}
-            </NavLink>
-          ))}
-          
+        <div className="hidden md:flex items-center gap-2">
+          <div className="flex items-center gap-1 mr-4">
+            {navLinks.map((link) => (
+              <NavLink
+                key={link.path}
+                to={link.path}
+                className={({ isActive }) =>
+                  `px-4 py-2 text-sm font-medium rounded-md transition-colors ${
+                    isActive ? 'bg-white/10 text-white' : 'text-white/80 hover:text-white hover:bg-white/5'
+                  }`
+                }
+              >
+                {link.name}
+              </NavLink>
+            ))}
+          </div>
+
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-full hover:bg-white/10 transition-colors text-white"
-            aria-label="Toggle Theme"
+            className="p-2 rounded-md hover:bg-white/10 transition-colors text-white"
+            aria-label="Toggle theme"
           >
-            {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
+            {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
           </button>
 
           <Link
             to="/donate"
-            className="bg-white text-brand-primary dark:bg-dark-primary dark:text-white px-6 py-2 rounded-sm font-bold text-sm tracking-tight shadow-md hover:shadow-lg transition-all"
+            className="ml-2 bg-white text-brand-primary px-5 py-2.5 rounded-md font-bold text-xs uppercase tracking-[0.15em] hover:bg-brand-surface transition-colors"
           >
-            DONATE NOW
+            Donate
           </Link>
         </div>
 
@@ -122,9 +123,9 @@ export const Navbar = () => {
             <Link
               to="/donate"
               onClick={() => setIsOpen(false)}
-              className="mt-2 flex justify-center items-center gap-2 bg-white text-brand-primary px-5 py-3 rounded-sm text-base font-bold"
+              className="mt-2 flex justify-center items-center gap-2 bg-white text-brand-primary px-5 py-3 rounded-md text-sm font-bold uppercase tracking-[0.15em]"
             >
-              Donate Now
+              Donate
             </Link>
           </motion.div>
         )}
