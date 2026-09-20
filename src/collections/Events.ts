@@ -2,6 +2,7 @@ import type { CollectionConfig } from 'payload';
 import { isAdminOrEditor, publishedOrLoggedIn } from '@/access';
 import { slugField } from '@/fields/slug';
 import { requiredInEnglish } from '@/fields/validators';
+import { revalidateCollection, revalidateCollectionDelete } from '@/hooks/revalidate';
 
 export const Events: CollectionConfig = {
   slug: 'events',
@@ -9,6 +10,10 @@ export const Events: CollectionConfig = {
     useAsTitle: 'title',
     defaultColumns: ['title', 'startsAt', '_status'],
     group: 'Content',
+  },
+  hooks: {
+    afterChange: [revalidateCollection('events')],
+    afterDelete: [revalidateCollectionDelete('events')],
   },
   versions: { drafts: { autosave: true }, maxPerDoc: 20 },
   access: {

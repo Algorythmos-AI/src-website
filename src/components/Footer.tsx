@@ -7,6 +7,7 @@ import { Link } from '@/i18n/navigation';
 export const Footer = () => {
   const t = useTranslations('footer');
   const nav = useTranslations('nav');
+  const sections = useTranslations('sections');
   const year = new Date().getFullYear();
 
   return (
@@ -72,6 +73,26 @@ export const Footer = () => {
               <li>
                 <Link href="/impact" className="hover:text-white transition-colors">
                   {nav('impact')}
+                </Link>
+              </li>
+              <li>
+                <Link href="/news" className="hover:text-white transition-colors">
+                  {nav('news')}
+                </Link>
+              </li>
+              <li>
+                <Link href="/events" className="hover:text-white transition-colors">
+                  {nav('events')}
+                </Link>
+              </li>
+              <li>
+                <Link href="/press" className="hover:text-white transition-colors">
+                  {sections('pressTitle')}
+                </Link>
+              </li>
+              <li>
+                <Link href="/publications" className="hover:text-white transition-colors">
+                  {sections('publicationsTitle')}
                 </Link>
               </li>
               <li>

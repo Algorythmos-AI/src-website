@@ -2,7 +2,18 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { getPayload, type Where } from 'payload';
 import config from '@payload-config';
-import { donateTiers, impactStats, leadership, partners, programs } from './data';
+import {
+  categories,
+  donateTiers,
+  events,
+  impactStats,
+  leadership,
+  partners,
+  posts,
+  pressReleases,
+  programs,
+  publications,
+} from './data';
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
 const publicDir = path.resolve(dirname, '../../public');
@@ -13,6 +24,32 @@ const slugify = (s: string) =>
     .replace(/[^a-z0-9\s-]/g, '')
     .replace(/[\s_-]+/g, '-')
     .replace(/^-+|-+$/g, '');
+
+// Minimal Payload Lexical document from a plain paragraph of text.
+const lexical = (text: string) => ({
+  root: {
+    type: 'root',
+    format: '',
+    indent: 0,
+    version: 1,
+    direction: 'ltr',
+    children: [
+      {
+        type: 'paragraph',
+        format: '',
+        indent: 0,
+        version: 1,
+        direction: 'ltr',
+        textFormat: 0,
+        children: [
+          { type: 'text', text, format: 0, style: '', mode: 'normal', detail: 0, version: 1 },
+        ],
+      },
+    ],
+  },
+});
+
+const daysFromNow = (days: number) => new Date(Date.now() + days * 86400000).toISOString();
 
 async function run() {
   const payload = await getPayload({ config });
@@ -73,6 +110,86 @@ async function run() {
         group: m.group,
         order: m.order,
         ...(photo ? { photo } : {}),
+      }
+    );
+  }
+
+  payload.logger.info('Seeding categories…');
+  const categoryIds = new Map<string, string>();
+  for (const c of categories) {
+    const id = await upsert(
+      'categories',
+      { slug: { equals: slugify(c.title) } },
+      { title: c.title, slug: slugify(c.title) }
+    );
+    categoryIds.set(c.title, id);
+  }
+
+  payload.logger.info('Seeding news posts…');
+  for (const p of posts) {
+    const categoryId = categoryIds.get(p.category);
+    await upsert(
+      'posts',
+      { slug: { equals: slugify(p.title) } },
+      {
+        title: p.title,
+        slug: slugify(p.title),
+        excerpt: p.excerpt,
+        body: lexical(p.body),
+        publishedAt: daysFromNow(-p.daysAgo),
+        _status: 'published',
+        ...(categoryId ? { categories: [Number(categoryId)] } : {}),
+      }
+    );
+  }
+
+  payload.logger.info('Seeding events…');
+  for (const e of events) {
+    await upsert(
+      'events',
+      { slug: { equals: slugify(e.title) } },
+      {
+        title: e.title,
+        slug: slugify(e.title),
+        location: e.location,
+        online: e.online,
+        body: lexical(e.body),
+        startsAt: daysFromNow(e.startInDays),
+        endsAt: daysFromNow(e.startInDays + e.durationHours / 24),
+        ...('registrationUrl' in e ? { registrationUrl: e.registrationUrl } : {}),
+        _status: 'published',
+      }
+    );
+  }
+
+  payload.logger.info('Seeding press releases…');
+  for (const r of pressReleases) {
+    await upsert(
+      'press-releases',
+      { slug: { equals: slugify(r.title) } },
+      {
+        title: r.title,
+        slug: slugify(r.title),
+        body: lexical(r.body),
+        contact: r.contact,
+        date: daysFromNow(-r.daysAgo),
+        _status: 'published',
+      }
+    );
+  }
+
+  payload.logger.info('Seeding publications…');
+  for (const pub of publications) {
+    await upsert(
+      'publications',
+      { slug: { equals: slugify(pub.title) } },
+      {
+        title: pub.title,
+        slug: slugify(pub.title),
+        type: pub.type,
+        year: pub.year,
+        summary: pub.summary,
+        _status: 'published',
       }
     );
   }

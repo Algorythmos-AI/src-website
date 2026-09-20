@@ -2,6 +2,7 @@ import type { CollectionConfig } from 'payload';
 import { isAdminOrEditor, publishedOrLoggedIn } from '@/access';
 import { slugField } from '@/fields/slug';
 import { requiredInEnglish } from '@/fields/validators';
+import { revalidateCollection, revalidateCollectionDelete } from '@/hooks/revalidate';
 
 export const PressReleases: CollectionConfig = {
   slug: 'press-releases',
@@ -10,6 +11,10 @@ export const PressReleases: CollectionConfig = {
     useAsTitle: 'title',
     defaultColumns: ['title', 'date', '_status'],
     group: 'Content',
+  },
+  hooks: {
+    afterChange: [revalidateCollection('press-releases')],
+    afterDelete: [revalidateCollectionDelete('press-releases')],
   },
   versions: { drafts: { autosave: true }, maxPerDoc: 20 },
   access: {

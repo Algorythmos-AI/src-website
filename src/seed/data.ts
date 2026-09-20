@@ -86,3 +86,84 @@ export const donateTiers = [
   { amount: 100, label: 'Partner', impact: 'Stipend for a community peace mediator.' },
   { amount: 250, label: 'Champion', impact: 'Solar lighting for a rural classroom.' },
 ];
+
+export const categories = [
+  { title: 'Field Updates' },
+  { title: 'Announcements' },
+  { title: 'Partnerships' },
+];
+
+export const posts = [
+  {
+    title: 'New water points reach three villages in North Darfur',
+    excerpt:
+      'Solar-powered boreholes now serve over 4,000 people across three previously underserved villages.',
+    category: 'Field Updates',
+    body: 'This quarter SRC completed three solar-powered boreholes in North Darfur, giving families reliable access to clean water within walking distance of their homes.',
+    daysAgo: 5,
+  },
+  {
+    title: 'SRC joins the Sudan Education Coalition',
+    excerpt: 'A new partnership to expand rural classroom access across five states.',
+    category: 'Partnerships',
+    body: 'We are proud to announce that SRC has joined the Sudan Education Coalition, a network of organizations working to keep rural children in school.',
+    daysAgo: 18,
+  },
+  {
+    title: 'Quarterly impact report now available',
+    excerpt: 'Our latest report details program spending and outcomes across fifteen states.',
+    category: 'Announcements',
+    body: 'The Q1 impact report is now published, with project-level financials and beneficiary stories from across our programs.',
+    daysAgo: 32,
+  },
+];
+
+export const events = [
+  {
+    title: 'Annual community leaders forum',
+    location: 'Paris, France',
+    online: false,
+    body: 'A gathering of community advisory board members, partners, and staff to review the year and plan ahead.',
+    startInDays: 21,
+    durationHours: 6,
+  },
+  {
+    title: 'Webinar: rural water resilience',
+    location: 'Online',
+    online: true,
+    registrationUrl: 'https://example.org/register',
+    body: 'A public webinar on sustainable water management techniques for arid regions.',
+    startInDays: -30,
+    durationHours: 2,
+  },
+];
+
+export const pressReleases = [
+  {
+    title: 'SRC responds to flooding in eastern Sudan',
+    body: 'SRC has deployed emergency water and sanitation teams in response to seasonal flooding affecting rural communities in eastern Sudan.',
+    contact: 'press@src-sudan.org',
+    daysAgo: 10,
+  },
+  {
+    title: 'Statement on the 2024 annual audit',
+    body: 'SRC welcomes the completion of its independent annual audit, reaffirming our commitment to transparency and accountability.',
+    contact: 'press@src-sudan.org',
+    daysAgo: 40,
+  },
+];
+
+export const publications = [
+  {
+    title: 'Annual Report 2024',
+    type: 'annual-report',
+    year: 2024,
+    summary: 'A complete breakdown of programs, finances, and impact across all fifteen states.',
+  },
+  {
+    title: 'Water resilience field brief',
+    type: 'brief',
+    year: 2025,
+    summary: 'Lessons from three years of solar-powered borehole projects in arid rural districts.',
+  },
+];

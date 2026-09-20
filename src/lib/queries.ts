@@ -1,9 +1,31 @@
 import { unstable_cache } from 'next/cache';
+import type { Where } from 'payload';
 import type { Locale } from '@/i18n/routing';
 import { getPayloadClient } from '@/lib/payload';
-import type { Program, Partner, TeamMember, Impact, DonateSetting } from '@/payload-types';
+import type {
+  Program,
+  Partner,
+  TeamMember,
+  Impact,
+  DonateSetting,
+  Post,
+  Event,
+  PressRelease,
+  Publication,
+  Category,
+} from '@/payload-types';
 
 const FALLBACK = 'en';
+
+/** Published + not scheduled in the future. */
+const visibleWhere = (dateField: string, now: string): Where => ({
+  and: [
+    { _status: { equals: 'published' } },
+    {
+      or: [{ [dateField]: { less_than_equal: now } }, { [dateField]: { exists: false } }],
+    },
+  ],
+});
 
 /**
  * Wrap a Local API read in unstable_cache, keyed by locale and tagged so the
@@ -118,4 +140,232 @@ export const getDonateSettings = cached<DonateSetting>(
   },
   'donate-settings',
   'donate-settings'
+);
+
+// ─── News (posts) ────────────────────────────────────────────────────────────
+
+const PAGE_SIZE = 9;
+
+export type PostList = {
+  docs: Post[];
+  page: number;
+  totalPages: number;
+  totalDocs: number;
+};
+
+export function getPosts(
+  locale: Locale,
+  opts: { page?: number; categorySlug?: string } = {}
+): Promise<PostList> {
+  const page = opts.page && opts.page > 0 ? opts.page : 1;
+  const category = opts.categorySlug ?? 'all';
+  return unstable_cache(
+    async () => {
+      const payload = await getPayloadClient();
+      const now = new Date().toISOString();
+      const and: Where[] = [visibleWhere('publishedAt', now)];
+      if (opts.categorySlug) {
+        and.push({ 'categories.slug': { equals: opts.categorySlug } });
+      }
+      const res = await payload.find({
+        collection: 'posts',
+        locale,
+        fallbackLocale: FALLBACK,
+        where: { and },
+        sort: '-publishedAt',
+        depth: 1,
+        page,
+        limit: PAGE_SIZE,
+      });
+      return {
+        docs: res.docs,
+        page: res.page ?? 1,
+        totalPages: res.totalPages,
+        totalDocs: res.totalDocs,
+      };
+    },
+    ['posts', locale, category, String(page)],
+    { tags: ['posts'] }
+  )();
+}
+
+export async function getPostSlugs(): Promise<string[]> {
+  const payload = await getPayloadClient();
+  const res = await payload.find({
+    collection: 'posts',
+    where: { _status: { equals: 'published' } },
+    depth: 0,
+    limit: 500,
+    pagination: false,
+  });
+  return res.docs.map((d) => d.slug).filter((s): s is string => Boolean(s));
+}
+
+export function getPostBySlug(slug: string, locale: Locale): Promise<Post | null> {
+  return unstable_cache(
+    async () => {
+      const payload = await getPayloadClient();
+      const res = await payload.find({
+        collection: 'posts',
+        locale,
+        fallbackLocale: FALLBACK,
+        where: { slug: { equals: slug }, _status: { equals: 'published' } },
+        depth: 2,
+        limit: 1,
+      });
+      return res.docs[0] ?? null;
+    },
+    ['post', slug, locale],
+    { tags: ['posts'] }
+  )();
+}
+
+export const getCategories = cached<Category[]>(
+  async (locale) => {
+    const payload = await getPayloadClient();
+    const res = await payload.find({
+      collection: 'categories',
+      locale,
+      fallbackLocale: FALLBACK,
+      sort: 'title',
+      depth: 0,
+      limit: 100,
+    });
+    return res.docs;
+  },
+  'categories',
+  'posts'
+);
+
+// ─── Events ──────────────────────────────────────────────────────────────────
+
+export function getEvents(locale: Locale, when: 'upcoming' | 'past'): Promise<Event[]> {
+  return unstable_cache(
+    async () => {
+      const payload = await getPayloadClient();
+      const now = new Date().toISOString();
+      const res = await payload.find({
+        collection: 'events',
+        locale,
+        fallbackLocale: FALLBACK,
+        where: {
+          and: [
+            { _status: { equals: 'published' } },
+            when === 'upcoming'
+              ? { startsAt: { greater_than_equal: now } }
+              : { startsAt: { less_than: now } },
+          ],
+        },
+        sort: when === 'upcoming' ? 'startsAt' : '-startsAt',
+        depth: 1,
+        limit: 100,
+      });
+      return res.docs;
+    },
+    ['events', locale, when],
+    { tags: ['events'] }
+  )();
+}
+
+export async function getEventSlugs(): Promise<string[]> {
+  const payload = await getPayloadClient();
+  const res = await payload.find({
+    collection: 'events',
+    where: { _status: { equals: 'published' } },
+    depth: 0,
+    limit: 500,
+    pagination: false,
+  });
+  return res.docs.map((d) => d.slug).filter((s): s is string => Boolean(s));
+}
+
+export function getEventBySlug(slug: string, locale: Locale): Promise<Event | null> {
+  return unstable_cache(
+    async () => {
+      const payload = await getPayloadClient();
+      const res = await payload.find({
+        collection: 'events',
+        locale,
+        fallbackLocale: FALLBACK,
+        where: { slug: { equals: slug }, _status: { equals: 'published' } },
+        depth: 1,
+        limit: 1,
+      });
+      return res.docs[0] ?? null;
+    },
+    ['event', slug, locale],
+    { tags: ['events'] }
+  )();
+}
+
+// ─── Press releases ──────────────────────────────────────────────────────────
+
+export const getPressReleases = cached<PressRelease[]>(
+  async (locale) => {
+    const payload = await getPayloadClient();
+    const now = new Date().toISOString();
+    const res = await payload.find({
+      collection: 'press-releases',
+      locale,
+      fallbackLocale: FALLBACK,
+      where: visibleWhere('date', now),
+      sort: '-date',
+      depth: 1,
+      limit: 100,
+    });
+    return res.docs;
+  },
+  'press-releases',
+  'press-releases'
+);
+
+export async function getPressSlugs(): Promise<string[]> {
+  const payload = await getPayloadClient();
+  const res = await payload.find({
+    collection: 'press-releases',
+    where: { _status: { equals: 'published' } },
+    depth: 0,
+    limit: 500,
+    pagination: false,
+  });
+  return res.docs.map((d) => d.slug).filter((s): s is string => Boolean(s));
+}
+
+export function getPressBySlug(slug: string, locale: Locale): Promise<PressRelease | null> {
+  return unstable_cache(
+    async () => {
+      const payload = await getPayloadClient();
+      const res = await payload.find({
+        collection: 'press-releases',
+        locale,
+        fallbackLocale: FALLBACK,
+        where: { slug: { equals: slug }, _status: { equals: 'published' } },
+        depth: 1,
+        limit: 1,
+      });
+      return res.docs[0] ?? null;
+    },
+    ['press', slug, locale],
+    { tags: ['press-releases'] }
+  )();
+}
+
+// ─── Publications ────────────────────────────────────────────────────────────
+
+export const getPublications = cached<Publication[]>(
+  async (locale) => {
+    const payload = await getPayloadClient();
+    const res = await payload.find({
+      collection: 'publications',
+      locale,
+      fallbackLocale: FALLBACK,
+      where: { _status: { equals: 'published' } },
+      sort: '-year',
+      depth: 1,
+      limit: 100,
+    });
+    return res.docs;
+  },
+  'publications',
+  'publications'
 );

@@ -2,6 +2,7 @@ import type { CollectionConfig } from 'payload';
 import { isAdminOrEditor, publishedOrLoggedIn } from '@/access';
 import { slugField } from '@/fields/slug';
 import { requiredInEnglish } from '@/fields/validators';
+import { revalidateCollection, revalidateCollectionDelete } from '@/hooks/revalidate';
 
 export const Posts: CollectionConfig = {
   slug: 'posts',
@@ -10,6 +11,10 @@ export const Posts: CollectionConfig = {
     useAsTitle: 'title',
     defaultColumns: ['title', 'publishedAt', '_status'],
     group: 'Content',
+  },
+  hooks: {
+    afterChange: [revalidateCollection('posts')],
+    afterDelete: [revalidateCollectionDelete('posts')],
   },
   versions: { drafts: { autosave: true }, maxPerDoc: 20 },
   access: {

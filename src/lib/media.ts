@@ -35,3 +35,11 @@ export function mediaAlt(ref: MediaRef): string {
   if (!ref || typeof ref === 'number') return '';
   return ref.alt ?? '';
 }
+
+/** Resolve any upload relation (documents, media) to a served, origin-safe URL. */
+export function fileUrl(
+  ref: number | { url?: string | null } | null | undefined
+): string | undefined {
+  if (!ref || typeof ref === 'number') return undefined;
+  return normalize(ref.url);
+}

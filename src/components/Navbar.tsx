@@ -28,6 +28,8 @@ export const Navbar = () => {
     { name: t('about'), path: '/about' },
     { name: t('programs'), path: '/work' },
     { name: t('impact'), path: '/impact' },
+    { name: t('news'), path: '/news' },
+    { name: t('events'), path: '/events' },
     { name: t('contact'), path: '/contact' },
   ];
 
