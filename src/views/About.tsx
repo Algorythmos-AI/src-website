@@ -212,7 +212,7 @@ export const About = ({ leadership }: { leadership: LeadItem[] }) => {
                 <p className="font-serif font-bold text-base md:text-lg text-brand-primary dark:text-dark-primary leading-tight">
                   {person.name}
                 </p>
-                <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-ink/55 dark:text-dark-ink/55 mt-1.5">
+                <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-ink/70 dark:text-dark-ink/70 mt-1.5">
                   {person.role}
                 </p>
               </motion.div>

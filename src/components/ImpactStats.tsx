@@ -20,7 +20,7 @@ export const ImpactStats = ({ stats }: { stats: Stat[] }) => {
             <p className="text-3xl md:text-4xl font-serif font-bold text-brand-primary dark:text-dark-primary mb-1">
               {stat.value}
             </p>
-            <p className="text-[10px] md:text-xs uppercase tracking-[0.2em] font-bold text-brand-ink/55 dark:text-dark-ink/60">
+            <p className="text-[10px] md:text-xs uppercase tracking-[0.2em] font-bold text-brand-ink/70 dark:text-dark-ink/70">
               {stat.label}
             </p>
           </motion.div>

@@ -137,18 +137,18 @@ export const Footer = () => {
           </div>
         </div>
 
-        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-[11px] tracking-wide text-white/40">
+        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-[11px] tracking-wide text-white/60">
           <p>{t('rights', { year })}</p>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-white transition-colors">
+            <Link href="/privacy" className="hover:text-white transition-colors">
               {t('privacy')}
-            </a>
-            <a href="#" className="hover:text-white transition-colors">
+            </Link>
+            <Link href="/terms" className="hover:text-white transition-colors">
               {t('terms')}
-            </a>
-            <a href="#" className="hover:text-white transition-colors">
+            </Link>
+            <Link href="/publications" className="hover:text-white transition-colors">
               {t('annualReport')}
-            </a>
+            </Link>
           </div>
         </div>
       </div>

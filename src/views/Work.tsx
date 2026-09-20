@@ -42,7 +42,7 @@ export const Work = ({ programs, partners }: { programs: ProgramCard[]; partners
       <section className="py-20 md:py-28 px-6">
         <div className="max-w-7xl mx-auto">
           {programs.length === 0 ? (
-            <p className="text-center text-brand-ink/60 dark:text-dark-ink/60">
+            <p className="text-center text-brand-ink/60 dark:text-dark-ink/70">
               Programs will be published here soon.
             </p>
           ) : (
@@ -81,7 +81,7 @@ export const Work = ({ programs, partners }: { programs: ProgramCard[]; partners
                   {partners.map((p) => (
                     <span
                       key={p}
-                      className="font-serif font-bold text-xl md:text-2xl text-brand-primary/40 dark:text-dark-primary/50 tracking-wide"
+                      className="font-serif font-bold text-xl md:text-2xl text-brand-primary/70 dark:text-dark-primary/70 tracking-wide"
                     >
                       {p}
                     </span>

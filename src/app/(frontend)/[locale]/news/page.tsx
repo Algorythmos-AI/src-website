@@ -39,7 +39,7 @@ export default async function NewsPage({
     `px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest transition-colors ${
       active
         ? 'bg-brand-primary dark:bg-dark-primary text-white'
-        : 'bg-brand-surface dark:bg-dark-surface text-brand-ink/60 dark:text-dark-ink/60 hover:text-brand-primary dark:hover:text-dark-primary'
+        : 'bg-brand-surface dark:bg-dark-surface text-brand-ink/60 dark:text-dark-ink/70 hover:text-brand-primary dark:hover:text-dark-primary'
     }`;
 
   return (
@@ -75,7 +75,7 @@ export default async function NewsPage({
           )}
 
           {list.docs.length === 0 ? (
-            <p className="text-brand-ink/60 dark:text-dark-ink/60">{t('newsEmpty')}</p>
+            <p className="text-brand-ink/60 dark:text-dark-ink/70">{t('newsEmpty')}</p>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
               {list.docs.map((post) => {
@@ -133,7 +133,7 @@ export default async function NewsPage({
               ) : (
                 <span />
               )}
-              <span className="text-xs text-brand-ink/50 dark:text-dark-ink/50">
+              <span className="text-xs text-brand-ink/70 dark:text-dark-ink/70">
                 {page} / {list.totalPages}
               </span>
               {page < list.totalPages ? (

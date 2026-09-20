@@ -42,7 +42,7 @@ export default async function PublicationsPage({
       <section className="py-14 md:py-20 px-6">
         <div className="max-w-5xl mx-auto">
           {publications.length === 0 ? (
-            <p className="text-brand-ink/60 dark:text-dark-ink/60">{t('publicationsEmpty')}</p>
+            <p className="text-brand-ink/60 dark:text-dark-ink/70">{t('publicationsEmpty')}</p>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {publications.map((pub) => {

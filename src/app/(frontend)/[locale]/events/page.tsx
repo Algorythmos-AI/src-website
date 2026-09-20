@@ -27,7 +27,7 @@ function EventRow({ event, locale }: { event: Event; locale: Locale }) {
           {event.title}
         </h3>
         {event.location && (
-          <p className="mt-1 text-sm text-brand-ink/60 dark:text-dark-ink/60">{event.location}</p>
+          <p className="mt-1 text-sm text-brand-ink/60 dark:text-dark-ink/70">{event.location}</p>
         )}
       </Link>
     </li>
@@ -58,11 +58,11 @@ export default async function EventsPage({ params }: { params: Promise<{ locale:
       <section className="py-14 md:py-20 px-6">
         <div className="max-w-3xl mx-auto">
           {upcoming.length === 0 && past.length === 0 && (
-            <p className="text-brand-ink/60 dark:text-dark-ink/60">{t('eventsEmpty')}</p>
+            <p className="text-brand-ink/60 dark:text-dark-ink/70">{t('eventsEmpty')}</p>
           )}
           {upcoming.length > 0 && (
             <>
-              <h2 className="text-xs uppercase tracking-[0.3em] font-bold text-brand-ink/50 dark:text-dark-ink/50 mb-2">
+              <h2 className="text-xs uppercase tracking-[0.3em] font-bold text-brand-ink/70 dark:text-dark-ink/70 mb-2">
                 {t('eventsUpcoming')}
               </h2>
               <ul className="mb-14">
@@ -74,7 +74,7 @@ export default async function EventsPage({ params }: { params: Promise<{ locale:
           )}
           {past.length > 0 && (
             <>
-              <h2 className="text-xs uppercase tracking-[0.3em] font-bold text-brand-ink/50 dark:text-dark-ink/50 mb-2">
+              <h2 className="text-xs uppercase tracking-[0.3em] font-bold text-brand-ink/70 dark:text-dark-ink/70 mb-2">
                 {t('eventsPast')}
               </h2>
               <ul className="opacity-70">

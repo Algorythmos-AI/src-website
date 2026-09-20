@@ -23,8 +23,27 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     .filter((s): s is { value: string; label: string; id?: string | null } => Boolean(s.value))
     .map((s) => ({ value: s.value, label: s.label }));
 
+  const orgJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'NGO',
+    name: 'Sudanese Rural Community (SRC)',
+    alternateName: 'SRC',
+    url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://src-zeta-teal.vercel.app',
+    description:
+      'Peacebuilding, education, humanitarian aid, and rural development for the heart of Sudan.',
+    areaServed: 'SD',
+    location: {
+      '@type': 'Place',
+      address: { '@type': 'PostalAddress', addressLocality: 'Paris', addressCountry: 'FR' },
+    },
+  };
+
   return (
     <div className="bg-brand-bg dark:bg-dark-bg transition-colors duration-300">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
+      />
       <Hero />
 
       <ImpactStats stats={stats} />
@@ -118,7 +137,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               <p className="font-serif font-bold text-brand-primary dark:text-dark-primary">
                 Obeid NAEIM
               </p>
-              <p className="text-[10px] uppercase tracking-[0.2em] text-brand-ink/50 dark:text-dark-ink/50 font-bold">
+              <p className="text-[10px] uppercase tracking-[0.2em] text-brand-ink/70 dark:text-dark-ink/70 font-bold">
                 President, SRC
               </p>
             </div>
@@ -129,14 +148,14 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       {/* Partners */}
       <section className="py-16 px-6 border-y border-brand-primary/10 dark:border-white/5 bg-brand-surface/60 dark:bg-dark-surface/30">
         <div className="max-w-7xl mx-auto">
-          <p className="text-center text-[10px] uppercase tracking-[0.3em] font-bold text-brand-ink/50 dark:text-dark-ink/50 mb-8">
+          <p className="text-center text-[10px] uppercase tracking-[0.3em] font-bold text-brand-ink/70 dark:text-dark-ink/70 mb-8">
             In partnership with
           </p>
           <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
             {partners.map((p) => (
               <span
                 key={p}
-                className="font-serif font-bold text-xl md:text-2xl text-brand-primary/40 dark:text-dark-primary/50 tracking-wide"
+                className="font-serif font-bold text-xl md:text-2xl text-brand-primary/70 dark:text-dark-primary/70 tracking-wide"
               >
                 {p}
               </span>
@@ -159,12 +178,12 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               A complete breakdown of programs, finances, and impact across all fifteen states where
               SRC operates.
             </p>
-            <a
-              href="#"
+            <Link
+              href="/publications"
               className="inline-flex items-center gap-2 bg-white text-brand-primary px-6 py-3 rounded-lg text-xs font-bold uppercase tracking-widest hover:bg-brand-surface transition-colors"
             >
               Read the report
-            </a>
+            </Link>
           </div>
           <div className="bg-brand-surface dark:bg-dark-surface rounded-2xl p-10 md:p-12 border border-brand-primary/10 dark:border-white/5">
             <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-brand-secondary dark:text-dark-secondary mb-3">

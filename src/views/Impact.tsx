@@ -26,7 +26,7 @@ const StatCard: React.FC<StatCardProps> = ({ icon: Icon, value, label, desc }) =
     <p className="text-3xl md:text-4xl font-serif font-bold text-brand-primary dark:text-dark-primary mb-2">
       {value}
     </p>
-    <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-ink/55 dark:text-dark-ink/60 mb-3">
+    <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-ink/70 dark:text-dark-ink/70 mb-3">
       {label}
     </p>
     <p className="text-sm text-brand-ink/65 dark:text-dark-ink/65 leading-relaxed">{desc}</p>
@@ -73,7 +73,7 @@ const StoryCard: React.FC<StoryCardProps> = ({ image, title, category, quote, au
       <p className="text-base md:text-lg text-brand-ink/70 dark:text-dark-ink/70 leading-relaxed mb-3">
         “{quote}”
       </p>
-      <p className="text-xs font-bold uppercase tracking-widest text-brand-ink/50 dark:text-dark-ink/40">
+      <p className="text-xs font-bold uppercase tracking-widest text-brand-ink/70 dark:text-dark-ink/40">
         — {author}
       </p>
     </div>

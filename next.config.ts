@@ -9,8 +9,37 @@ const securityHeaders = [
   { key: 'X-Content-Type-Options', value: 'nosniff' },
   { key: 'X-Frame-Options', value: 'DENY' },
   { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
-  { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=(), payment=()' },
+  { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
 ];
+
+// Strict CSP for the public site. 'unsafe-inline' scripts cover the theme init
+// and JSON-LD; a nonce-based policy is a future hardening step.
+const frontendCsp = [
+  "default-src 'self'",
+  "base-uri 'self'",
+  "object-src 'none'",
+  "frame-ancestors 'none'",
+  "img-src 'self' data: blob: https://images.unsplash.com https://plus.unsplash.com https://*.public.blob.vercel-storage.com",
+  "font-src 'self' https://fonts.gstatic.com",
+  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+  "script-src 'self' 'unsafe-inline' https://js.stripe.com https://challenges.cloudflare.com",
+  "connect-src 'self' https://api.stripe.com",
+  'frame-src https://js.stripe.com https://checkout.stripe.com https://challenges.cloudflare.com',
+  "form-action 'self' https://checkout.stripe.com",
+].join('; ');
+
+// Looser CSP for the Payload admin bundle.
+const adminCsp = [
+  "default-src 'self'",
+  "base-uri 'self'",
+  "img-src 'self' data: blob: https:",
+  "font-src 'self' data:",
+  "style-src 'self' 'unsafe-inline'",
+  "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
+  "connect-src 'self'",
+  "worker-src 'self' blob:",
+  "frame-ancestors 'self'",
+].join('; ');
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
@@ -27,7 +56,15 @@ const nextConfig: NextConfig = {
     ],
   },
   async headers() {
-    return [{ source: '/:path*', headers: securityHeaders }];
+    return [
+      { source: '/:path*', headers: securityHeaders },
+      { source: '/admin/:path*', headers: [{ key: 'Content-Security-Policy', value: adminCsp }] },
+      // Everything except the admin bundle gets the strict frontend CSP.
+      {
+        source: '/((?!admin).*)',
+        headers: [{ key: 'Content-Security-Policy', value: frontendCsp }],
+      },
+    ];
   },
 };
 

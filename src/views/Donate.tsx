@@ -137,7 +137,7 @@ export const Donate = ({
             >
               {/* Frequency */}
               <div className="mb-8">
-                <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-ink/55 dark:text-dark-ink/60 mb-3">
+                <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-ink/70 dark:text-dark-ink/70 mb-3">
                   Frequency
                 </p>
                 <div className="inline-flex p-1 rounded-lg bg-brand-bg dark:bg-dark-bg/60 border border-brand-primary/10 dark:border-white/10">
@@ -152,7 +152,7 @@ export const Donate = ({
                       className={`px-5 py-2 rounded-md text-xs font-bold uppercase tracking-widest transition-colors ${
                         frequency === f
                           ? 'bg-brand-primary dark:bg-dark-primary text-white'
-                          : 'text-brand-ink/60 dark:text-dark-ink/60 hover:text-brand-primary dark:hover:text-dark-primary'
+                          : 'text-brand-ink/60 dark:text-dark-ink/70 hover:text-brand-primary dark:hover:text-dark-primary'
                       }`}
                       aria-pressed={frequency === f}
                     >
@@ -164,7 +164,7 @@ export const Donate = ({
 
               {/* Tiers */}
               <div className="mb-6">
-                <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-ink/55 dark:text-dark-ink/60 mb-3">
+                <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-ink/70 dark:text-dark-ink/70 mb-3">
                   Choose an amount (USD)
                 </p>
                 <div className="grid grid-cols-2 gap-2.5 sm:gap-3">
@@ -193,10 +193,10 @@ export const Donate = ({
                         <p className="text-xl sm:text-2xl font-serif font-bold text-brand-primary dark:text-dark-primary mb-1">
                           ${tier.amount}
                         </p>
-                        <p className="text-[10px] uppercase tracking-widest font-bold text-brand-ink/60 dark:text-dark-ink/60 mb-1">
+                        <p className="text-[10px] uppercase tracking-widest font-bold text-brand-ink/60 dark:text-dark-ink/70 mb-1">
                           {tier.label}
                         </p>
-                        <p className="text-xs text-brand-ink/60 dark:text-dark-ink/60 leading-snug">
+                        <p className="text-xs text-brand-ink/60 dark:text-dark-ink/70 leading-snug">
                           {tier.description}
                         </p>
                       </button>
@@ -209,7 +209,7 @@ export const Donate = ({
               <div className="mb-8">
                 <label
                   htmlFor="custom-amount"
-                  className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-ink/55 dark:text-dark-ink/60 mb-2 block"
+                  className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-ink/70 dark:text-dark-ink/70 mb-2 block"
                 >
                   Or enter a custom amount
                 </label>
@@ -259,18 +259,18 @@ export const Donate = ({
                 </p>
               )}
 
-              <p className="mt-4 flex items-center justify-center gap-2 text-[10px] uppercase tracking-widest font-bold text-brand-ink/50 dark:text-dark-ink/50">
+              <p className="mt-4 flex items-center justify-center gap-2 text-[10px] uppercase tracking-widest font-bold text-brand-ink/70 dark:text-dark-ink/70">
                 <Lock size={12} />
                 {stripeEnabled ? 'Secure checkout via Stripe' : 'Secure online giving coming soon'}
               </p>
 
               {stripeEnabled ? (
-                <p className="mt-6 text-xs text-brand-ink/55 dark:text-dark-ink/55 text-center leading-relaxed">
+                <p className="mt-6 text-xs text-brand-ink/70 dark:text-dark-ink/70 text-center leading-relaxed">
                   SRC is a registered nonprofit. Donations are tax-deductible where allowed by law.
                   You&apos;ll receive a receipt by email.
                 </p>
               ) : (
-                <p className="mt-6 text-xs text-brand-ink/55 dark:text-dark-ink/55 text-center leading-relaxed">
+                <p className="mt-6 text-xs text-brand-ink/70 dark:text-dark-ink/70 text-center leading-relaxed">
                   SRC is a registered nonprofit. Donations are tax-deductible where allowed by law.
                   The secure payment portal is currently being finalized — please{' '}
                   <Link

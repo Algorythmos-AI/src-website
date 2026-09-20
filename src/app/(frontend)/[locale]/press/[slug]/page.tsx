@@ -69,7 +69,7 @@ export default async function PressReleasePage({
           </a>
         )}
         {release.contact && (
-          <p className="mt-8 text-sm text-brand-ink/60 dark:text-dark-ink/60">{release.contact}</p>
+          <p className="mt-8 text-sm text-brand-ink/60 dark:text-dark-ink/70">{release.contact}</p>
         )}
       </div>
     </article>

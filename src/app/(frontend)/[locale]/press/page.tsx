@@ -39,7 +39,7 @@ export default async function PressPage({ params }: { params: Promise<{ locale: 
       <section className="py-14 md:py-20 px-6">
         <div className="max-w-3xl mx-auto">
           {releases.length === 0 ? (
-            <p className="text-brand-ink/60 dark:text-dark-ink/60">{t('pressEmpty')}</p>
+            <p className="text-brand-ink/60 dark:text-dark-ink/70">{t('pressEmpty')}</p>
           ) : (
             <ul>
               {releases.map((r) => (

@@ -113,7 +113,7 @@ export const Contact = () => {
                   <p className="text-sm text-brand-ink/70 dark:text-dark-ink/70 leading-relaxed">
                     Paris, France
                   </p>
-                  <p className="text-xs text-brand-ink/50 dark:text-dark-ink/50 leading-relaxed mt-1">
+                  <p className="text-xs text-brand-ink/70 dark:text-dark-ink/70 leading-relaxed mt-1">
                     Field operations · North Sudan
                   </p>
                 </div>
@@ -159,7 +159,7 @@ export const Contact = () => {
                 <div className="space-y-2">
                   <label
                     htmlFor="contact-name"
-                    className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-ink/55 dark:text-dark-ink/60"
+                    className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-ink/70 dark:text-dark-ink/70"
                   >
                     Full name
                   </label>
@@ -176,7 +176,7 @@ export const Contact = () => {
                 <div className="space-y-2">
                   <label
                     htmlFor="contact-email"
-                    className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-ink/55 dark:text-dark-ink/60"
+                    className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-ink/70 dark:text-dark-ink/70"
                   >
                     Email address
                   </label>
@@ -194,7 +194,7 @@ export const Contact = () => {
               <div className="space-y-2">
                 <label
                   htmlFor="contact-subject"
-                  className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-ink/55 dark:text-dark-ink/60"
+                  className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-ink/70 dark:text-dark-ink/70"
                 >
                   Subject
                 </label>
@@ -213,7 +213,7 @@ export const Contact = () => {
               <div className="space-y-2">
                 <label
                   htmlFor="contact-message"
-                  className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-ink/55 dark:text-dark-ink/60"
+                  className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-ink/70 dark:text-dark-ink/70"
                 >
                   Message
                 </label>
@@ -246,7 +246,7 @@ export const Contact = () => {
                   </span>
                 )}
               </p>
-              <p className="text-xs text-brand-ink/55 dark:text-dark-ink/55 leading-relaxed pt-2">
+              <p className="text-xs text-brand-ink/70 dark:text-dark-ink/70 leading-relaxed pt-2">
                 By submitting, you agree to receive a response from our team. We never share your
                 contact information with third parties.
               </p>
