@@ -39,7 +39,10 @@
     "annualReport": "التقرير السنوي",
     "instagram": "إنستغرام",
     "twitter": "تويتر",
-    "linkedin": "لينكدإن"
+    "linkedin": "لينكدإن",
+    "consent": "أوافق على تلقّي نشرة SRC وعلى سياسة الخصوصية.",
+    "subscribeSuccess": "اقتربت — تحقّق من بريدك لتأكيد الاشتراك.",
+    "subscribeError": "حدث خطأ ما. يُرجى المحاولة مرة أخرى."
   },
   "sections": {
     "newsTitle": "الأخبار",

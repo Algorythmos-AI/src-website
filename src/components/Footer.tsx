@@ -3,6 +3,7 @@
 import { Mail, MapPin, Instagram, Twitter, Linkedin } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
+import { NewsletterForm } from '@/components/forms/NewsletterForm';
 
 export const Footer = () => {
   const t = useTranslations('footer');
@@ -132,30 +133,7 @@ export const Footer = () => {
               {t('newsletterHeading')}
             </h5>
             <p className="text-sm mb-4 leading-relaxed">{t('newsletterBlurb')}</p>
-            <form
-              className="relative"
-              onSubmit={(e) => {
-                e.preventDefault();
-              }}
-            >
-              <label htmlFor="newsletter-email" className="sr-only">
-                {t('emailLabel')}
-              </label>
-              <input
-                id="newsletter-email"
-                name="email"
-                type="email"
-                required
-                placeholder={t('emailPlaceholder')}
-                className="w-full bg-white/5 border border-white/10 px-3 py-2.5 rounded-md text-xs focus:ring-1 focus:ring-brand-accent outline-none text-white placeholder:text-white/30"
-              />
-              <button
-                type="submit"
-                className="mt-3 w-full bg-brand-secondary text-white text-[10px] font-bold tracking-[0.2em] uppercase px-4 py-2.5 rounded-md hover:bg-opacity-90 transition-colors"
-              >
-                {t('subscribe')}
-              </button>
-            </form>
+            <NewsletterForm />
           </div>
         </div>
 

@@ -39,7 +39,10 @@
     "annualReport": "Rapport annuel",
     "instagram": "Instagram",
     "twitter": "Twitter",
-    "linkedin": "LinkedIn"
+    "linkedin": "LinkedIn",
+    "consent": "J'accepte de recevoir la newsletter de SRC et la politique de confidentialité.",
+    "subscribeSuccess": "Presque terminé — vérifiez votre boîte mail pour confirmer.",
+    "subscribeError": "Une erreur s'est produite. Veuillez réessayer."
   },
   "sections": {
     "newsTitle": "Actualités",

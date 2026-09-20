@@ -1,10 +1,45 @@
 'use client';
 
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { motion } from 'motion/react';
 import { Mail, Phone, MapPin, Clock, Send } from 'lucide-react';
+import { useLocale } from 'next-intl';
+
+type Status = 'idle' | 'submitting' | 'success' | 'error';
 
 export const Contact = () => {
+  const locale = useLocale();
+  const [status, setStatus] = useState<Status>('idle');
+  const startedAt = useRef(Date.now());
+
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (status === 'submitting') return;
+    setStatus('submitting');
+    const form = e.currentTarget;
+    const fd = new FormData(form);
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({
+          name: fd.get('name'),
+          email: fd.get('email'),
+          subject: fd.get('subject'),
+          message: fd.get('message'),
+          company: fd.get('company'),
+          startedAt: startedAt.current,
+          locale,
+        }),
+      });
+      if (!res.ok) throw new Error('request failed');
+      setStatus('success');
+      form.reset();
+    } catch {
+      setStatus('error');
+    }
+  };
+
   return (
     <div className="bg-brand-bg dark:bg-dark-bg pt-24 transition-colors">
       {/* Header */}
@@ -110,12 +145,16 @@ export const Contact = () => {
             <h2 className="text-xl md:text-2xl font-serif font-bold text-brand-primary dark:text-dark-primary mb-8 leading-tight">
               Send us a message
             </h2>
-            <form
-              className="space-y-5"
-              onSubmit={(e) => {
-                e.preventDefault();
-              }}
-            >
+            <form className="space-y-5" onSubmit={onSubmit}>
+              {/* Honeypot: hidden from users, tempting to bots */}
+              <input
+                type="text"
+                name="company"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                className="hidden"
+              />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div className="space-y-2">
                   <label
@@ -189,11 +228,24 @@ export const Contact = () => {
               </div>
               <button
                 type="submit"
-                className="inline-flex items-center justify-center gap-3 bg-brand-primary dark:bg-dark-primary text-white px-8 py-3.5 rounded-lg font-bold text-xs uppercase tracking-[0.2em] hover:bg-opacity-90 transition-colors"
+                disabled={status === 'submitting'}
+                className="inline-flex items-center justify-center gap-3 bg-brand-primary dark:bg-dark-primary text-white px-8 py-3.5 rounded-lg font-bold text-xs uppercase tracking-[0.2em] hover:bg-opacity-90 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                Send message
+                {status === 'submitting' ? 'Sending…' : 'Send message'}
                 <Send size={14} />
               </button>
+              <p aria-live="polite" className="min-h-[1.25rem] text-sm font-medium">
+                {status === 'success' && (
+                  <span className="text-green-700 dark:text-green-400">
+                    Thank you — your message has been sent. We&apos;ll be in touch.
+                  </span>
+                )}
+                {status === 'error' && (
+                  <span className="text-red-700 dark:text-red-400">
+                    Something went wrong. Please try again or email us directly.
+                  </span>
+                )}
+              </p>
               <p className="text-xs text-brand-ink/55 dark:text-dark-ink/55 leading-relaxed pt-2">
                 By submitting, you agree to receive a response from our team. We never share your
                 contact information with third parties.
