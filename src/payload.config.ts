@@ -95,8 +95,15 @@ export default buildConfig({
       ? [
           vercelBlobStorage({
             enabled: true,
-            collections: { media: true, documents: true },
             token: process.env.BLOB_READ_WRITE_TOKEN,
+            // Client-side uploads bypass the 4.5 MB serverless body limit.
+            clientUploads: true,
+            // Serve public media straight from the Blob CDN (media.url becomes the
+            // absolute blob URL) instead of proxying through Payload's route.
+            collections: {
+              media: { disablePayloadAccessControl: true },
+              documents: { disablePayloadAccessControl: true },
+            },
           }),
         ]
       : []),

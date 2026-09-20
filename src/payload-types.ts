@@ -204,6 +204,7 @@ export interface Media {
    * Photographer / source attribution.
    */
   credit?: string | null;
+  _objectKey?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -250,6 +251,7 @@ export interface Document {
   id: number;
   title: string;
   language?: ('en' | 'fr' | 'ar') | null;
+  _objectKey?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -803,6 +805,7 @@ export interface MediaSelect<T extends boolean = true> {
   alt?: T;
   caption?: T;
   credit?: T;
+  _objectKey?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -856,6 +859,7 @@ export interface MediaSelect<T extends boolean = true> {
 export interface DocumentsSelect<T extends boolean = true> {
   title?: T;
   language?: T;
+  _objectKey?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;

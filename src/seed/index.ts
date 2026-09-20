@@ -213,7 +213,16 @@ async function run() {
       limit: 1,
       depth: 0,
     });
-    return existing.docs[0] ? existing.docs[0].id : null;
+    const doc = existing.docs[0];
+    if (!doc) return null;
+    // If a previous seed stored this on local disk (url starts with /api/), and
+    // Blob is now configured, delete it so it re-uploads to Blob.
+    const url = (doc as { url?: string | null }).url ?? '';
+    if (process.env.BLOB_READ_WRITE_TOKEN && url.startsWith('/api/')) {
+      await payload.delete({ collection: 'media', id: doc.id, ...ctx }).catch(() => {});
+      return null;
+    }
+    return doc.id;
   }
 
   async function upsertMedia(file: string, alt: string): Promise<number | string | null> {
