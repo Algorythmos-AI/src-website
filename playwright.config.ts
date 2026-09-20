@@ -14,7 +14,8 @@ export default defineConfig({
   },
   projects: [
     { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
-    { name: 'mobile', use: { ...devices['iPhone 13'] } },
+    // Pixel 5 is Chromium-based, so CI only needs the chromium browser.
+    { name: 'mobile', use: { ...devices['Pixel 5'] } },
   ],
   webServer: {
     command: `npm run build && npm run preview -- --port=${PORT}`,

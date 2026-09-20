@@ -24,18 +24,18 @@ The dev server runs on `http://localhost:3000`.
 
 ## Scripts
 
-| Script                 | What it does                                            |
-| ---------------------- | ------------------------------------------------------ |
-| `npm run dev`          | Start the Vite dev server with HMR                     |
-| `npm run build`        | Type-check (`tsc --noEmit`) then build to `dist/`      |
-| `npm run preview`      | Serve the built `dist/` locally                        |
-| `npm run typecheck`    | `tsc --noEmit` — strict type check                     |
-| `npm run lint`         | ESLint (TypeScript + react-hooks + jsx-a11y)           |
-| `npm run format`       | Format the codebase with Prettier                      |
-| `npm run format:check` | Verify formatting (used in CI)                         |
-| `npm run test`         | Run unit tests with Vitest                             |
-| `npm run e2e`          | Run Playwright smoke tests (builds + previews first)   |
-| `npm run clean`        | Remove `dist/`                                          |
+| Script                 | What it does                                         |
+| ---------------------- | ---------------------------------------------------- |
+| `npm run dev`          | Start the Vite dev server with HMR                   |
+| `npm run build`        | Type-check (`tsc --noEmit`) then build to `dist/`    |
+| `npm run preview`      | Serve the built `dist/` locally                      |
+| `npm run typecheck`    | `tsc --noEmit` — strict type check                   |
+| `npm run lint`         | ESLint (TypeScript + react-hooks + jsx-a11y)         |
+| `npm run format`       | Format the codebase with Prettier                    |
+| `npm run format:check` | Verify formatting (used in CI)                       |
+| `npm run test`         | Run unit tests with Vitest                           |
+| `npm run e2e`          | Run Playwright smoke tests (builds + previews first) |
+| `npm run clean`        | Remove `dist/`                                       |
 
 ## Quality gates
 
