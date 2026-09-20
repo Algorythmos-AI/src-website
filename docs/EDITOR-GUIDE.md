@@ -25,15 +25,15 @@ of the edit view.
 
 ## Content types
 
-| Section | What it controls |
-| --- | --- |
-| **Programs** | The Work page + program detail pages. `order` sets the sequence. |
-| **News** | Blog posts. Assign a Category; set `Published At` (a future date stays hidden until then). |
-| **Events** | Upcoming/past split automatically by start date. Add a registration link. |
-| **Press releases** | Statements, with an optional PDF attachment. |
-| **Publications** | Reports/briefs with a cover image and a downloadable PDF. |
-| **Team members** | The About page leadership grid. |
-| **Partners / Stories / Categories** | Supporting content. |
+| Section                             | What it controls                                                                           |
+| ----------------------------------- | ------------------------------------------------------------------------------------------ |
+| **Programs**                        | The Work page + program detail pages. `order` sets the sequence.                           |
+| **News**                            | Blog posts. Assign a Category; set `Published At` (a future date stays hidden until then). |
+| **Events**                          | Upcoming/past split automatically by start date. Add a registration link.                  |
+| **Press releases**                  | Statements, with an optional PDF attachment.                                               |
+| **Publications**                    | Reports/briefs with a cover image and a downloadable PDF.                                  |
+| **Team members**                    | The About page leadership grid.                                                            |
+| **Partners / Stories / Categories** | Supporting content.                                                                        |
 
 ## Globals (Settings)
 

@@ -7,11 +7,11 @@ Frontend is statically generated from the CMS with on-demand revalidation.
 
 ## Environments
 
-| Env | Branch | Database | Stripe |
-| --- | --- | --- | --- |
-| Development | local | local Postgres | test |
-| Preview | any PR | Neon (preview) | test |
-| Production | `main` | Neon (production) | live |
+| Env         | Branch | Database          | Stripe |
+| ----------- | ------ | ----------------- | ------ |
+| Development | local  | local Postgres    | test   |
+| Preview     | any PR | Neon (preview)    | test   |
+| Production  | `main` | Neon (production) | live   |
 
 All secrets live in Vercel project env vars (never committed). See `.env.example`
 for the full list. Every integration degrades gracefully when unset.
