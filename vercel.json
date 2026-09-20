@@ -1,0 +1,5 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "nextjs",
+  "buildCommand": "POSTGRES_URL=$POSTGRES_URL_NON_POOLING payload migrate && next build"
+}
