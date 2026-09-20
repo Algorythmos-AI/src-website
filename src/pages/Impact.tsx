@@ -21,8 +21,12 @@ const StatCard: React.FC<StatCardProps> = ({ icon: Icon, value, label, desc }) =
     <div className="w-11 h-11 rounded-lg bg-brand-primary/10 dark:bg-dark-primary/20 flex items-center justify-center text-brand-primary dark:text-dark-primary mb-5">
       <Icon size={20} />
     </div>
-    <p className="text-3xl md:text-4xl font-serif font-bold text-brand-primary dark:text-dark-primary mb-2">{value}</p>
-    <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-ink/55 dark:text-dark-ink/60 mb-3">{label}</p>
+    <p className="text-3xl md:text-4xl font-serif font-bold text-brand-primary dark:text-dark-primary mb-2">
+      {value}
+    </p>
+    <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-ink/55 dark:text-dark-ink/60 mb-3">
+      {label}
+    </p>
     <p className="text-sm text-brand-ink/65 dark:text-dark-ink/65 leading-relaxed">{desc}</p>
   </motion.div>
 );
@@ -57,7 +61,9 @@ const StoryCard: React.FC<StoryCardProps> = ({ image, title, category, quote, au
         </div>
       </div>
     </div>
-    <span className="text-[10px] uppercase font-bold tracking-[0.3em] text-brand-secondary dark:text-dark-secondary mb-2 block">{category}</span>
+    <span className="text-[10px] uppercase font-bold tracking-[0.3em] text-brand-secondary dark:text-dark-secondary mb-2 block">
+      {category}
+    </span>
     <h3 className="text-2xl md:text-3xl font-serif font-bold text-brand-primary dark:text-dark-primary mb-4 leading-tight">
       {title}
     </h3>
@@ -65,33 +71,59 @@ const StoryCard: React.FC<StoryCardProps> = ({ image, title, category, quote, au
       <p className="text-base md:text-lg text-brand-ink/70 dark:text-dark-ink/70 leading-relaxed mb-3">
         “{quote}”
       </p>
-      <p className="text-xs font-bold uppercase tracking-widest text-brand-ink/50 dark:text-dark-ink/40">— {author}</p>
+      <p className="text-xs font-bold uppercase tracking-widest text-brand-ink/50 dark:text-dark-ink/40">
+        — {author}
+      </p>
     </div>
   </motion.article>
 );
 
 export const Impact = () => {
   const stats = [
-    { icon: Users, value: '125,000+', label: 'People reached', desc: 'Families across 15 states supported with education and social services.' },
-    { icon: Droplets, value: '82', label: 'Water projects', desc: 'Solar-powered boreholes serving drought-prone rural districts.' },
-    { icon: BookOpen, value: '450+', label: 'Rural classrooms', desc: 'Learning spaces renovated, equipped, and staffed with trained teachers.' },
-    { icon: Heart, value: '12', label: 'Peace councils', desc: 'Local mediation boards established to prevent and resolve communal conflicts.' },
+    {
+      icon: Users,
+      value: '125,000+',
+      label: 'People reached',
+      desc: 'Families across 15 states supported with education and social services.',
+    },
+    {
+      icon: Droplets,
+      value: '82',
+      label: 'Water projects',
+      desc: 'Solar-powered boreholes serving drought-prone rural districts.',
+    },
+    {
+      icon: BookOpen,
+      value: '450+',
+      label: 'Rural classrooms',
+      desc: 'Learning spaces renovated, equipped, and staffed with trained teachers.',
+    },
+    {
+      icon: Heart,
+      value: '12',
+      label: 'Peace councils',
+      desc: 'Local mediation boards established to prevent and resolve communal conflicts.',
+    },
   ];
 
   const stories = [
     {
       title: 'Water in Mayo',
       category: 'Water & sanitation',
-      quote: 'Before the borehole, my children walked four hours each day for water. Now they are at the learning center, and I have a garden.',
+      quote:
+        'Before the borehole, my children walked four hours each day for water. Now they are at the learning center, and I have a garden.',
       author: 'Fatima, community chairperson',
-      image: 'https://images.unsplash.com/photo-1633215357805-310e47d9c72e?q=80&w=2070&auto=format&fit=crop',
+      image:
+        'https://images.unsplash.com/photo-1633215357805-310e47d9c72e?q=80&w=2070&auto=format&fit=crop',
     },
     {
       title: 'Learning without borders',
       category: 'Education',
-      quote: 'The digital library in our village was something we only saw on television. SRC brought the world to our fingertips.',
+      quote:
+        'The digital library in our village was something we only saw on television. SRC brought the world to our fingertips.',
       author: 'Ahmed, student (age 14)',
-      image: 'https://images.unsplash.com/photo-1608317544280-9e9916b8c54d?q=80&w=2070&auto=format&fit=crop',
+      image:
+        'https://images.unsplash.com/photo-1608317544280-9e9916b8c54d?q=80&w=2070&auto=format&fit=crop',
     },
   ];
 
@@ -116,7 +148,9 @@ export const Impact = () => {
             Our impact, audited and reported.
           </h1>
           <p className="text-lg md:text-xl text-brand-ink/70 dark:text-dark-ink/70 leading-relaxed max-w-3xl">
-            Every figure on this page is verified by an independent auditor and published in our annual report. Numbers reflect cumulative results from 2015 through the latest reporting period.
+            Every figure on this page is verified by an independent auditor and published in our
+            annual report. Numbers reflect cumulative results from 2015 through the latest reporting
+            period.
           </p>
         </div>
       </section>
@@ -124,7 +158,7 @@ export const Impact = () => {
       {/* Stats grid */}
       <section className="py-20 md:py-24 px-6">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {stats.map(s => (
+          {stats.map((s) => (
             <StatCard key={s.label} {...s} />
           ))}
         </div>
@@ -135,7 +169,9 @@ export const Impact = () => {
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-14">
             <div className="max-w-xl">
-              <p className="text-brand-secondary dark:text-dark-secondary text-xs font-bold uppercase tracking-[0.3em] mb-3">From the field</p>
+              <p className="text-brand-secondary dark:text-dark-secondary text-xs font-bold uppercase tracking-[0.3em] mb-3">
+                From the field
+              </p>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-brand-primary dark:text-dark-primary leading-tight">
                 Stories behind the numbers.
               </h2>
@@ -150,7 +186,7 @@ export const Impact = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
-            {stories.map(story => (
+            {stories.map((story) => (
               <StoryCard key={story.title} {...story} />
             ))}
           </div>
@@ -165,15 +201,18 @@ export const Impact = () => {
         <div className="max-w-7xl mx-auto relative">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div>
-              <p className="text-brand-accent text-xs font-bold uppercase tracking-[0.3em] mb-4">Where we work</p>
+              <p className="text-brand-accent text-xs font-bold uppercase tracking-[0.3em] mb-4">
+                Where we work
+              </p>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold mb-6 leading-tight">
                 Fifteen states. One commitment.
               </h2>
               <p className="text-white/70 leading-relaxed mb-8 text-base md:text-lg">
-                From North Kordofan to the Blue Nile and the highlands around Port Sudan, our reach is guided by local advisory boards and global humanitarian standards.
+                From North Kordofan to the Blue Nile and the highlands around Port Sudan, our reach
+                is guided by local advisory boards and global humanitarian standards.
               </p>
               <ul className="space-y-3">
-                {locations.slice(0, 4).map(loc => (
+                {locations.slice(0, 4).map((loc) => (
                   <li key={loc.label} className="flex items-center gap-3">
                     <span className="w-1.5 h-1.5 rounded-full bg-brand-accent" />
                     <span className="text-sm uppercase tracking-widest font-bold">{loc.label}</span>
@@ -217,7 +256,9 @@ export const Impact = () => {
       {/* CTA */}
       <section className="py-20 md:py-24 px-6">
         <div className="max-w-4xl mx-auto bg-brand-primary dark:bg-dark-primary rounded-2xl p-10 md:p-14 text-white text-center">
-          <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4 leading-tight">Add to the next report.</h2>
+          <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4 leading-tight">
+            Add to the next report.
+          </h2>
           <p className="text-white/80 mb-8 max-w-xl mx-auto leading-relaxed">
             Every donation funds a project that's tracked, reported, and audited.
           </p>

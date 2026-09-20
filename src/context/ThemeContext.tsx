@@ -14,7 +14,9 @@ const getInitialTheme = (): Theme => {
   try {
     const saved = window.localStorage.getItem('theme');
     if (saved === 'light' || saved === 'dark') return saved;
-  } catch {}
+  } catch {
+    // localStorage may be unavailable (private mode); fall through to system preference.
+  }
   return window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 };
 
@@ -26,18 +28,16 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     root.classList.toggle('dark', theme === 'dark');
     try {
       window.localStorage.setItem('theme', theme);
-    } catch {}
+    } catch {
+      // Ignore write failures (e.g. storage disabled); theme still applies for this session.
+    }
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme(prev => (prev === 'light' ? 'dark' : 'light'));
+    setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
   };
 
-  return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      {children}
-    </ThemeContext.Provider>
-  );
+  return <ThemeContext.Provider value={{ theme, toggleTheme }}>{children}</ThemeContext.Provider>;
 };
 
 export const useTheme = () => {

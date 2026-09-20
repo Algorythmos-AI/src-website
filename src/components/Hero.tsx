@@ -4,10 +4,12 @@ import { ArrowRight, Play } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { VideoModal } from './VideoModal';
 
-const HERO_IMAGE = 'https://plus.unsplash.com/premium_photo-1699535657712-02fe404e916f?q=80&w=2070&auto=format&fit=crop';
+const HERO_IMAGE =
+  'https://plus.unsplash.com/premium_photo-1699535657712-02fe404e916f?q=80&w=2070&auto=format&fit=crop';
 
 // Placeholder mission video — swap with the real SRC mission video URL when available.
-const MISSION_VIDEO_SRC = 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4';
+const MISSION_VIDEO_SRC =
+  'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4';
 
 export const Hero = () => {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
@@ -29,7 +31,8 @@ export const Hero = () => {
               Building peace and resilience across rural Sudan.
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-brand-ink/70 dark:text-dark-ink/70 max-w-2xl leading-relaxed mb-10">
-              We partner with local leaders to advance education, water access, and community-led peacebuilding — from Darfur and Kordofan to the Blue Nile.
+              We partner with local leaders to advance education, water access, and community-led
+              peacebuilding — from Darfur and Kordofan to the Blue Nile.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
               <Link
@@ -83,7 +86,9 @@ export const Hero = () => {
 
               {/* Caption */}
               <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-brand-footer/90 to-transparent p-6 text-white pointer-events-none">
-                <p className="text-[10px] uppercase tracking-[0.25em] font-bold text-brand-accent mb-1">In the field</p>
+                <p className="text-[10px] uppercase tracking-[0.25em] font-bold text-brand-accent mb-1">
+                  In the field
+                </p>
                 <p className="text-sm font-medium leading-snug">North Sudan · 2025</p>
               </div>
             </div>
