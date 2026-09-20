@@ -1,5 +1,7 @@
+'use client';
+
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from '@/i18n/navigation';
 import { motion } from 'motion/react';
 import { Target, Users, ShieldCheck, Globe, ArrowRight } from 'lucide-react';
 
@@ -228,7 +230,7 @@ export const About = () => {
 
           <div className="mt-14">
             <Link
-              to="/contact"
+              href="/contact"
               className="inline-flex items-center gap-2 text-brand-primary dark:text-dark-primary font-bold text-sm uppercase tracking-widest border-b border-brand-primary/30 dark:border-dark-primary/40 pb-1 hover:border-brand-primary dark:hover:border-dark-primary transition-colors"
             >
               Read about our governance

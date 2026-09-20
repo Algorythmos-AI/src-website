@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import { Twitter, Linkedin, Facebook, Link2, Check } from 'lucide-react';
 import { motion } from 'motion/react';

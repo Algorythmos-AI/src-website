@@ -1,59 +1,44 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
+import { setRequestLocale } from 'next-intl/server';
+import { Link } from '@/i18n/navigation';
+import { Hero } from '@/components/Hero';
+import { ImpactStats } from '@/components/ImpactStats';
+import { CauseCard } from '@/components/CauseCard';
 
-import React, { Suspense, lazy } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import { Navbar } from './components/Navbar';
-import { Footer } from './components/Footer';
-import { Hero } from './components/Hero';
-import { CauseCard } from './components/CauseCard';
-import { ImpactStats } from './components/ImpactStats';
-import { ThemeProvider } from './context/ThemeContext';
-import { ErrorBoundary } from './components/ErrorBoundary';
-import { ScrollToTop } from './components/ScrollToTop';
+const causes = [
+  {
+    title: 'Resilient Peacebuilding',
+    tag: 'Initiative',
+    image:
+      'https://images.unsplash.com/photo-1608317544280-9e9916b8c54d?q=80&w=2070&auto=format&fit=crop',
+    description:
+      'Restoring communal harmony through traditional mediation and youth-led dialogue programs across Darfur and Kordofan.',
+  },
+  {
+    title: 'Rural Education Centers',
+    tag: 'Development',
+    image:
+      'https://images.unsplash.com/photo-1596895307394-1d15bf597744?q=80&w=2070&auto=format&fit=crop',
+    description:
+      'Tech-enabled learning spaces for children in underserved rural districts, bridging the literacy gap in North Sudan.',
+  },
+  {
+    title: 'Emergency Water Relief',
+    tag: 'Humanitarian',
+    image:
+      'https://images.unsplash.com/photo-1663876458229-4a7ac3e4be45?q=80&w=2070&auto=format&fit=crop',
+    description:
+      'Solar-powered boreholes and sustainable water management for arid rural communities across North Sudan.',
+  },
+];
 
-// Lazy load pages
-const About = lazy(() => import('./pages/About').then((m) => ({ default: m.About })));
-const Work = lazy(() => import('./pages/Work').then((m) => ({ default: m.Work })));
-const Impact = lazy(() => import('./pages/Impact').then((m) => ({ default: m.Impact })));
-const Contact = lazy(() => import('./pages/Contact').then((m) => ({ default: m.Contact })));
-const Donate = lazy(() => import('./pages/Donate').then((m) => ({ default: m.Donate })));
+const partners = ['UNICEF', 'WFP', 'OCHA', 'OXFAM', 'IRC', 'UNHCR'];
 
-// Home Page Component
-const Home = () => {
-  const causes = [
-    {
-      title: 'Resilient Peacebuilding',
-      tag: 'Initiative',
-      image:
-        'https://images.unsplash.com/photo-1608317544280-9e9916b8c54d?q=80&w=2070&auto=format&fit=crop',
-      description:
-        'Restoring communal harmony through traditional mediation and youth-led dialogue programs across Darfur and Kordofan.',
-    },
-    {
-      title: 'Rural Education Centers',
-      tag: 'Development',
-      image:
-        'https://images.unsplash.com/photo-1596895307394-1d15bf597744?q=80&w=2070&auto=format&fit=crop',
-      description:
-        'Tech-enabled learning spaces for children in underserved rural districts, bridging the literacy gap in North Sudan.',
-    },
-    {
-      title: 'Emergency Water Relief',
-      tag: 'Humanitarian',
-      image:
-        'https://images.unsplash.com/photo-1663876458229-4a7ac3e4be45?q=80&w=2070&auto=format&fit=crop',
-      description:
-        'Solar-powered boreholes and sustainable water management for arid rural communities across North Sudan.',
-    },
-  ];
-
-  const partners = ['UNICEF', 'WFP', 'OCHA', 'OXFAM', 'IRC', 'UNHCR'];
+export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  setRequestLocale(locale);
 
   return (
-    <main className="bg-brand-bg dark:bg-dark-bg transition-colors duration-300">
+    <div className="bg-brand-bg dark:bg-dark-bg transition-colors duration-300">
       <Hero />
 
       <ImpactStats />
@@ -78,10 +63,10 @@ const Home = () => {
             <p className="text-lg text-brand-ink/75 dark:text-dark-ink/75 leading-relaxed mb-8">
               Our methodology is grounded in three principles: local ownership of every project,
               transparent reporting to donors and beneficiaries, and durable partnerships with
-              traditional leaders, women's cooperatives, and youth councils.
+              traditional leaders, women&apos;s cooperatives, and youth councils.
             </p>
             <Link
-              to="/about"
+              href="/about"
               className="inline-flex items-center gap-2 text-brand-primary dark:text-dark-primary font-bold text-sm uppercase tracking-widest border-b border-brand-primary/30 dark:border-dark-primary/40 pb-1 hover:border-brand-primary dark:hover:border-dark-primary transition-colors"
             >
               Read our founding story
@@ -103,7 +88,7 @@ const Home = () => {
               </h2>
             </div>
             <Link
-              to="/work"
+              href="/work"
               className="inline-flex items-center gap-2 bg-brand-primary dark:bg-dark-primary text-white px-6 py-3 rounded-lg text-xs font-bold uppercase tracking-widest hover:bg-opacity-90 transition-all"
             >
               View all programs
@@ -125,8 +110,8 @@ const Home = () => {
             From our leadership
           </p>
           <blockquote className="text-2xl md:text-3xl font-serif leading-snug text-brand-primary dark:text-dark-primary text-center mb-10">
-            “Dignity is the foundation of peace. We don't deliver aid — we partner with rural
-            communities to build the tools they need for their own prosperity.”
+            &ldquo;Dignity is the foundation of peace. We don&apos;t deliver aid — we partner with
+            rural communities to build the tools they need for their own prosperity.&rdquo;
           </blockquote>
           <div className="flex items-center justify-center gap-4">
             <div
@@ -196,10 +181,10 @@ const Home = () => {
             </h3>
             <p className="text-brand-ink/70 dark:text-dark-ink/70 leading-relaxed mb-6 text-sm md:text-base">
               Your support funds clean water, classrooms, and community-led peace councils where
-              they're needed most.
+              they&apos;re needed most.
             </p>
             <Link
-              to="/donate"
+              href="/donate"
               className="inline-flex items-center gap-2 bg-brand-primary dark:bg-dark-primary text-white px-6 py-3 rounded-lg text-xs font-bold uppercase tracking-widest hover:bg-opacity-90 transition-colors"
             >
               Donate to SRC
@@ -207,56 +192,6 @@ const Home = () => {
           </div>
         </div>
       </section>
-    </main>
-  );
-};
-
-const NotFound = () => (
-  <div className="h-screen flex items-center justify-center bg-brand-bg dark:bg-dark-bg px-6 text-center transition-colors">
-    <div>
-      <h1 className="text-9xl font-serif font-bold text-brand-primary/10 dark:text-dark-primary/20">
-        404
-      </h1>
-      <p className="text-xl font-serif mb-8 text-brand-ink dark:text-dark-ink">
-        The horizon you seek is not here.
-      </p>
-      <Link
-        to="/"
-        className="bg-brand-primary dark:bg-dark-primary text-white px-8 py-4 rounded-full text-sm font-medium"
-      >
-        Return Home
-      </Link>
     </div>
-  </div>
-);
-
-export default function App() {
-  return (
-    <ThemeProvider>
-      <Router>
-        <ScrollToTop />
-        <Navbar />
-        <ErrorBoundary>
-          <Suspense
-            fallback={
-              <div className="h-screen flex items-center justify-center bg-brand-bg dark:bg-dark-bg transition-colors">
-                <div className="w-12 h-12 border-4 border-brand-primary dark:border-dark-primary border-t-transparent rounded-full animate-spin" />
-              </div>
-            }
-          >
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/work" element={<Work />} />
-              <Route path="/impact" element={<Impact />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/donate" element={<Donate />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Suspense>
-        </ErrorBoundary>
-        <Footer />
-      </Router>
-    </ThemeProvider>
   );
 }

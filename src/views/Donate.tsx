@@ -1,6 +1,9 @@
+'use client';
+
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { Heart, Globe, ShieldCheck, ArrowRight, Lock } from 'lucide-react';
+import { Link } from '@/i18n/navigation';
 
 interface Tier {
   amount: number;
@@ -230,12 +233,12 @@ export const Donate = () => {
               <p className="mt-6 text-xs text-brand-ink/55 dark:text-dark-ink/55 text-center leading-relaxed">
                 SRC is a registered nonprofit. Donations are tax-deductible where allowed by law.
                 The secure payment portal is currently being finalized — please{' '}
-                <a
+                <Link
                   href="/contact"
                   className="underline hover:text-brand-primary dark:hover:text-dark-primary"
                 >
                   contact us
-                </a>{' '}
+                </Link>{' '}
                 for wire transfer or partner-organization donations.
               </p>
             </motion.div>

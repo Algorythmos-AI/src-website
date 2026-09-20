@@ -3,8 +3,8 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
-  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: var(--font-inter), 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-playfair), 'Playfair Display', Georgia, serif;
 
   --color-brand-bg: #f7e8d2;
   --color-brand-ink: #211008;
@@ -23,6 +23,13 @@
   --color-dark-surface: #1a120e;
 }
 
+/* Under RTL locales, use the Arabic face for both body and headings
+   (Playfair Display has no Arabic glyphs). */
+[dir='rtl'] {
+  --font-sans: var(--font-arabic), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-arabic), Georgia, serif;
+}
+
 @layer base {
   html {
     -webkit-text-size-adjust: 100%;
@@ -32,6 +39,7 @@
 
   body {
     @apply transition-colors duration-300 antialiased;
+    font-family: var(--font-sans);
     -webkit-tap-highlight-color: transparent;
     overflow-x: hidden;
   }
@@ -41,7 +49,7 @@
   }
 
   body:not(.dark) {
-    @apply bg-brand-bg text-brand-ink font-sans;
+    @apply bg-brand-bg text-brand-ink;
   }
 
   h1,

@@ -1,5 +1,7 @@
+'use client';
+
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from '@/i18n/navigation';
 import { motion } from 'motion/react';
 import { Users, Droplets, BookOpen, Heart, ArrowRight, type LucideIcon } from 'lucide-react';
 import { ShareButtons } from '../components/ShareButtons';
@@ -177,7 +179,7 @@ export const Impact = () => {
               </h2>
             </div>
             <Link
-              to="/work"
+              href="/work"
               className="inline-flex items-center gap-2 text-brand-primary dark:text-dark-primary font-bold text-xs uppercase tracking-widest border-b border-brand-primary/30 dark:border-dark-primary/40 pb-1 hover:border-brand-primary dark:hover:border-dark-primary transition-colors"
             >
               See all programs
@@ -263,7 +265,7 @@ export const Impact = () => {
             Every donation funds a project that's tracked, reported, and audited.
           </p>
           <Link
-            to="/donate"
+            href="/donate"
             className="inline-flex items-center gap-2 bg-white text-brand-primary px-8 py-3.5 rounded-lg font-bold text-xs uppercase tracking-[0.2em] hover:bg-brand-surface transition-colors"
           >
             Support our impact
