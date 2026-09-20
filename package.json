@@ -15,15 +15,31 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "e2e": "playwright test",
-    "i18n:check": "node scripts/check-i18n.mjs"
+    "i18n:check": "node scripts/check-i18n.mjs",
+    "payload": "payload",
+    "generate:types": "payload generate:types",
+    "generate:importmap": "payload generate:importmap",
+    "migrate:create": "payload migrate:create",
+    "migrate": "payload migrate",
+    "seed": "payload run src/seed/index.ts"
   },
   "dependencies": {
+    "@payloadcms/db-postgres": "^3.90.1",
+    "@payloadcms/next": "^3.90.1",
+    "@payloadcms/plugin-redirects": "^3.90.1",
+    "@payloadcms/plugin-search": "^3.90.1",
+    "@payloadcms/plugin-seo": "^3.90.1",
+    "@payloadcms/richtext-lexical": "^3.90.1",
+    "@payloadcms/storage-vercel-blob": "^3.90.1",
+    "graphql": "^16.14.2",
     "lucide-react": "^0.546.0",
     "motion": "^12.38.0",
     "next": "16.3.5",
     "next-intl": "^4.14.5",
+    "payload": "^3.90.1",
     "react": "^19.0.1",
-    "react-dom": "^19.0.1"
+    "react-dom": "^19.0.1",
+    "sharp": "^0.34.5"
   },
   "devDependencies": {
     "@eslint/js": "^9.16.0",

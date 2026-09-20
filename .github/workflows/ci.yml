@@ -10,6 +10,13 @@ concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
 
+# Build-time only. Payload requires a secret to construct its config; the build
+# never connects to the database (admin/API routes are dynamic), so a dummy
+# secret and no POSTGRES_URL are sufficient for CI.
+env:
+  PAYLOAD_SECRET: ci-build-only-dummy-secret-000000000000
+  NEXT_PUBLIC_SITE_URL: https://src-zeta-teal.vercel.app
+
 jobs:
   verify:
     runs-on: ubuntu-latest
