@@ -18,9 +18,9 @@ export default defineConfig({
     { name: 'mobile', use: { ...devices['Pixel 5'] } },
   ],
   webServer: {
-    command: `npm run build && npm run preview -- --port=${PORT}`,
+    command: `npm run build && npx next start -p ${PORT}`,
     port: PORT,
     reuseExistingServer: !process.env.CI,
-    timeout: 120_000,
+    timeout: 180_000,
   },
 });

@@ -1,14 +1,11 @@
-import React from 'react';
+'use client';
+
 import { motion } from 'motion/react';
 
-export const ImpactStats = () => {
-  const stats = [
-    { label: 'People reached', value: '125k+' },
-    { label: 'Active programs', value: '45' },
-    { label: 'Field sites', value: '18' },
-    { label: 'Volunteers', value: '800+' },
-  ];
+export type Stat = { value: string; label: string };
 
+export const ImpactStats = ({ stats }: { stats: Stat[] }) => {
+  if (stats.length === 0) return null;
   return (
     <section className="py-12 md:py-14 px-6 border-y border-brand-primary/10 dark:border-white/5 bg-brand-surface/70 dark:bg-dark-surface/30 transition-colors">
       <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4 text-center">

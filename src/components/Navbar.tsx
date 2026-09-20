@@ -1,10 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { NavLink, Link } from 'react-router-dom';
+'use client';
+
+import { useState, useEffect } from 'react';
 import { Menu, X, Sun, Moon } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-import { useTheme } from '../context/ThemeContext';
+import { useTranslations } from 'next-intl';
+import { Link, usePathname } from '@/i18n/navigation';
+import { useTheme } from '@/context/ThemeContext';
+import { LanguageSwitcher } from '@/components/LanguageSwitcher';
 
 export const Navbar = () => {
+  const t = useTranslations('nav');
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(
     () => typeof window !== 'undefined' && window.scrollY > 50
@@ -19,22 +25,24 @@ export const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: 'About', path: '/about' },
-    { name: 'Programs', path: '/work' },
-    { name: 'Impact', path: '/impact' },
-    { name: 'Contact', path: '/contact' },
+    { name: t('about'), path: '/about' },
+    { name: t('programs'), path: '/work' },
+    { name: t('impact'), path: '/impact' },
+    { name: t('contact'), path: '/contact' },
   ];
+
+  const isActive = (path: string) => pathname === path;
 
   return (
     <nav
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 text-white ${
+      className={`fixed top-0 start-0 w-full z-50 transition-all duration-300 text-white ${
         scrolled
           ? 'bg-brand-primary/95 dark:bg-dark-bg/95 backdrop-blur-md shadow-sm py-3'
           : 'bg-brand-primary dark:bg-dark-bg py-5'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-10 flex justify-between items-center">
-        <Link to="/" className="flex items-center gap-3" aria-label="SRC home">
+        <Link href="/" className="flex items-center gap-3" aria-label={t('srcHome')}>
           <img
             src="/icons/logo.webp"
             alt=""
@@ -48,46 +56,48 @@ export const Navbar = () => {
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-2">
-          <div className="flex items-center gap-1 mr-4">
+          <div className="flex items-center gap-1 me-4">
             {navLinks.map((link) => (
-              <NavLink
+              <Link
                 key={link.path}
-                to={link.path}
-                className={({ isActive }) =>
-                  `px-4 py-2 text-sm font-medium rounded-md transition-colors ${
-                    isActive
-                      ? 'bg-white/10 text-white'
-                      : 'text-white/80 hover:text-white hover:bg-white/5'
-                  }`
-                }
+                href={link.path}
+                aria-current={isActive(link.path) ? 'page' : undefined}
+                className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
+                  isActive(link.path)
+                    ? 'bg-white/10 text-white'
+                    : 'text-white/80 hover:text-white hover:bg-white/5'
+                }`}
               >
                 {link.name}
-              </NavLink>
+              </Link>
             ))}
           </div>
+
+          <LanguageSwitcher />
 
           <button
             onClick={toggleTheme}
             className="p-2 rounded-md hover:bg-white/10 transition-colors text-white"
-            aria-label="Toggle theme"
+            aria-label={t('toggleTheme')}
           >
             {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
           </button>
 
           <Link
-            to="/donate"
-            className="ml-2 bg-white text-brand-primary px-5 py-2.5 rounded-md font-bold text-xs uppercase tracking-[0.15em] hover:bg-brand-surface transition-colors"
+            href="/donate"
+            className="ms-2 bg-white text-brand-primary px-5 py-2.5 rounded-md font-bold text-xs uppercase tracking-[0.15em] hover:bg-brand-surface transition-colors"
           >
-            Donate
+            {t('donate')}
           </Link>
         </div>
 
         {/* Mobile Toggle & Mobile Theme Toggle */}
         <div className="flex items-center gap-2 md:hidden">
+          <LanguageSwitcher />
           <button
             onClick={toggleTheme}
             className="p-2.5 rounded-md hover:bg-white/10 transition-colors text-white touch-manipulation"
-            aria-label="Toggle theme"
+            aria-label={t('toggleTheme')}
           >
             {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
           </button>
@@ -96,7 +106,7 @@ export const Navbar = () => {
             type="button"
             className="text-white p-2.5 rounded-md hover:bg-white/10 transition-colors touch-manipulation"
             onClick={() => setIsOpen(!isOpen)}
-            aria-label={isOpen ? 'Close menu' : 'Open menu'}
+            aria-label={isOpen ? t('closeMenu') : t('openMenu')}
             aria-expanded={isOpen}
             aria-controls="mobile-nav"
           >
@@ -113,28 +123,27 @@ export const Navbar = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="absolute top-full left-0 w-full bg-brand-primary dark:bg-dark-bg border-t border-white/10 px-6 py-4 flex flex-col md:hidden shadow-lg max-h-[calc(100vh-4rem)] overflow-y-auto"
+            className="absolute top-full start-0 w-full bg-brand-primary dark:bg-dark-bg border-t border-white/10 px-6 py-4 flex flex-col md:hidden shadow-lg max-h-[calc(100vh-4rem)] overflow-y-auto"
           >
             {navLinks.map((link) => (
-              <NavLink
+              <Link
                 key={link.path}
-                to={link.path}
+                href={link.path}
                 onClick={() => setIsOpen(false)}
-                className={({ isActive }) =>
-                  `block py-3 text-base font-medium transition-colors border-b border-white/5 last:border-0 ${
-                    isActive ? 'text-brand-accent' : 'text-white hover:text-brand-accent'
-                  }`
-                }
+                aria-current={isActive(link.path) ? 'page' : undefined}
+                className={`block py-3 text-base font-medium transition-colors border-b border-white/5 last:border-0 ${
+                  isActive(link.path) ? 'text-brand-accent' : 'text-white hover:text-brand-accent'
+                }`}
               >
                 {link.name}
-              </NavLink>
+              </Link>
             ))}
             <Link
-              to="/donate"
+              href="/donate"
               onClick={() => setIsOpen(false)}
               className="mt-4 flex justify-center items-center gap-2 bg-white text-brand-primary px-5 py-3.5 rounded-md text-sm font-bold uppercase tracking-[0.15em]"
             >
-              Donate
+              {t('donate')}
             </Link>
           </motion.div>
         )}

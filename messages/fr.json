@@ -1,0 +1,52 @@
+{
+  "meta": {
+    "title": "Communauté Rurale Soudanaise (SRC)",
+    "description": "Consolidation de la paix, éducation, aide humanitaire et développement rural pour le cœur du Soudan."
+  },
+  "language": {
+    "label": "Langue",
+    "en": "English",
+    "fr": "Français",
+    "ar": "العربية"
+  },
+  "nav": {
+    "srcHome": "Accueil SRC",
+    "about": "À propos",
+    "programs": "Programmes",
+    "impact": "Impact",
+    "contact": "Contact",
+    "donate": "Faire un don",
+    "toggleTheme": "Changer de thème",
+    "openMenu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu"
+  },
+  "footer": {
+    "brandBlurb": "La Communauté Rurale Soudanaise travaille aux côtés des responsables locaux pour faire progresser l'éducation, l'accès à l'eau et la consolidation de la paix menée par les communautés à travers le Soudan rural.",
+    "orgHeading": "Organisation",
+    "reachHeading": "Nous joindre",
+    "hqLine": "Siège · Paris, France",
+    "fieldLine": "Opérations de terrain · Nord du Soudan",
+    "newsletterHeading": "Rester informé",
+    "newsletterBlurb": "Recevez notre rapport d'impact trimestriel.",
+    "emailLabel": "Adresse e-mail",
+    "emailPlaceholder": "vous@exemple.com",
+    "subscribe": "S'abonner",
+    "rights": "© {year} Communauté Rurale Soudanaise (SRC). Association reconnue · Paris, France.",
+    "privacy": "Confidentialité",
+    "terms": "Conditions",
+    "annualReport": "Rapport annuel",
+    "instagram": "Instagram",
+    "twitter": "Twitter",
+    "linkedin": "LinkedIn"
+  },
+  "notFound": {
+    "code": "404",
+    "message": "L'horizon que vous cherchez n'est pas ici.",
+    "returnHome": "Retour à l'accueil"
+  },
+  "error": {
+    "title": "Une erreur est survenue.",
+    "message": "Une erreur inattendue s'est produite. Veuillez réessayer.",
+    "retry": "Réessayer"
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "meta": {
+    "title": "Sudanese Rural Community (SRC)",
+    "description": "Peacebuilding, education, humanitarian aid, and rural development for the heart of Sudan."
+  },
+  "language": {
+    "label": "Language",
+    "en": "English",
+    "fr": "Français",
+    "ar": "العربية"
+  },
+  "nav": {
+    "srcHome": "SRC home",
+    "about": "About",
+    "programs": "Programs",
+    "impact": "Impact",
+    "contact": "Contact",
+    "donate": "Donate",
+    "toggleTheme": "Toggle theme",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "footer": {
+    "brandBlurb": "The Sudanese Rural Community works alongside local leaders to advance education, water access, and community-led peacebuilding across rural Sudan.",
+    "orgHeading": "Organization",
+    "reachHeading": "Reach us",
+    "hqLine": "Headquarters · Paris, France",
+    "fieldLine": "Field operations · North Sudan",
+    "newsletterHeading": "Stay informed",
+    "newsletterBlurb": "Receive our quarterly impact report.",
+    "emailLabel": "Email address",
+    "emailPlaceholder": "you@example.com",
+    "subscribe": "Subscribe",
+    "rights": "© {year} Sudanese Rural Community (SRC). Registered nonprofit · Paris, France.",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "annualReport": "Annual report",
+    "instagram": "Instagram",
+    "twitter": "Twitter",
+    "linkedin": "LinkedIn"
+  },
+  "notFound": {
+    "code": "404",
+    "message": "The horizon you seek is not here.",
+    "returnHome": "Return Home"
+  },
+  "error": {
+    "title": "Something went wrong.",
+    "message": "An unexpected error occurred. Please try again.",
+    "retry": "Try again"
+  }
+}
