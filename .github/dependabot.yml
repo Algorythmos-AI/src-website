@@ -2,9 +2,13 @@ version: 2
 updates:
   - package-ecosystem: npm
     directory: /
+    # Active development lives on the `next` branch (Vite → Next.js + Payload
+    # migration). Dependabot reads this config from the default branch (main) but
+    # opens PRs against `next` so hygiene lands where it matters.
+    target-branch: next
     schedule:
       interval: weekly
-    open-pull-requests-limit: 5
+    open-pull-requests-limit: 8
     groups:
       react:
         patterns:
@@ -12,17 +16,31 @@ updates:
           - react-dom
           - '@types/react'
           - '@types/react-dom'
-      dev-tooling:
+      payload:
         patterns:
-          - eslint*
-          - '@typescript-eslint/*'
+          - payload
+          - '@payloadcms/*'
+      lint-test-tooling:
+        patterns:
+          - eslint
+          - '@eslint/*'
           - typescript-eslint
+          - eslint-plugin-*
           - prettier
           - vitest
           - '@vitest/*'
           - '@playwright/*'
           - '@testing-library/*'
+    ignore:
+      # next is pinned to Payload's supported peer range; bump deliberately.
+      - dependency-name: next
+        update-types:
+          - version-update:semver-major
+          - version-update:semver-minor
+      # lucide-react 1.x removed brand icons still in use; deferred to Phase 8.
+      - dependency-name: lucide-react
   - package-ecosystem: github-actions
     directory: /
+    target-branch: next
     schedule:
       interval: weekly
