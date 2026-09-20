@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
+import { useLocale } from 'next-intl';
 import { Heart, Globe, ShieldCheck, ArrowRight, Lock } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
 
@@ -12,14 +13,44 @@ export interface Tier {
   recommended?: boolean;
 }
 
-export const Donate = ({ tiers, monthlyEnabled }: { tiers: Tier[]; monthlyEnabled: boolean }) => {
+export const Donate = ({
+  tiers,
+  monthlyEnabled,
+  stripeEnabled,
+}: {
+  tiers: Tier[];
+  monthlyEnabled: boolean;
+  stripeEnabled: boolean;
+}) => {
+  const locale = useLocale();
   const TIERS = tiers;
   const recommended = TIERS.find((t) => t.recommended) ?? TIERS[1] ?? TIERS[0];
   const [selectedAmount, setSelectedAmount] = useState<number | null>(recommended?.amount ?? null);
   const [customAmount, setCustomAmount] = useState('');
   const [frequency, setFrequency] = useState<'one-time' | 'monthly'>('one-time');
+  const [status, setStatus] = useState<'idle' | 'redirecting' | 'error'>('idle');
 
   const finalAmount = customAmount ? Number(customAmount) || 0 : (selectedAmount ?? 0);
+
+  const handleDonate = async () => {
+    if (finalAmount <= 0 || status === 'redirecting') return;
+    setStatus('redirecting');
+    try {
+      const res = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ amount: finalAmount, currency: 'usd', mode: frequency, locale }),
+      });
+      const data = (await res.json()) as { url?: string };
+      if (res.ok && data.url) {
+        window.location.href = data.url;
+        return;
+      }
+      setStatus('error');
+    } catch {
+      setStatus('error');
+    }
+  };
 
   return (
     <div className="bg-brand-bg dark:bg-dark-bg pt-24 transition-colors">
@@ -203,37 +234,54 @@ export const Donate = ({ tiers, monthlyEnabled }: { tiers: Tier[]; monthlyEnable
               </div>
 
               {/* CTA */}
-              <a
-                href="#"
-                aria-disabled="true"
-                onClick={(e) => e.preventDefault()}
+              <button
+                type="button"
+                onClick={handleDonate}
+                disabled={!stripeEnabled || finalAmount <= 0 || status === 'redirecting'}
                 className={`w-full inline-flex items-center justify-center gap-3 py-4 rounded-lg font-bold text-xs uppercase tracking-[0.2em] transition-colors ${
-                  finalAmount > 0
+                  stripeEnabled && finalAmount > 0
                     ? 'bg-brand-primary dark:bg-dark-primary text-white hover:bg-opacity-90'
                     : 'bg-brand-primary/30 dark:bg-dark-primary/30 text-white/70 cursor-not-allowed'
                 }`}
               >
-                Continue with ${finalAmount > 0 ? finalAmount : '0'}{' '}
-                {frequency === 'monthly' ? '/ month' : ''}
+                {status === 'redirecting'
+                  ? 'Redirecting…'
+                  : `Continue with $${finalAmount > 0 ? finalAmount : '0'} ${frequency === 'monthly' ? '/ month' : ''}`}
                 <ArrowRight size={16} />
-              </a>
+              </button>
+
+              {status === 'error' && (
+                <p
+                  aria-live="polite"
+                  className="mt-3 text-center text-sm text-red-700 dark:text-red-400"
+                >
+                  Something went wrong starting checkout. Please try again.
+                </p>
+              )}
 
               <p className="mt-4 flex items-center justify-center gap-2 text-[10px] uppercase tracking-widest font-bold text-brand-ink/50 dark:text-dark-ink/50">
                 <Lock size={12} />
-                Secure online giving coming soon
+                {stripeEnabled ? 'Secure checkout via Stripe' : 'Secure online giving coming soon'}
               </p>
 
-              <p className="mt-6 text-xs text-brand-ink/55 dark:text-dark-ink/55 text-center leading-relaxed">
-                SRC is a registered nonprofit. Donations are tax-deductible where allowed by law.
-                The secure payment portal is currently being finalized — please{' '}
-                <Link
-                  href="/contact"
-                  className="underline hover:text-brand-primary dark:hover:text-dark-primary"
-                >
-                  contact us
-                </Link>{' '}
-                for wire transfer or partner-organization donations.
-              </p>
+              {stripeEnabled ? (
+                <p className="mt-6 text-xs text-brand-ink/55 dark:text-dark-ink/55 text-center leading-relaxed">
+                  SRC is a registered nonprofit. Donations are tax-deductible where allowed by law.
+                  You&apos;ll receive a receipt by email.
+                </p>
+              ) : (
+                <p className="mt-6 text-xs text-brand-ink/55 dark:text-dark-ink/55 text-center leading-relaxed">
+                  SRC is a registered nonprofit. Donations are tax-deductible where allowed by law.
+                  The secure payment portal is currently being finalized — please{' '}
+                  <Link
+                    href="/contact"
+                    className="underline hover:text-brand-primary dark:hover:text-dark-primary"
+                  >
+                    contact us
+                  </Link>{' '}
+                  for wire transfer or partner-organization donations.
+                </p>
+              )}
             </motion.div>
           </div>
         </div>

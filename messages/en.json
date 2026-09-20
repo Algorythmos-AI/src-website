@@ -77,5 +77,13 @@
     "title": "Something went wrong.",
     "message": "An unexpected error occurred. Please try again.",
     "retry": "Try again"
+  },
+  "donate": {
+    "successTitle": "Thank you for your gift",
+    "successBody": "Your donation to SRC has been received. A receipt is on its way to your inbox.",
+    "cancelTitle": "Donation canceled",
+    "cancelBody": "No charge was made. You can try again whenever you're ready.",
+    "backHome": "Return home",
+    "backToDonate": "Back to donate"
   }
 }

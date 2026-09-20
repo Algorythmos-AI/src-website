@@ -77,5 +77,13 @@
     "title": "Une erreur est survenue.",
     "message": "Une erreur inattendue s'est produite. Veuillez réessayer.",
     "retry": "Réessayer"
+  },
+  "donate": {
+    "successTitle": "Merci pour votre don",
+    "successBody": "Votre don à SRC a bien été reçu. Un reçu arrive dans votre boîte mail.",
+    "cancelTitle": "Don annulé",
+    "cancelBody": "Aucun montant n'a été prélevé. Vous pouvez réessayer quand vous le souhaitez.",
+    "backHome": "Retour à l'accueil",
+    "backToDonate": "Retour au don"
   }
 }

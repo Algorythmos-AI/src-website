@@ -1,6 +1,7 @@
 import { setRequestLocale } from 'next-intl/server';
 import type { Locale } from '@/i18n/routing';
 import { getDonateSettings } from '@/lib/queries';
+import { stripeEnabled } from '@/lib/donate/stripe';
 import { Donate, type Tier } from '@/views/Donate';
 
 export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
@@ -16,5 +17,11 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
       description: t.impact ?? '',
     }));
 
-  return <Donate tiers={tiers} monthlyEnabled={settings.monthlyEnabled ?? true} />;
+  return (
+    <Donate
+      tiers={tiers}
+      monthlyEnabled={settings.monthlyEnabled ?? true}
+      stripeEnabled={stripeEnabled}
+    />
+  );
 }
