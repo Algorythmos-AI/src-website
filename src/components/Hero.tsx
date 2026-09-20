@@ -1,9 +1,7 @@
-'use client';
-
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { ArrowRight, Play } from 'lucide-react';
-import { Link } from '@/i18n/navigation';
+import { Link } from 'react-router-dom';
 import { VideoModal } from './VideoModal';
 
 const HERO_IMAGE =
@@ -38,14 +36,14 @@ export const Hero = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
               <Link
-                href="/donate"
+                to="/donate"
                 className="inline-flex w-full sm:w-auto items-center justify-center gap-3 bg-brand-primary dark:bg-dark-primary text-white px-8 py-4 rounded-lg text-sm font-bold uppercase tracking-widest hover:bg-opacity-90 transition-all shadow-md"
               >
                 Support our work
                 <ArrowRight size={16} />
               </Link>
               <Link
-                href="/work"
+                to="/work"
                 className="inline-flex w-full sm:w-auto items-center justify-center gap-3 border border-brand-primary/20 dark:border-dark-primary/30 text-brand-primary dark:text-dark-primary px-8 py-4 rounded-lg text-sm font-bold uppercase tracking-widest hover:bg-brand-primary/5 dark:hover:bg-dark-primary/10 transition-all"
               >
                 See our programs

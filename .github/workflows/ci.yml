@@ -10,32 +10,12 @@ concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
 
-# The frontend statically generates from the CMS, so `next build` needs a
-# database. CI spins up a throwaway Postgres, applies committed migrations, and
-# builds against it. PAYLOAD_SECRET is a build-only dummy.
-env:
-  PAYLOAD_SECRET: ci-build-only-dummy-secret-000000000000
-  NEXT_PUBLIC_SITE_URL: https://src-zeta-teal.vercel.app
-  POSTGRES_URL: postgres://src:src@localhost:5432/src
-
 jobs:
   verify:
     runs-on: ubuntu-latest
-    services:
-      postgres:
-        image: postgres:16
-        env:
-          POSTGRES_USER: src
-          POSTGRES_PASSWORD: src
-          POSTGRES_DB: src
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd "pg_isready -U src" --health-interval 10s
-          --health-timeout 5s --health-retries 5
     steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-node@v7
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
@@ -46,12 +26,8 @@ jobs:
         run: npm run lint
       - name: Format check
         run: npm run format:check
-      - name: i18n key parity
-        run: npm run i18n:check
       - name: Unit tests
         run: npm run test
-      - name: Run database migrations
-        run: npm run migrate
       - name: Build
         run: npm run build
       - name: Audit (high severity)
@@ -60,28 +36,14 @@ jobs:
 
   e2e:
     runs-on: ubuntu-latest
-    services:
-      postgres:
-        image: postgres:16
-        env:
-          POSTGRES_USER: src
-          POSTGRES_PASSWORD: src
-          POSTGRES_DB: src
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd "pg_isready -U src" --health-interval 10s
-          --health-timeout 5s --health-retries 5
     steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-node@v7
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
       - run: npm ci
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
-      - name: Run database migrations
-        run: npm run migrate
       - name: Run Playwright smoke tests
         run: npm run e2e
