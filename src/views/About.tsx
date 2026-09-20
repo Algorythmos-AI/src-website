@@ -5,7 +5,9 @@ import { Link } from '@/i18n/navigation';
 import { motion } from 'motion/react';
 import { Target, Users, ShieldCheck, Globe, ArrowRight } from 'lucide-react';
 
-export const About = () => {
+export type LeadItem = { name: string; role: string; image?: string };
+
+export const About = ({ leadership }: { leadership: LeadItem[] }) => {
   const values = [
     {
       icon: <Target size={22} />,
@@ -26,30 +28,6 @@ export const About = () => {
       icon: <Globe size={22} />,
       title: 'Localization',
       desc: 'Sudanese problems are solved by Sudanese teams, supported by global standards.',
-    },
-  ];
-
-  const leadership = [
-    { name: 'Obeid NAEIM', role: 'President', image: '/Our-Leadership/Obeid-NAEIM.webp' },
-    {
-      name: 'Elzubier MOHAMED',
-      role: 'Secretary General',
-      image: '/Our-Leadership/Elzubier-MOHAMED.webp',
-    },
-    {
-      name: 'Nasradine Ibrahim',
-      role: 'Treasurer',
-      image: '/Our-Leadership/Nasradine-Ibrahim.webp',
-    },
-    {
-      name: 'Musab ALALIM',
-      role: 'Project Manager & Awareness Officer',
-      image: '/Our-Leadership/Musab-ALALIM.webp',
-    },
-    {
-      name: 'Assamani BASHIR',
-      role: 'Official Spokesperson',
-      image: '/Our-Leadership/Assamani-BASHIR.webp',
     },
   ];
 
@@ -210,13 +188,26 @@ export const About = () => {
                 className="group"
               >
                 <div className="aspect-square rounded-2xl overflow-hidden mb-4 bg-brand-surface dark:bg-dark-surface shadow-sm group-hover:shadow-md transition-shadow">
-                  <img
-                    src={person.image}
-                    alt={`Portrait of ${person.name}, ${person.role}`}
-                    loading="lazy"
-                    decoding="async"
-                    className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
-                  />
+                  {person.image ? (
+                    <img
+                      src={person.image}
+                      alt={`Portrait of ${person.name}, ${person.role}`}
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
+                    />
+                  ) : (
+                    <div
+                      aria-hidden="true"
+                      className="w-full h-full flex items-center justify-center font-serif font-bold text-3xl text-brand-primary/30 dark:text-dark-primary/40"
+                    >
+                      {person.name
+                        .split(' ')
+                        .map((n) => n[0])
+                        .join('')
+                        .slice(0, 2)}
+                    </div>
+                  )}
                 </div>
                 <p className="font-serif font-bold text-base md:text-lg text-brand-primary dark:text-dark-primary leading-tight">
                   {person.name}

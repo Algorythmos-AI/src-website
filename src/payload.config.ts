@@ -37,7 +37,9 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000';
 const seoCollections = ['posts', 'programs', 'events', 'press-releases', 'publications'];
 
 export default buildConfig({
-  serverURL: siteUrl,
+  // No serverURL: local-disk media URLs stay relative (`/api/media/file/…`) so
+  // they resolve on whatever origin serves them (dev :3000, CI :4173, prod).
+  // Production media is served absolutely from Vercel Blob instead.
   admin: {
     user: Users.slug,
     importMap: { baseDir: path.resolve(dirname, 'app') },

@@ -1,47 +1,33 @@
 import { setRequestLocale } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
+import type { Locale } from '@/i18n/routing';
 import { Hero } from '@/components/Hero';
 import { ImpactStats } from '@/components/ImpactStats';
 import { CauseCard } from '@/components/CauseCard';
-
-const causes = [
-  {
-    title: 'Resilient Peacebuilding',
-    tag: 'Initiative',
-    image:
-      'https://images.unsplash.com/photo-1608317544280-9e9916b8c54d?q=80&w=2070&auto=format&fit=crop',
-    description:
-      'Restoring communal harmony through traditional mediation and youth-led dialogue programs across Darfur and Kordofan.',
-  },
-  {
-    title: 'Rural Education Centers',
-    tag: 'Development',
-    image:
-      'https://images.unsplash.com/photo-1596895307394-1d15bf597744?q=80&w=2070&auto=format&fit=crop',
-    description:
-      'Tech-enabled learning spaces for children in underserved rural districts, bridging the literacy gap in North Sudan.',
-  },
-  {
-    title: 'Emergency Water Relief',
-    tag: 'Humanitarian',
-    image:
-      'https://images.unsplash.com/photo-1663876458229-4a7ac3e4be45?q=80&w=2070&auto=format&fit=crop',
-    description:
-      'Solar-powered boreholes and sustainable water management for arid rural communities across North Sudan.',
-  },
-];
-
-const partners = ['UNICEF', 'WFP', 'OCHA', 'OXFAM', 'IRC', 'UNHCR'];
+import { getImpact, getPartners, getPrograms } from '@/lib/queries';
+import { mediaUrl } from '@/lib/media';
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
 
+  const [programs, partnerDocs, impact] = await Promise.all([
+    getPrograms(locale as Locale),
+    getPartners(locale as Locale),
+    getImpact(locale as Locale),
+  ]);
+
+  const causes = programs.slice(0, 3);
+  const partners = partnerDocs.map((p) => p.name);
+  const stats = (impact.stats ?? [])
+    .filter((s): s is { value: string; label: string; id?: string | null } => Boolean(s.value))
+    .map((s) => ({ value: s.value, label: s.label }));
+
   return (
     <div className="bg-brand-bg dark:bg-dark-bg transition-colors duration-300">
       <Hero />
 
-      <ImpactStats />
+      <ImpactStats stats={stats} />
 
       {/* Mission */}
       <section className="py-20 md:py-28 px-6">
@@ -97,7 +83,15 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
             {causes.map((cause, i) => (
-              <CauseCard key={cause.title} {...cause} index={i} />
+              <CauseCard
+                key={cause.slug}
+                title={cause.title}
+                tag={cause.tag ?? undefined}
+                description={cause.summary ?? ''}
+                image={mediaUrl(cause.image, 'card')}
+                href={`/work/${cause.slug}`}
+                index={i}
+              />
             ))}
           </div>
         </div>

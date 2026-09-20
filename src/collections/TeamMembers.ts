@@ -1,5 +1,6 @@
 import type { CollectionConfig } from 'payload';
 import { anyone, isAdminOrEditor } from '@/access';
+import { revalidateCollection, revalidateCollectionDelete } from '@/hooks/revalidate';
 
 export const TeamMembers: CollectionConfig = {
   slug: 'team-members',
@@ -7,6 +8,10 @@ export const TeamMembers: CollectionConfig = {
     useAsTitle: 'name',
     defaultColumns: ['name', 'role', 'group', 'order'],
     group: 'Content',
+  },
+  hooks: {
+    afterChange: [revalidateCollection('team-members')],
+    afterDelete: [revalidateCollectionDelete('team-members')],
   },
   access: {
     read: anyone,

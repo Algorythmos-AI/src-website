@@ -38,8 +38,9 @@ async function run() {
     return String(created.id);
   }
 
-  payload.logger.info('Seeding programs…');
+  payload.logger.info('Seeding programs (with imagery)…');
   for (const p of programs) {
+    const image = await upsertRemoteMedia(p.image, `${p.title} — SRC program`);
     await upsert(
       'programs',
       { slug: { equals: slugify(p.title) } },
@@ -50,6 +51,7 @@ async function run() {
         summary: p.summary,
         order: p.order,
         _status: 'published',
+        ...(image ? { image } : {}),
       }
     );
   }
@@ -87,14 +89,19 @@ async function run() {
     ...ctx,
   });
 
-  async function upsertMedia(file: string, alt: string): Promise<number | string | null> {
+  async function findMediaByAlt(alt: string): Promise<number | string | null> {
     const existing = await payload.find({
       collection: 'media',
       where: { alt: { equals: alt } },
       limit: 1,
       depth: 0,
     });
-    if (existing.docs[0]) return existing.docs[0].id;
+    return existing.docs[0] ? existing.docs[0].id : null;
+  }
+
+  async function upsertMedia(file: string, alt: string): Promise<number | string | null> {
+    const found = await findMediaByAlt(alt);
+    if (found) return found;
     try {
       const created = await payload.create({
         collection: 'media',
@@ -105,6 +112,32 @@ async function run() {
       return created.id;
     } catch (err) {
       payload.logger.warn(`Could not upload ${file}: ${(err as Error).message}`);
+      return null;
+    }
+  }
+
+  // Download a remote image (e.g. Unsplash) and store it in media with credit.
+  async function upsertRemoteMedia(url: string, alt: string): Promise<number | string | null> {
+    const found = await findMediaByAlt(alt);
+    if (found) return found;
+    try {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const buffer = Buffer.from(await res.arrayBuffer());
+      const created = await payload.create({
+        collection: 'media',
+        data: { alt, credit: 'Unsplash' },
+        file: {
+          data: buffer,
+          name: `${slugify(alt)}.jpg`,
+          mimetype: res.headers.get('content-type') ?? 'image/jpeg',
+          size: buffer.length,
+        },
+        ...ctx,
+      });
+      return created.id;
+    } catch (err) {
+      payload.logger.warn(`Could not fetch image ${url}: ${(err as Error).message}`);
       return null;
     }
   }

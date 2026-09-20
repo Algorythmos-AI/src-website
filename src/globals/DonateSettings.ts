@@ -1,10 +1,12 @@
 import type { GlobalConfig } from 'payload';
 import { anyone, isAdminOrEditor } from '@/access';
+import { revalidateGlobal } from '@/hooks/revalidate';
 
 export const DonateSettings: GlobalConfig = {
   slug: 'donate-settings',
   admin: { group: 'Settings' },
   access: { read: anyone, update: isAdminOrEditor },
+  hooks: { afterChange: [revalidateGlobal('donate-settings')] },
   fields: [
     {
       name: 'tiers',

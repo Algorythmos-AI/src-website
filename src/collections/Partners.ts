@@ -1,9 +1,14 @@
 import type { CollectionConfig } from 'payload';
 import { anyone, isAdminOrEditor } from '@/access';
+import { revalidateCollection, revalidateCollectionDelete } from '@/hooks/revalidate';
 
 export const Partners: CollectionConfig = {
   slug: 'partners',
   admin: { useAsTitle: 'name', defaultColumns: ['name', 'order'], group: 'Content' },
+  hooks: {
+    afterChange: [revalidateCollection('partners')],
+    afterDelete: [revalidateCollectionDelete('partners')],
+  },
   access: {
     read: anyone,
     create: isAdminOrEditor,

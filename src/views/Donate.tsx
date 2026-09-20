@@ -5,27 +5,17 @@ import { motion } from 'motion/react';
 import { Heart, Globe, ShieldCheck, ArrowRight, Lock } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
 
-interface Tier {
+export interface Tier {
   amount: number;
   label: string;
   description: string;
   recommended?: boolean;
 }
 
-const TIERS: Tier[] = [
-  { amount: 25, label: 'Friend', description: 'School supplies for one child for a term.' },
-  {
-    amount: 50,
-    label: 'Supporter',
-    description: 'A month of clean water for a rural family.',
-    recommended: true,
-  },
-  { amount: 100, label: 'Partner', description: 'Stipend for a community peace mediator.' },
-  { amount: 250, label: 'Champion', description: 'Solar lighting for a rural classroom.' },
-];
-
-export const Donate = () => {
-  const [selectedAmount, setSelectedAmount] = useState<number | null>(50);
+export const Donate = ({ tiers, monthlyEnabled }: { tiers: Tier[]; monthlyEnabled: boolean }) => {
+  const TIERS = tiers;
+  const recommended = TIERS.find((t) => t.recommended) ?? TIERS[1] ?? TIERS[0];
+  const [selectedAmount, setSelectedAmount] = useState<number | null>(recommended?.amount ?? null);
   const [customAmount, setCustomAmount] = useState('');
   const [frequency, setFrequency] = useState<'one-time' | 'monthly'>('one-time');
 
@@ -120,7 +110,10 @@ export const Donate = () => {
                   Frequency
                 </p>
                 <div className="inline-flex p-1 rounded-lg bg-brand-bg dark:bg-dark-bg/60 border border-brand-primary/10 dark:border-white/10">
-                  {(['one-time', 'monthly'] as const).map((f) => (
+                  {(monthlyEnabled
+                    ? (['one-time', 'monthly'] as const)
+                    : (['one-time'] as const)
+                  ).map((f) => (
                     <button
                       key={f}
                       type="button"

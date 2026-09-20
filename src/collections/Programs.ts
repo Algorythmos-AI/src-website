@@ -2,6 +2,7 @@ import type { CollectionConfig } from 'payload';
 import { isAdminOrEditor, publishedOrLoggedIn } from '@/access';
 import { slugField } from '@/fields/slug';
 import { requiredInEnglish } from '@/fields/validators';
+import { revalidateCollection, revalidateCollectionDelete } from '@/hooks/revalidate';
 
 export const Programs: CollectionConfig = {
   slug: 'programs',
@@ -9,6 +10,10 @@ export const Programs: CollectionConfig = {
     useAsTitle: 'title',
     defaultColumns: ['title', 'tag', 'order', '_status'],
     group: 'Content',
+  },
+  hooks: {
+    afterChange: [revalidateCollection('programs')],
+    afterDelete: [revalidateCollectionDelete('programs')],
   },
   versions: { drafts: { autosave: true }, maxPerDoc: 20 },
   access: {

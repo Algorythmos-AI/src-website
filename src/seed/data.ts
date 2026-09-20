@@ -10,6 +10,8 @@ export const programs = [
     summary:
       'Restoring communal harmony through traditional mediation and youth-led dialogue programs across Darfur and Kordofan.',
     order: 1,
+    image:
+      'https://images.unsplash.com/photo-1608317544280-9e9916b8c54d?q=80&w=2070&auto=format&fit=crop',
   },
   {
     title: 'Rural Education Centers',
@@ -17,6 +19,8 @@ export const programs = [
     summary:
       'Tech-enabled learning spaces for children in underserved rural districts, bridging the literacy gap in North Sudan.',
     order: 2,
+    image:
+      'https://images.unsplash.com/photo-1596895307394-1d15bf597744?q=80&w=2070&auto=format&fit=crop',
   },
   {
     title: 'Emergency Water Relief',
@@ -24,6 +28,8 @@ export const programs = [
     summary:
       'Solar-powered boreholes and sustainable water management for arid rural communities across North Sudan.',
     order: 3,
+    image:
+      'https://images.unsplash.com/photo-1663876458229-4a7ac3e4be45?q=80&w=2070&auto=format&fit=crop',
   },
   {
     title: 'Mobile Health Clinics',
@@ -31,6 +37,8 @@ export const programs = [
     summary:
       'Reaching remote settlements with primary care, maternal health, and vaccination drives.',
     order: 4,
+    image:
+      'https://images.unsplash.com/photo-1705676112042-4fb11cade8d4?q=80&w=2070&auto=format&fit=crop',
   },
   {
     title: 'Sustainable Agriculture',
@@ -38,6 +46,8 @@ export const programs = [
     summary:
       'Training farmers in drought-resistant techniques and connecting cooperatives to markets.',
     order: 5,
+    image:
+      'https://images.unsplash.com/photo-1633215357805-310e47d9c72e?q=80&w=2070&auto=format&fit=crop',
   },
   {
     title: "Women's Cooperatives",
@@ -45,6 +55,8 @@ export const programs = [
     summary:
       'Micro-grants and vocational training that put economic agency in the hands of rural women.',
     order: 6,
+    image:
+      'https://plus.unsplash.com/premium_photo-1699535657712-02fe404e916f?q=80&w=2070&auto=format&fit=crop',
   },
 ];
 
