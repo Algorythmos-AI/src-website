@@ -38,7 +38,8 @@ export class ErrorBoundary extends React.Component<Props, State> {
             We hit an unexpected hiccup.
           </h1>
           <p className="text-brand-ink/60 dark:text-dark-ink/60 mb-8 font-light leading-relaxed">
-            Please reload the page. If the problem persists, check your connection or try again later.
+            Please reload the page. If the problem persists, check your connection or try again
+            later.
           </p>
           <button
             onClick={this.handleReload}

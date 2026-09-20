@@ -6,8 +6,8 @@ import { useTheme } from '../context/ThemeContext';
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(() =>
-    typeof window !== 'undefined' && window.scrollY > 50
+  const [scrolled, setScrolled] = useState(
+    () => typeof window !== 'undefined' && window.scrollY > 50
   );
   const { theme, toggleTheme } = useTheme();
 
@@ -36,7 +36,7 @@ export const Navbar = () => {
       <div className="max-w-7xl mx-auto px-6 md:px-10 flex justify-between items-center">
         <Link to="/" className="flex items-center gap-3" aria-label="SRC home">
           <img
-            src="/icon.png"
+            src="/icons/logo.webp"
             alt=""
             width={36}
             height={36}
@@ -55,7 +55,9 @@ export const Navbar = () => {
                 to={link.path}
                 className={({ isActive }) =>
                   `px-4 py-2 text-sm font-medium rounded-md transition-colors ${
-                    isActive ? 'bg-white/10 text-white' : 'text-white/80 hover:text-white hover:bg-white/5'
+                    isActive
+                      ? 'bg-white/10 text-white'
+                      : 'text-white/80 hover:text-white hover:bg-white/5'
                   }`
                 }
               >

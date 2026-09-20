@@ -11,7 +11,12 @@ interface Tier {
 
 const TIERS: Tier[] = [
   { amount: 25, label: 'Friend', description: 'School supplies for one child for a term.' },
-  { amount: 50, label: 'Supporter', description: 'A month of clean water for a rural family.', recommended: true },
+  {
+    amount: 50,
+    label: 'Supporter',
+    description: 'A month of clean water for a rural family.',
+    recommended: true,
+  },
   { amount: 100, label: 'Partner', description: 'Stipend for a community peace mediator.' },
   { amount: 250, label: 'Champion', description: 'Solar lighting for a rural classroom.' },
 ];
@@ -21,19 +26,22 @@ export const Donate = () => {
   const [customAmount, setCustomAmount] = useState('');
   const [frequency, setFrequency] = useState<'one-time' | 'monthly'>('one-time');
 
-  const finalAmount = customAmount ? Number(customAmount) || 0 : selectedAmount ?? 0;
+  const finalAmount = customAmount ? Number(customAmount) || 0 : (selectedAmount ?? 0);
 
   return (
     <div className="bg-brand-bg dark:bg-dark-bg pt-24 transition-colors">
       {/* Header */}
       <section className="py-20 md:py-28 px-6 bg-brand-surface dark:bg-dark-surface/40 border-b border-brand-primary/5 dark:border-white/5">
         <div className="max-w-4xl mx-auto">
-          <p className="text-brand-secondary dark:text-dark-secondary text-xs font-bold uppercase tracking-[0.3em] mb-4">Support our work</p>
+          <p className="text-brand-secondary dark:text-dark-secondary text-xs font-bold uppercase tracking-[0.3em] mb-4">
+            Support our work
+          </p>
           <h1 className="text-balance text-4xl md:text-6xl font-serif font-bold text-brand-primary dark:text-dark-primary leading-tight mb-6">
             Stand with rural Sudan.
           </h1>
           <p className="text-lg md:text-xl text-brand-ink/70 dark:text-dark-ink/70 leading-relaxed max-w-3xl">
-            Your contribution funds clean water, classrooms, and community-led peace councils — delivered by Sudanese teams in fifteen states.
+            Your contribution funds clean water, classrooms, and community-led peace councils —
+            delivered by Sudanese teams in fifteen states.
           </p>
         </div>
       </section>
@@ -43,7 +51,9 @@ export const Donate = () => {
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
           {/* Left: principles */}
           <div className="lg:col-span-5">
-            <p className="text-brand-secondary dark:text-dark-secondary text-xs font-bold uppercase tracking-[0.3em] mb-4">Why give to SRC</p>
+            <p className="text-brand-secondary dark:text-dark-secondary text-xs font-bold uppercase tracking-[0.3em] mb-4">
+              Why give to SRC
+            </p>
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-brand-primary dark:text-dark-primary mb-10 leading-tight">
               Direct impact, fully accounted for.
             </h2>
@@ -54,8 +64,13 @@ export const Donate = () => {
                   <Heart size={20} />
                 </span>
                 <div>
-                  <h3 className="font-bold text-brand-primary dark:text-dark-primary mb-1">92% to programs</h3>
-                  <p className="text-sm text-brand-ink/70 dark:text-dark-ink/70 leading-relaxed">Of every dollar received, $0.92 reaches the field. The remaining $0.08 covers compliance, audit, and oversight.</p>
+                  <h3 className="font-bold text-brand-primary dark:text-dark-primary mb-1">
+                    92% to programs
+                  </h3>
+                  <p className="text-sm text-brand-ink/70 dark:text-dark-ink/70 leading-relaxed">
+                    Of every dollar received, $0.92 reaches the field. The remaining $0.08 covers
+                    compliance, audit, and oversight.
+                  </p>
                 </div>
               </li>
               <li className="flex gap-5 items-start">
@@ -63,8 +78,13 @@ export const Donate = () => {
                   <Globe size={20} />
                 </span>
                 <div>
-                  <h3 className="font-bold text-brand-primary dark:text-dark-primary mb-1">Quarterly reporting</h3>
-                  <p className="text-sm text-brand-ink/70 dark:text-dark-ink/70 leading-relaxed">Every donor receives quarterly impact updates with project-level financials and beneficiary stories.</p>
+                  <h3 className="font-bold text-brand-primary dark:text-dark-primary mb-1">
+                    Quarterly reporting
+                  </h3>
+                  <p className="text-sm text-brand-ink/70 dark:text-dark-ink/70 leading-relaxed">
+                    Every donor receives quarterly impact updates with project-level financials and
+                    beneficiary stories.
+                  </p>
                 </div>
               </li>
               <li className="flex gap-5 items-start">
@@ -72,8 +92,13 @@ export const Donate = () => {
                   <ShieldCheck size={20} />
                 </span>
                 <div>
-                  <h3 className="font-bold text-brand-primary dark:text-dark-primary mb-1">Independently audited</h3>
-                  <p className="text-sm text-brand-ink/70 dark:text-dark-ink/70 leading-relaxed">SRC's accounts are audited annually by an independent firm; the full report is published on this site.</p>
+                  <h3 className="font-bold text-brand-primary dark:text-dark-primary mb-1">
+                    Independently audited
+                  </h3>
+                  <p className="text-sm text-brand-ink/70 dark:text-dark-ink/70 leading-relaxed">
+                    SRC's accounts are audited annually by an independent firm; the full report is
+                    published on this site.
+                  </p>
                 </div>
               </li>
             </ul>
@@ -88,9 +113,11 @@ export const Donate = () => {
             >
               {/* Frequency */}
               <div className="mb-8">
-                <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-ink/55 dark:text-dark-ink/60 mb-3">Frequency</p>
+                <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-ink/55 dark:text-dark-ink/60 mb-3">
+                  Frequency
+                </p>
                 <div className="inline-flex p-1 rounded-lg bg-brand-bg dark:bg-dark-bg/60 border border-brand-primary/10 dark:border-white/10">
-                  {(['one-time', 'monthly'] as const).map(f => (
+                  {(['one-time', 'monthly'] as const).map((f) => (
                     <button
                       key={f}
                       type="button"
@@ -110,9 +137,11 @@ export const Donate = () => {
 
               {/* Tiers */}
               <div className="mb-6">
-                <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-ink/55 dark:text-dark-ink/60 mb-3">Choose an amount (USD)</p>
+                <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-ink/55 dark:text-dark-ink/60 mb-3">
+                  Choose an amount (USD)
+                </p>
                 <div className="grid grid-cols-2 gap-2.5 sm:gap-3">
-                  {TIERS.map(tier => {
+                  {TIERS.map((tier) => {
                     const isSelected = !customAmount && selectedAmount === tier.amount;
                     return (
                       <button
@@ -134,9 +163,15 @@ export const Donate = () => {
                             Suggested
                           </span>
                         )}
-                        <p className="text-xl sm:text-2xl font-serif font-bold text-brand-primary dark:text-dark-primary mb-1">${tier.amount}</p>
-                        <p className="text-[10px] uppercase tracking-widest font-bold text-brand-ink/60 dark:text-dark-ink/60 mb-1">{tier.label}</p>
-                        <p className="text-xs text-brand-ink/60 dark:text-dark-ink/60 leading-snug">{tier.description}</p>
+                        <p className="text-xl sm:text-2xl font-serif font-bold text-brand-primary dark:text-dark-primary mb-1">
+                          ${tier.amount}
+                        </p>
+                        <p className="text-[10px] uppercase tracking-widest font-bold text-brand-ink/60 dark:text-dark-ink/60 mb-1">
+                          {tier.label}
+                        </p>
+                        <p className="text-xs text-brand-ink/60 dark:text-dark-ink/60 leading-snug">
+                          {tier.description}
+                        </p>
                       </button>
                     );
                   })}
@@ -145,11 +180,16 @@ export const Donate = () => {
 
               {/* Custom amount */}
               <div className="mb-8">
-                <label htmlFor="custom-amount" className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-ink/55 dark:text-dark-ink/60 mb-2 block">
+                <label
+                  htmlFor="custom-amount"
+                  className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-ink/55 dark:text-dark-ink/60 mb-2 block"
+                >
                   Or enter a custom amount
                 </label>
                 <div className="relative">
-                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-brand-ink/40 dark:text-dark-ink/40 font-medium">$</span>
+                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-brand-ink/40 dark:text-dark-ink/40 font-medium">
+                    $
+                  </span>
                   <input
                     id="custom-amount"
                     type="number"
@@ -177,17 +217,26 @@ export const Donate = () => {
                     : 'bg-brand-primary/30 dark:bg-dark-primary/30 text-white/70 cursor-not-allowed'
                 }`}
               >
-                Continue with ${finalAmount > 0 ? finalAmount : '0'} {frequency === 'monthly' ? '/ month' : ''}
+                Continue with ${finalAmount > 0 ? finalAmount : '0'}{' '}
+                {frequency === 'monthly' ? '/ month' : ''}
                 <ArrowRight size={16} />
               </a>
 
               <p className="mt-4 flex items-center justify-center gap-2 text-[10px] uppercase tracking-widest font-bold text-brand-ink/50 dark:text-dark-ink/50">
                 <Lock size={12} />
-                Donations processed securely · SSL encrypted
+                Secure online giving coming soon
               </p>
 
               <p className="mt-6 text-xs text-brand-ink/55 dark:text-dark-ink/55 text-center leading-relaxed">
-                SRC is a registered nonprofit. Donations are tax-deductible where allowed by law. The secure payment portal is currently being finalized — please <a href="/contact" className="underline hover:text-brand-primary dark:hover:text-dark-primary">contact us</a> for wire transfer or partner-organization donations.
+                SRC is a registered nonprofit. Donations are tax-deductible where allowed by law.
+                The secure payment portal is currently being finalized — please{' '}
+                <a
+                  href="/contact"
+                  className="underline hover:text-brand-primary dark:hover:text-dark-primary"
+                >
+                  contact us
+                </a>{' '}
+                for wire transfer or partner-organization donations.
               </p>
             </motion.div>
           </div>

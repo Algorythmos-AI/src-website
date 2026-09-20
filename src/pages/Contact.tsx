@@ -8,12 +8,15 @@ export const Contact = () => {
       {/* Header */}
       <section className="py-20 md:py-28 px-6 bg-brand-surface dark:bg-dark-surface/40 border-b border-brand-primary/5 dark:border-white/5">
         <div className="max-w-4xl mx-auto">
-          <p className="text-brand-secondary dark:text-dark-secondary text-xs font-bold uppercase tracking-[0.3em] mb-4">Contact us</p>
+          <p className="text-brand-secondary dark:text-dark-secondary text-xs font-bold uppercase tracking-[0.3em] mb-4">
+            Contact us
+          </p>
           <h1 className="text-balance text-4xl md:text-6xl font-serif font-bold text-brand-primary dark:text-dark-primary leading-tight mb-6">
             We'd like to hear from you.
           </h1>
           <p className="text-lg md:text-xl text-brand-ink/70 dark:text-dark-ink/70 leading-relaxed max-w-3xl">
-            Whether you're a partner organization, prospective volunteer, journalist, or community member, our team responds to every message within two business days.
+            Whether you're a partner organization, prospective volunteer, journalist, or community
+            member, our team responds to every message within two business days.
           </p>
         </div>
       </section>
@@ -22,7 +25,9 @@ export const Contact = () => {
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
           {/* Contact details */}
           <div className="lg:col-span-5">
-            <p className="text-brand-secondary dark:text-dark-secondary text-xs font-bold uppercase tracking-[0.3em] mb-4">Reach us directly</p>
+            <p className="text-brand-secondary dark:text-dark-secondary text-xs font-bold uppercase tracking-[0.3em] mb-4">
+              Reach us directly
+            </p>
             <h2 className="text-2xl md:text-3xl font-serif font-bold text-brand-primary dark:text-dark-primary leading-tight mb-10">
               Three ways to start a conversation.
             </h2>
@@ -33,8 +38,13 @@ export const Contact = () => {
                   <Mail size={18} />
                 </span>
                 <div>
-                  <h3 className="font-bold text-brand-primary dark:text-dark-primary mb-1">Email</h3>
-                  <a href="mailto:hello@src-sudan.org" className="text-sm text-brand-ink/70 dark:text-dark-ink/70 hover:text-brand-primary dark:hover:text-dark-primary transition-colors">
+                  <h3 className="font-bold text-brand-primary dark:text-dark-primary mb-1">
+                    Email
+                  </h3>
+                  <a
+                    href="mailto:hello@src-sudan.org"
+                    className="text-sm text-brand-ink/70 dark:text-dark-ink/70 hover:text-brand-primary dark:hover:text-dark-primary transition-colors"
+                  >
                     hello@src-sudan.org
                   </a>
                 </div>
@@ -44,8 +54,13 @@ export const Contact = () => {
                   <Phone size={18} />
                 </span>
                 <div>
-                  <h3 className="font-bold text-brand-primary dark:text-dark-primary mb-1">Phone</h3>
-                  <a href="tel:+249112345678" className="text-sm text-brand-ink/70 dark:text-dark-ink/70 hover:text-brand-primary dark:hover:text-dark-primary transition-colors">
+                  <h3 className="font-bold text-brand-primary dark:text-dark-primary mb-1">
+                    Phone
+                  </h3>
+                  <a
+                    href="tel:+249112345678"
+                    className="text-sm text-brand-ink/70 dark:text-dark-ink/70 hover:text-brand-primary dark:hover:text-dark-primary transition-colors"
+                  >
                     +249 112 345 678
                   </a>
                 </div>
@@ -55,7 +70,9 @@ export const Contact = () => {
                   <MapPin size={18} />
                 </span>
                 <div>
-                  <h3 className="font-bold text-brand-primary dark:text-dark-primary mb-1">Headquarters</h3>
+                  <h3 className="font-bold text-brand-primary dark:text-dark-primary mb-1">
+                    Headquarters
+                  </h3>
                   <p className="text-sm text-brand-ink/70 dark:text-dark-ink/70 leading-relaxed">
                     Paris, France
                   </p>
@@ -69,9 +86,13 @@ export const Contact = () => {
                   <Clock size={18} />
                 </span>
                 <div>
-                  <h3 className="font-bold text-brand-primary dark:text-dark-primary mb-1">Office hours</h3>
+                  <h3 className="font-bold text-brand-primary dark:text-dark-primary mb-1">
+                    Office hours
+                  </h3>
                   <p className="text-sm text-brand-ink/70 dark:text-dark-ink/70 leading-relaxed">
-                    Monday – Friday<br />09:00 – 18:00 (CET, UTC+1)
+                    Monday – Friday
+                    <br />
+                    09:00 – 18:00 (CET, UTC+1)
                   </p>
                 </div>
               </li>
@@ -95,7 +116,12 @@ export const Contact = () => {
             >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div className="space-y-2">
-                  <label htmlFor="contact-name" className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-ink/55 dark:text-dark-ink/60">Full name</label>
+                  <label
+                    htmlFor="contact-name"
+                    className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-ink/55 dark:text-dark-ink/60"
+                  >
+                    Full name
+                  </label>
                   <input
                     id="contact-name"
                     name="name"
@@ -107,7 +133,12 @@ export const Contact = () => {
                   />
                 </div>
                 <div className="space-y-2">
-                  <label htmlFor="contact-email" className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-ink/55 dark:text-dark-ink/60">Email address</label>
+                  <label
+                    htmlFor="contact-email"
+                    className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-ink/55 dark:text-dark-ink/60"
+                  >
+                    Email address
+                  </label>
                   <input
                     id="contact-email"
                     name="email"
@@ -120,7 +151,12 @@ export const Contact = () => {
                 </div>
               </div>
               <div className="space-y-2">
-                <label htmlFor="contact-subject" className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-ink/55 dark:text-dark-ink/60">Subject</label>
+                <label
+                  htmlFor="contact-subject"
+                  className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-ink/55 dark:text-dark-ink/60"
+                >
+                  Subject
+                </label>
                 <select
                   id="contact-subject"
                   name="subject"
@@ -134,7 +170,12 @@ export const Contact = () => {
                 </select>
               </div>
               <div className="space-y-2">
-                <label htmlFor="contact-message" className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-ink/55 dark:text-dark-ink/60">Message</label>
+                <label
+                  htmlFor="contact-message"
+                  className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-ink/55 dark:text-dark-ink/60"
+                >
+                  Message
+                </label>
                 <textarea
                   id="contact-message"
                   name="message"
@@ -152,7 +193,8 @@ export const Contact = () => {
                 <Send size={14} />
               </button>
               <p className="text-xs text-brand-ink/55 dark:text-dark-ink/55 leading-relaxed pt-2">
-                By submitting, you agree to receive a response from our team. We never share your contact information with third parties.
+                By submitting, you agree to receive a response from our team. We never share your
+                contact information with third parties.
               </p>
             </form>
           </motion.div>
