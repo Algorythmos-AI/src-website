@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'motion/react';
+import { useTranslations } from 'next-intl';
 import { CauseCard } from '../components/CauseCard';
 
 export type ProgramCard = {
@@ -12,6 +13,7 @@ export type ProgramCard = {
 };
 
 export const Work = ({ programs, partners }: { programs: ProgramCard[]; partners: string[] }) => {
+  const t = useTranslations('work');
   return (
     <div className="bg-brand-bg dark:bg-dark-bg pt-24 transition-colors">
       {/* Header */}
@@ -22,18 +24,17 @@ export const Work = ({ programs, partners }: { programs: ProgramCard[]; partners
             animate={{ opacity: 1 }}
             className="text-brand-secondary dark:text-dark-secondary text-xs font-bold uppercase tracking-[0.3em] mb-4"
           >
-            Our programs
+            {t('eyebrow')}
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-balance text-4xl md:text-6xl font-serif font-bold mb-6 text-brand-primary dark:text-dark-primary leading-tight"
           >
-            How we work in rural Sudan.
+            {t('heading')}
           </motion.h1>
           <p className="text-lg md:text-xl text-brand-ink/70 dark:text-dark-ink/70 leading-relaxed max-w-3xl">
-            Each program is designed and operated in partnership with local advisory boards. Every
-            program is reviewed annually and budgets are published quarterly.
+            {t('intro')}
           </p>
         </div>
       </section>
@@ -42,9 +43,7 @@ export const Work = ({ programs, partners }: { programs: ProgramCard[]; partners
       <section className="py-20 md:py-28 px-6">
         <div className="max-w-7xl mx-auto">
           {programs.length === 0 ? (
-            <p className="text-center text-brand-ink/60 dark:text-dark-ink/70">
-              Programs will be published here soon.
-            </p>
+            <p className="text-center text-brand-ink/60 dark:text-dark-ink/70">{t('empty')}</p>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-14 md:gap-y-16">
               {programs.map((p, i) => (
@@ -70,10 +69,10 @@ export const Work = ({ programs, partners }: { programs: ProgramCard[]; partners
             <div className="grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
               <div className="md:col-span-4">
                 <p className="text-brand-secondary dark:text-dark-secondary text-xs font-bold uppercase tracking-[0.3em] mb-3">
-                  Partnerships
+                  {t('partnersEyebrow')}
                 </p>
                 <h2 className="text-2xl md:text-3xl font-serif font-bold text-brand-primary dark:text-dark-primary leading-tight">
-                  Global standards, local execution.
+                  {t('partnersHeading')}
                 </h2>
               </div>
               <div className="md:col-span-8">
