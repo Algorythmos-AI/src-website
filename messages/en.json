@@ -66,7 +66,8 @@
     "readMore": "Read more",
     "previous": "Previous",
     "next": "Next",
-    "back": "Back"
+    "back": "Back",
+    "allPrograms": "All programs"
   },
   "notFound": {
     "code": "404",
@@ -273,5 +274,28 @@
     "ctaHeading": "Add to the next report.",
     "ctaBody": "Every donation funds a project that's tracked, reported, and audited.",
     "ctaButton": "Support our impact"
+  },
+  "legal": {
+    "prevails": "In case of any discrepancy between language versions, the English text prevails.",
+    "privacyTitle": "Privacy Policy",
+    "privacyIntro": "The Sudanese Rural Community (SRC) respects your privacy. This page explains what personal data we collect through this website and how we use it.",
+    "privacyCollectH": "Information we collect",
+    "privacyCollectB": "When you contact us or subscribe to our newsletter we collect the details you provide (such as your name and email address) together with a one-way hashed record of your IP address for security and abuse prevention. We do not sell your data or share it with third parties for marketing.",
+    "privacyUseH": "How we use it",
+    "privacyUseB": "We use your contact details only to respond to your message or, for newsletter subscribers who have confirmed by email (double opt-in), to send our quarterly impact report. You can unsubscribe at any time using the link in every email.",
+    "privacyPayH": "Payments",
+    "privacyPayB": "Donations are processed by Stripe. SRC never receives or stores your full card details.",
+    "privacyRetH": "Retention & your rights",
+    "privacyRetB": "We keep submissions only as long as needed to respond and meet our record-keeping obligations. You may request access to, correction of, or deletion of your personal data by contacting us.",
+    "privacyNote": "This is a template policy — SRC should review and adapt it with legal counsel before launch.",
+    "termsTitle": "Terms of Use",
+    "termsIntro": "By using this website you agree to these terms. The content is provided for information about the Sudanese Rural Community (SRC) and its programs.",
+    "termsDonH": "Donations",
+    "termsDonB": "Donations made through this site support SRC's programs. Recurring donations can be cancelled at any time; contact us for assistance. Tax-deductibility depends on your jurisdiction.",
+    "termsUseH": "Acceptable use",
+    "termsUseB": "You agree not to misuse the site, attempt to disrupt it, or submit unlawful content through our forms.",
+    "termsContentH": "Content",
+    "termsContentB": "Text and images on this site are the property of SRC or used with permission. Please contact us before reusing material.",
+    "termsNote": "This is a template — SRC should review and adapt it with legal counsel before launch."
   }
 }

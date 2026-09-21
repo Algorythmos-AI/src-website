@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { setRequestLocale } from 'next-intl/server';
+import { setRequestLocale, getTranslations } from 'next-intl/server';
+import { ArrowLeft } from 'lucide-react';
 import { RichText } from '@payloadcms/richtext-lexical/react';
 import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical';
 import { routing, type Locale } from '@/i18n/routing';
@@ -35,6 +36,7 @@ export default async function ProgramPage({
   const program = await getProgramBySlug(slug, locale as Locale);
   if (!program) notFound();
 
+  const t = await getTranslations('sections');
   const hero = mediaUrl(program.image, 'hero');
 
   return (
@@ -42,9 +44,10 @@ export default async function ProgramPage({
       <div className="max-w-3xl mx-auto px-6 py-16 md:py-24">
         <Link
           href="/work"
-          className="text-brand-secondary dark:text-dark-secondary text-xs font-bold uppercase tracking-[0.3em] hover:underline"
+          className="inline-flex items-center gap-2 text-brand-secondary dark:text-dark-secondary text-xs font-bold uppercase tracking-[0.3em] hover:underline"
         >
-          ← All programs
+          <ArrowLeft size={14} className="rtl:-scale-x-100" />
+          {t('allPrograms')}
         </Link>
         {program.tag && (
           <p className="mt-8 text-brand-secondary dark:text-dark-secondary text-xs font-bold uppercase tracking-[0.3em]">

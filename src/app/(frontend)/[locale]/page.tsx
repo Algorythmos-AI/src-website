@@ -1,5 +1,16 @@
+import type { Metadata } from 'next';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
+import { localeAlternates } from '@/lib/seo';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return { alternates: localeAlternates(locale, '') };
+}
 import type { Locale } from '@/i18n/routing';
 import { Hero } from '@/components/Hero';
 import { ImpactStats } from '@/components/ImpactStats';

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { localeAlternates } from '@/lib/seo';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import type { Locale } from '@/i18n/routing';
 import { getPublications } from '@/lib/queries';
@@ -11,7 +12,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'sections' });
-  return { title: t('publicationsTitle'), description: t('publicationsSubtitle') };
+  return { title: t('publicationsTitle'), description: t('publicationsSubtitle'), alternates: localeAlternates(locale, '/publications') };
 }
 
 export default async function PublicationsPage({
