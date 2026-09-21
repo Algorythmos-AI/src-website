@@ -6,12 +6,15 @@ import { ArrowRight, Play } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
 import { VideoModal } from './VideoModal';
 
+// The pyramids of Meroë, Northern Sudan — a UNESCO World Heritage site.
+// Photo: Jillian Amatt (Artistic Voyages) / Unsplash, free licence.
+// https://unsplash.com/photos/a-group-of-pyramids-sitting-in-the-middle-of-a-desert-33o_TBUL9IM
 const HERO_IMAGE =
-  'https://plus.unsplash.com/premium_photo-1699535657712-02fe404e916f?q=80&w=2070&auto=format&fit=crop';
+  'https://images.unsplash.com/photo-1764685761993-4bbb0cf4ba49?q=80&w=1400&auto=format&fit=crop';
 
-// Placeholder mission video — swap with the real SRC mission video URL when available.
-const MISSION_VIDEO_SRC =
-  'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4';
+// The mission video is hidden until a real SRC video URL is provided. Setting a
+// URL here re-enables the "Play mission" button and modal.
+const MISSION_VIDEO_SRC: string = '';
 
 export const Hero = () => {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
@@ -62,49 +65,54 @@ export const Hero = () => {
             <div className="relative aspect-[4/3] sm:aspect-[4/5] rounded-2xl overflow-hidden shadow-xl bg-brand-surface dark:bg-dark-surface group">
               <img
                 src={HERO_IMAGE}
-                alt="A rural village in North Sudan"
+                alt="The pyramids of Meroë rising from the desert in Northern Sudan"
                 fetchPriority="high"
                 decoding="async"
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"
               />
 
-              {/* Play mission button */}
-              <button
-                type="button"
-                onClick={() => setIsVideoOpen(true)}
-                aria-label="Play our mission video"
-                className="absolute inset-0 flex items-center justify-center bg-black/0 hover:bg-black/30 focus-visible:bg-black/30 transition-colors focus:outline-none"
-              >
-                <span className="flex items-center gap-3 bg-white/95 backdrop-blur-sm rounded-full pl-4 pr-5 py-2.5 shadow-lg group-hover:scale-105 transition-transform">
-                  <span className="w-9 h-9 rounded-full bg-brand-primary text-white flex items-center justify-center">
-                    <Play size={14} className="ml-0.5 fill-current" />
+              {/* Play mission button — shown only when a real video URL is set. */}
+              {MISSION_VIDEO_SRC && (
+                <button
+                  type="button"
+                  onClick={() => setIsVideoOpen(true)}
+                  aria-label="Play our mission video"
+                  className="absolute inset-0 flex items-center justify-center bg-black/0 hover:bg-black/30 focus-visible:bg-black/30 transition-colors focus:outline-none"
+                >
+                  <span className="flex items-center gap-3 bg-white/95 backdrop-blur-sm rounded-full pl-4 pr-5 py-2.5 shadow-lg group-hover:scale-105 transition-transform">
+                    <span className="w-9 h-9 rounded-full bg-brand-primary text-white flex items-center justify-center">
+                      <Play size={14} className="ml-0.5 fill-current" />
+                    </span>
+                    <span className="text-[11px] uppercase tracking-[0.2em] font-bold text-brand-primary">
+                      Play mission
+                    </span>
                   </span>
-                  <span className="text-[11px] uppercase tracking-[0.2em] font-bold text-brand-primary">
-                    Play mission
-                  </span>
-                </span>
-              </button>
+                </button>
+              )}
 
-              {/* Caption */}
+              {/* Caption — an honest location label and photo credit, not SRC's own field work. */}
               <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-brand-footer/90 to-transparent p-6 text-white pointer-events-none">
                 <p className="text-[10px] uppercase tracking-[0.25em] font-bold text-brand-accent mb-1">
-                  In the field
+                  Northern Sudan
                 </p>
-                <p className="text-sm font-medium leading-snug">North Sudan · 2025</p>
+                <p className="text-sm font-medium leading-snug">The pyramids of Meroë</p>
+                <p className="text-[10px] text-white/70 mt-1">Photo: Jillian Amatt / Unsplash</p>
               </div>
             </div>
           </motion.div>
         </div>
       </section>
 
-      <VideoModal
-        open={isVideoOpen}
-        onClose={() => setIsVideoOpen(false)}
-        src={MISSION_VIDEO_SRC}
-        poster={HERO_IMAGE}
-        title="SRC mission video"
-      />
+      {MISSION_VIDEO_SRC && (
+        <VideoModal
+          open={isVideoOpen}
+          onClose={() => setIsVideoOpen(false)}
+          src={MISSION_VIDEO_SRC}
+          poster={HERO_IMAGE}
+          title="SRC mission video"
+        />
+      )}
     </>
   );
 };
