@@ -6,7 +6,35 @@ import {
   tierTranslations,
   roleTranslations,
   categoryTranslations,
+  postTranslations,
+  eventTranslations,
+  pressTranslations,
+  publicationTranslations,
 } from '@/seed/translations';
+
+/** Minimal Payload Lexical document from a plain paragraph (mirrors the seed). */
+const lexical = (text: string) => ({
+  root: {
+    type: 'root',
+    format: '',
+    indent: 0,
+    version: 1,
+    direction: 'ltr',
+    children: [
+      {
+        type: 'paragraph',
+        format: '',
+        indent: 0,
+        version: 1,
+        direction: 'ltr',
+        textFormat: 0,
+        children: [
+          { type: 'text', text, format: 0, style: '', mode: 'normal', detail: 0, version: 1 },
+        ],
+      },
+    ],
+  },
+});
 
 /**
  * Fill the French and Arabic locales of the seeded CMS content (programs, impact
@@ -118,6 +146,71 @@ async function run() {
           data: { title: tr },
           ...ctx,
         });
+    }
+
+    // --- News content (drafts collections; publish so the frontend sees it) ---
+    const newsCollections = [
+      {
+        collection: 'posts' as const,
+        map: postTranslations,
+        data: (tr: { title: string; excerpt: string; body: string }) => ({
+          title: tr.title,
+          excerpt: tr.excerpt,
+          body: lexical(tr.body),
+        }),
+      },
+      {
+        collection: 'events' as const,
+        map: eventTranslations,
+        data: (tr: { title: string; location: string; body: string }) => ({
+          title: tr.title,
+          location: tr.location,
+          body: lexical(tr.body),
+        }),
+      },
+      {
+        collection: 'press-releases' as const,
+        map: pressTranslations,
+        data: (tr: { title: string; body: string }) => ({
+          title: tr.title,
+          body: lexical(tr.body),
+        }),
+      },
+      {
+        collection: 'publications' as const,
+        map: publicationTranslations,
+        data: (tr: { title: string; summary: string }) => ({
+          title: tr.title,
+          summary: tr.summary,
+        }),
+      },
+    ];
+    for (const { collection, map, data } of newsCollections) {
+      const docs = await payload.find({
+        collection,
+        locale,
+        fallbackLocale: false,
+        depth: 0,
+        limit: 100,
+      });
+      for (const doc of docs.docs) {
+        const slug = (doc as { slug?: string }).slug ?? '';
+        const tr = (map as Record<string, { fr: unknown; ar: unknown }>)[slug]?.[locale] as
+          Record<string, string> | undefined;
+        if (!tr) continue;
+        if (!FORCE && !isEmpty((doc as { title?: string }).title)) continue;
+        writes++;
+        log(`${collection}/${slug} [${locale}] ← ${tr.title}`);
+        if (!DRY)
+          await payload.update({
+            collection,
+            id: doc.id,
+            locale,
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            data: { ...(data(tr as any) as Record<string, unknown>), _status: 'published' },
+            ...ctx,
+          });
+      }
     }
 
     // --- Impact global stats (label; array rows preserved by id) ---
