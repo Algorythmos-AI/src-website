@@ -1,4 +1,4 @@
-import { setRequestLocale } from 'next-intl/server';
+import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import type { Locale } from '@/i18n/routing';
 import { Hero } from '@/components/Hero';
@@ -10,6 +10,9 @@ import { mediaUrl } from '@/lib/media';
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
+
+  const t = await getTranslations('home');
+  const tMeta = await getTranslations('meta');
 
   const [programs, partnerDocs, impact] = await Promise.all([
     getPrograms(locale as Locale),
@@ -29,8 +32,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     name: 'Sudanese Rural Community (SRC)',
     alternateName: 'SRC',
     url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://src-zeta-teal.vercel.app',
-    description:
-      'Peacebuilding, education, humanitarian aid, and rural development for the heart of Sudan.',
+    description: tMeta('description'),
+    inLanguage: locale,
     areaServed: 'SD',
     location: {
       '@type': 'Place',
@@ -53,28 +56,24 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16">
           <div className="md:col-span-5">
             <p className="text-brand-secondary dark:text-dark-secondary text-xs font-bold uppercase tracking-[0.3em] mb-4">
-              Our mission
+              {t('missionEyebrow')}
             </p>
             <h2 className="text-3xl md:text-4xl font-serif font-bold leading-tight text-brand-primary dark:text-dark-primary">
-              Locally led. Globally supported.
+              {t('missionHeading')}
             </h2>
           </div>
           <div className="md:col-span-7">
             <p className="text-lg text-brand-ink/75 dark:text-dark-ink/75 leading-relaxed mb-6">
-              The Sudanese Rural Community (SRC) works alongside community advisory boards in
-              fifteen states to deliver education, water, health, and peacebuilding programs
-              designed by Sudanese communities themselves.
+              {t('missionBody1')}
             </p>
             <p className="text-lg text-brand-ink/75 dark:text-dark-ink/75 leading-relaxed mb-8">
-              Our methodology is grounded in three principles: local ownership of every project,
-              transparent reporting to donors and beneficiaries, and durable partnerships with
-              traditional leaders, women&apos;s cooperatives, and youth councils.
+              {t('missionBody2')}
             </p>
             <Link
               href="/about"
               className="inline-flex items-center gap-2 text-brand-primary dark:text-dark-primary font-bold text-sm uppercase tracking-widest border-b border-brand-primary/30 dark:border-dark-primary/40 pb-1 hover:border-brand-primary dark:hover:border-dark-primary transition-colors"
             >
-              Read our founding story
+              {t('storyLink')}
             </Link>
           </div>
         </div>
@@ -86,17 +85,17 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-14">
             <div className="max-w-xl">
               <p className="text-brand-secondary dark:text-dark-secondary text-xs font-bold uppercase tracking-[0.3em] mb-4">
-                Our programs
+                {t('programsEyebrow')}
               </p>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold leading-tight text-brand-primary dark:text-dark-primary">
-                Where your support goes.
+                {t('programsHeading')}
               </h2>
             </div>
             <Link
               href="/work"
               className="inline-flex items-center gap-2 bg-brand-primary dark:bg-dark-primary text-white px-6 py-3 rounded-lg text-xs font-bold uppercase tracking-widest hover:bg-opacity-90 transition-all"
             >
-              View all programs
+              {t('viewAll')}
             </Link>
           </div>
 
@@ -120,11 +119,10 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <section className="py-20 md:py-28 px-6">
         <div className="max-w-4xl mx-auto">
           <p className="text-brand-secondary dark:text-dark-secondary text-xs font-bold uppercase tracking-[0.3em] mb-6 text-center">
-            From our leadership
+            {t('quoteEyebrow')}
           </p>
           <blockquote className="text-2xl md:text-3xl font-serif leading-snug text-brand-primary dark:text-dark-primary text-center mb-10">
-            &ldquo;Dignity is the foundation of peace. We don&apos;t deliver aid — we partner with
-            rural communities to build the tools they need for their own prosperity.&rdquo;
+            &ldquo;{t('quote')}&rdquo;
           </blockquote>
           <div className="flex items-center justify-center gap-4">
             <div
@@ -138,7 +136,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                 Obeid NAEIM
               </p>
               <p className="text-[10px] uppercase tracking-[0.2em] text-brand-ink/70 dark:text-dark-ink/70 font-bold">
-                President, SRC
+                {t('quoteRole')}
               </p>
             </div>
           </div>
@@ -149,7 +147,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <section className="py-16 px-6 border-y border-brand-primary/10 dark:border-white/5 bg-brand-surface/60 dark:bg-dark-surface/30">
         <div className="max-w-7xl mx-auto">
           <p className="text-center text-[10px] uppercase tracking-[0.3em] font-bold text-brand-ink/70 dark:text-dark-ink/70 mb-8">
-            In partnership with
+            {t('partners')}
           </p>
           <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
             {partners.map((p) => (
@@ -169,38 +167,36 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="bg-brand-primary dark:bg-dark-primary rounded-2xl p-10 md:p-12 text-white">
             <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-brand-accent mb-3">
-              Transparency
+              {t('reportEyebrow')}
             </p>
             <h3 className="text-2xl md:text-3xl font-serif font-bold mb-4 leading-tight">
-              Annual Report 2024
+              {t('reportTitle')}
             </h3>
             <p className="text-white/80 leading-relaxed mb-6 text-sm md:text-base">
-              A complete breakdown of programs, finances, and impact across all fifteen states where
-              SRC operates.
+              {t('reportBody')}
             </p>
             <Link
               href="/publications"
               className="inline-flex items-center gap-2 bg-white text-brand-primary px-6 py-3 rounded-lg text-xs font-bold uppercase tracking-widest hover:bg-brand-surface transition-colors"
             >
-              Read the report
+              {t('reportCta')}
             </Link>
           </div>
           <div className="bg-brand-surface dark:bg-dark-surface rounded-2xl p-10 md:p-12 border border-brand-primary/10 dark:border-white/5">
             <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-brand-secondary dark:text-dark-secondary mb-3">
-              Get involved
+              {t('ctaEyebrow')}
             </p>
             <h3 className="text-2xl md:text-3xl font-serif font-bold mb-4 text-brand-primary dark:text-dark-primary leading-tight">
-              Stand with rural Sudan.
+              {t('ctaTitle')}
             </h3>
             <p className="text-brand-ink/70 dark:text-dark-ink/70 leading-relaxed mb-6 text-sm md:text-base">
-              Your support funds clean water, classrooms, and community-led peace councils where
-              they&apos;re needed most.
+              {t('ctaBody')}
             </p>
             <Link
               href="/donate"
               className="inline-flex items-center gap-2 bg-brand-primary dark:bg-dark-primary text-white px-6 py-3 rounded-lg text-xs font-bold uppercase tracking-widest hover:bg-opacity-90 transition-colors"
             >
-              Donate to SRC
+              {t('ctaButton')}
             </Link>
           </div>
         </div>

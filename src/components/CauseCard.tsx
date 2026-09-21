@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { motion } from 'motion/react';
+import { useTranslations } from 'next-intl';
 import { ArrowUpRight } from 'lucide-react';
 import { ShareButtons } from './ShareButtons';
 import { Link } from '@/i18n/navigation';
@@ -25,6 +26,7 @@ export const CauseCard: React.FC<CauseCardProps> = ({
 }) => {
   const [failed, setFailed] = React.useState(false);
   const imgRef = React.useRef<HTMLImageElement>(null);
+  const t = useTranslations('a11y');
 
   // The image can fail before hydration attaches onError, so check on mount too.
   React.useEffect(() => {
@@ -83,10 +85,10 @@ export const CauseCard: React.FC<CauseCardProps> = ({
         {href && (
           <Link
             href={href}
-            aria-label={`Read more about ${title}`}
+            aria-label={t('readMore', { title })}
             className="shrink-0 p-3 rounded-full border border-brand-primary/15 dark:border-dark-primary/25 text-brand-primary dark:text-dark-primary group-hover:bg-brand-primary group-hover:text-white dark:group-hover:bg-dark-primary transition-colors"
           >
-            <ArrowUpRight size={18} />
+            <ArrowUpRight size={18} className="rtl:-scale-x-100" />
           </Link>
         )}
       </div>

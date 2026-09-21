@@ -61,6 +61,7 @@ export default async function LocaleLayout({
   setRequestLocale(locale);
 
   const messages = await getMessages();
+  const t = await getTranslations('a11y');
   const dir = rtlLocales.includes(locale as Locale) ? 'rtl' : 'ltr';
   const fontVars = `${inter.variable} ${playfair.variable} ${plexArabic.variable}`;
 
@@ -74,7 +75,7 @@ export default async function LocaleLayout({
               href="#main"
               className="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:start-3 focus:z-[100] focus:rounded-md focus:bg-brand-primary focus:px-4 focus:py-2 focus:text-white"
             >
-              Skip to content
+              {t('skipToContent')}
             </a>
             <Navbar />
             <main id="main">{children}</main>

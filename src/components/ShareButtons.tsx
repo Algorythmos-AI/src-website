@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { Twitter, Linkedin, Facebook, Link2, Check } from 'lucide-react';
 import { motion } from 'motion/react';
 
@@ -29,6 +30,7 @@ const fallbackCopy = (text: string): boolean => {
 
 export const ShareButtons: React.FC<ShareButtonsProps> = ({ title, url, className = '' }) => {
   const [copied, setCopied] = useState(false);
+  const t = useTranslations('share');
 
   const resolveUrl = () => url ?? (typeof window !== 'undefined' ? window.location.href : '');
 
@@ -79,7 +81,7 @@ export const ShareButtons: React.FC<ShareButtonsProps> = ({ title, url, classNam
   return (
     <div className={`flex items-center gap-3 ${className}`}>
       <span className="text-[9px] uppercase tracking-[0.2em] font-black text-brand-ink/30 dark:text-dark-ink/30 me-1">
-        Share
+        {t('label')}
       </span>
       {shareLinks.map((link) => (
         <motion.a
@@ -90,8 +92,8 @@ export const ShareButtons: React.FC<ShareButtonsProps> = ({ title, url, classNam
           whileHover={{ y: -2 }}
           whileTap={{ scale: 0.9 }}
           className={`text-brand-ink/40 dark:text-dark-ink/40 transition-colors ${link.color}`}
-          aria-label={`Share on ${link.name}`}
-          title={`Share on ${link.name}`}
+          aria-label={t('shareOn', { network: link.name })}
+          title={t('shareOn', { network: link.name })}
         >
           <link.icon size={14} />
         </motion.a>
@@ -102,8 +104,8 @@ export const ShareButtons: React.FC<ShareButtonsProps> = ({ title, url, classNam
         whileHover={{ y: -2 }}
         whileTap={{ scale: 0.9 }}
         className="text-brand-ink/40 dark:text-dark-ink/40 hover:text-brand-primary dark:hover:text-dark-primary transition-colors"
-        aria-label={copied ? 'Link copied' : 'Copy link'}
-        title={copied ? 'Copied!' : 'Copy Link'}
+        aria-label={copied ? t('linkCopied') : t('copyLink')}
+        title={copied ? t('copiedTitle') : t('copyTitle')}
       >
         {copied ? (
           <Check size={14} className="text-brand-secondary dark:text-dark-secondary" />

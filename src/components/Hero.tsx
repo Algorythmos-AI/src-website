@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
+import { useTranslations } from 'next-intl';
 import { ArrowRight, Play } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
 import { VideoModal } from './VideoModal';
@@ -18,6 +19,7 @@ const MISSION_VIDEO_SRC: string = '';
 
 export const Hero = () => {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
+  const t = useTranslations('hero');
 
   return (
     <>
@@ -30,28 +32,27 @@ export const Hero = () => {
             className="lg:col-span-7"
           >
             <p className="text-brand-secondary dark:text-dark-secondary text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] md:tracking-[0.3em] mb-6">
-              Sudanese Rural Community · Est. 2015
+              {t('eyebrow')}
             </p>
             <h1 className="font-serif font-bold text-brand-primary dark:text-dark-primary leading-[1.05] text-balance text-4xl sm:text-5xl md:text-6xl lg:text-7xl mb-8">
-              Building peace and resilience across rural Sudan.
+              {t('heading')}
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-brand-ink/70 dark:text-dark-ink/70 max-w-2xl leading-relaxed mb-10">
-              We partner with local leaders to advance education, water access, and community-led
-              peacebuilding — from Darfur and Kordofan to the Blue Nile.
+              {t('subhead')}
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
               <Link
                 href="/donate"
                 className="inline-flex w-full sm:w-auto items-center justify-center gap-3 bg-brand-primary dark:bg-dark-primary text-white px-8 py-4 rounded-lg text-sm font-bold uppercase tracking-widest hover:bg-opacity-90 transition-all shadow-md"
               >
-                Support our work
-                <ArrowRight size={16} />
+                {t('support')}
+                <ArrowRight size={16} className="rtl:-scale-x-100" />
               </Link>
               <Link
                 href="/work"
                 className="inline-flex w-full sm:w-auto items-center justify-center gap-3 border border-brand-primary/20 dark:border-dark-primary/30 text-brand-primary dark:text-dark-primary px-8 py-4 rounded-lg text-sm font-bold uppercase tracking-widest hover:bg-brand-primary/5 dark:hover:bg-dark-primary/10 transition-all"
               >
-                See our programs
+                {t('programs')}
               </Link>
             </div>
           </motion.div>
@@ -65,7 +66,7 @@ export const Hero = () => {
             <div className="relative aspect-[4/3] sm:aspect-[4/5] rounded-2xl overflow-hidden shadow-xl bg-brand-surface dark:bg-dark-surface group">
               <img
                 src={HERO_IMAGE}
-                alt="The pyramids of Meroë rising from the desert in Northern Sudan"
+                alt={t('imageAlt')}
                 fetchPriority="high"
                 decoding="async"
                 className="w-full h-full object-cover"
@@ -77,7 +78,7 @@ export const Hero = () => {
                 <button
                   type="button"
                   onClick={() => setIsVideoOpen(true)}
-                  aria-label="Play our mission video"
+                  aria-label={t('playLabel')}
                   className="absolute inset-0 flex items-center justify-center bg-black/0 hover:bg-black/30 focus-visible:bg-black/30 transition-colors focus:outline-none"
                 >
                   <span className="flex items-center gap-3 bg-white/95 backdrop-blur-sm rounded-full ps-4 pe-5 py-2.5 shadow-lg group-hover:scale-105 transition-transform">
@@ -85,7 +86,7 @@ export const Hero = () => {
                       <Play size={14} className="ms-0.5 fill-current rtl:-scale-x-100" />
                     </span>
                     <span className="text-[11px] uppercase tracking-[0.2em] font-bold text-brand-primary">
-                      Play mission
+                      {t('playLabel')}
                     </span>
                   </span>
                 </button>
@@ -94,10 +95,12 @@ export const Hero = () => {
               {/* Caption — an honest location label and photo credit, not SRC's own field work. */}
               <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-brand-footer/90 to-transparent p-6 text-white pointer-events-none">
                 <p className="text-[10px] uppercase tracking-[0.25em] font-bold text-brand-accent mb-1">
-                  Northern Sudan
+                  {t('captionEyebrow')}
                 </p>
-                <p className="text-sm font-medium leading-snug">The pyramids of Meroë</p>
-                <p className="text-[10px] text-white/70 mt-1">Photo: Jillian Amatt / Unsplash</p>
+                <p className="text-sm font-medium leading-snug">{t('captionTitle')}</p>
+                <p className="text-[10px] text-white/70 mt-1" dir="ltr">
+                  {t('credit')}
+                </p>
               </div>
             </div>
           </motion.div>
@@ -110,7 +113,7 @@ export const Hero = () => {
           onClose={() => setIsVideoOpen(false)}
           src={MISSION_VIDEO_SRC}
           poster={HERO_IMAGE}
-          title="SRC mission video"
+          title={t('videoTitle')}
         />
       )}
     </>

@@ -85,5 +85,60 @@
     "cancelBody": "No charge was made. You can try again whenever you're ready.",
     "backHome": "Return home",
     "backToDonate": "Back to donate"
+  },
+  "hero": {
+    "eyebrow": "Sudanese Rural Community · Est. 2015",
+    "heading": "Building peace and resilience across rural Sudan.",
+    "subhead": "We partner with local leaders to advance education, water access, and community-led peacebuilding — from Darfur and Kordofan to the Blue Nile.",
+    "support": "Support our work",
+    "programs": "See our programs",
+    "imageAlt": "The pyramids of Meroë rising from the desert in Northern Sudan",
+    "playLabel": "Play mission",
+    "captionEyebrow": "Northern Sudan",
+    "captionTitle": "The pyramids of Meroë",
+    "credit": "Photo: Jillian Amatt / Unsplash",
+    "videoTitle": "SRC mission video"
+  },
+  "home": {
+    "missionEyebrow": "Our mission",
+    "missionHeading": "Locally led. Globally supported.",
+    "missionBody1": "The Sudanese Rural Community (SRC) works alongside community advisory boards in fifteen states to deliver education, water, health, and peacebuilding programs designed by Sudanese communities themselves.",
+    "missionBody2": "Our methodology is grounded in three principles: local ownership of every project, transparent reporting to donors and beneficiaries, and durable partnerships with traditional leaders, women's cooperatives, and youth councils.",
+    "storyLink": "Read our founding story",
+    "programsEyebrow": "Our programs",
+    "programsHeading": "Where your support goes.",
+    "viewAll": "View all programs",
+    "quoteEyebrow": "From our leadership",
+    "quote": "Dignity is the foundation of peace. We don't deliver aid — we partner with rural communities to build the tools they need for their own prosperity.",
+    "quoteRole": "President, SRC",
+    "partners": "In partnership with",
+    "reportEyebrow": "Transparency",
+    "reportTitle": "Annual Report 2024",
+    "reportBody": "A complete breakdown of programs, finances, and impact across all fifteen states where SRC operates.",
+    "reportCta": "Read the report",
+    "ctaEyebrow": "Get involved",
+    "ctaTitle": "Stand with rural Sudan.",
+    "ctaBody": "Your support funds clean water, classrooms, and community-led peace councils where they're needed most.",
+    "ctaButton": "Donate to SRC"
+  },
+  "share": {
+    "label": "Share",
+    "shareOn": "Share on {network}",
+    "copyLink": "Copy link",
+    "linkCopied": "Link copied",
+    "copyTitle": "Copy Link",
+    "copiedTitle": "Copied!"
+  },
+  "video": {
+    "close": "Close video",
+    "unsupported": "Your browser does not support the video tag.",
+    "fallbackTitle": "Mission video"
+  },
+  "a11y": {
+    "skipToContent": "Skip to content",
+    "readMore": "Read more about {title}",
+    "playMission": "Play our mission video",
+    "portrait": "Portrait of {name}, {role}",
+    "fieldSite": "{label} field site"
   }
 }

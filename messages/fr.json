@@ -85,5 +85,60 @@
     "cancelBody": "Aucun montant n'a été prélevé. Vous pouvez réessayer quand vous le souhaitez.",
     "backHome": "Retour à l'accueil",
     "backToDonate": "Retour au don"
+  },
+  "hero": {
+    "eyebrow": "Communauté rurale soudanaise · Depuis 2015",
+    "heading": "Bâtir la paix et la résilience dans le Soudan rural.",
+    "subhead": "Nous travaillons avec les responsables locaux pour faire progresser l’éducation, l’accès à l’eau et la consolidation de la paix menée par les communautés — du Darfour et du Kordofan au Nil Bleu.",
+    "support": "Soutenir notre action",
+    "programs": "Voir nos programmes",
+    "imageAlt": "Les pyramides de Méroé s’élevant du désert dans le nord du Soudan",
+    "playLabel": "Voir la mission",
+    "captionEyebrow": "Nord du Soudan",
+    "captionTitle": "Les pyramides de Méroé",
+    "credit": "Photo : Jillian Amatt / Unsplash",
+    "videoTitle": "Vidéo de mission de SRC"
+  },
+  "home": {
+    "missionEyebrow": "Notre mission",
+    "missionHeading": "Piloté localement. Soutenu mondialement.",
+    "missionBody1": "La Communauté rurale soudanaise (SRC) travaille aux côtés de conseils consultatifs communautaires dans quinze États pour mener des programmes d’éducation, d’eau, de santé et de paix conçus par les communautés soudanaises elles-mêmes.",
+    "missionBody2": "Notre méthode repose sur trois principes : l’appropriation locale de chaque projet, une reddition de comptes transparente envers les donateurs et les bénéficiaires, et des partenariats durables avec les chefs traditionnels, les coopératives de femmes et les conseils de jeunes.",
+    "storyLink": "Lire notre histoire fondatrice",
+    "programsEyebrow": "Nos programmes",
+    "programsHeading": "Où va votre soutien.",
+    "viewAll": "Voir tous les programmes",
+    "quoteEyebrow": "De notre direction",
+    "quote": "La dignité est le fondement de la paix. Nous ne distribuons pas de l’aide — nous nous associons aux communautés rurales pour bâtir les outils de leur propre prospérité.",
+    "quoteRole": "Président, SRC",
+    "partners": "En partenariat avec",
+    "reportEyebrow": "Transparence",
+    "reportTitle": "Rapport annuel 2024",
+    "reportBody": "Un aperçu complet des programmes, des finances et de l’impact dans les quinze États où SRC intervient.",
+    "reportCta": "Lire le rapport",
+    "ctaEyebrow": "S’impliquer",
+    "ctaTitle": "Aux côtés du Soudan rural.",
+    "ctaBody": "Votre soutien finance l’eau potable, les salles de classe et les conseils de paix communautaires là où ils sont le plus nécessaires.",
+    "ctaButton": "Faire un don à SRC"
+  },
+  "share": {
+    "label": "Partager",
+    "shareOn": "Partager sur {network}",
+    "copyLink": "Copier le lien",
+    "linkCopied": "Lien copié",
+    "copyTitle": "Copier le lien",
+    "copiedTitle": "Copié !"
+  },
+  "video": {
+    "close": "Fermer la vidéo",
+    "unsupported": "Votre navigateur ne prend pas en charge la balise vidéo.",
+    "fallbackTitle": "Vidéo de mission"
+  },
+  "a11y": {
+    "skipToContent": "Aller au contenu",
+    "readMore": "En savoir plus sur {title}",
+    "playMission": "Lire notre vidéo de mission",
+    "portrait": "Portrait de {name}, {role}",
+    "fieldSite": "Site de terrain : {label}"
   }
 }
