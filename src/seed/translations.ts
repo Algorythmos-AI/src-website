@@ -144,3 +144,132 @@ export const categoryTranslations: Record<string, FrAr<string>> = {
   announcements: { fr: 'Annonces', ar: 'إعلانات' },
   partnerships: { fr: 'Partenariats', ar: 'شراكات' },
 };
+
+// News posts — keyed by slug (title, excerpt, body).
+export const postTranslations: Record<
+  string,
+  FrAr<{ title: string; excerpt: string; body: string }>
+> = {
+  'new-water-points-reach-three-villages-in-north-darfur': {
+    fr: {
+      title: 'De nouveaux points d’eau desservent trois villages du Darfour du Nord',
+      excerpt:
+        'Des forages solaires desservent désormais plus de 4 000 personnes dans trois villages jusque-là mal desservis.',
+      body: 'Ce trimestre, SRC a achevé trois forages solaires au Darfour du Nord, offrant aux familles un accès fiable à l’eau potable à distance de marche de leur domicile.',
+    },
+    ar: {
+      title: 'نقاط مياه جديدة تصل إلى ثلاث قرى في شمال دارفور',
+      excerpt:
+        'آبار تعمل بالطاقة الشمسية تخدم الآن أكثر من 4000 شخص في ثلاث قرى كانت محرومة من الخدمات.',
+      body: 'أنجزت SRC هذا الربع ثلاثة آبار تعمل بالطاقة الشمسية في شمال دارفور، ما أتاح للأسر وصولًا موثوقًا إلى المياه النظيفة على مسافة سير من منازلها.',
+    },
+  },
+  'src-joins-the-sudan-education-coalition': {
+    fr: {
+      title: 'SRC rejoint la Coalition soudanaise pour l’éducation',
+      excerpt:
+        'Un nouveau partenariat pour élargir l’accès aux salles de classe rurales dans cinq États.',
+      body: 'Nous sommes fiers d’annoncer que SRC a rejoint la Coalition soudanaise pour l’éducation, un réseau d’organisations œuvrant à maintenir les enfants ruraux à l’école.',
+    },
+    ar: {
+      title: 'SRC تنضمّ إلى التحالف السوداني للتعليم',
+      excerpt: 'شراكة جديدة لتوسيع الوصول إلى الفصول الدراسية الريفية في خمس ولايات.',
+      body: 'يسعدنا أن نعلن انضمام SRC إلى التحالف السوداني للتعليم، وهو شبكة من المنظمات تعمل على إبقاء أطفال الريف في المدارس.',
+    },
+  },
+  'quarterly-impact-report-now-available': {
+    fr: {
+      title: 'Le rapport d’impact trimestriel est disponible',
+      excerpt:
+        'Notre dernier rapport détaille les dépenses et les résultats des programmes dans quinze États.',
+      body: 'Le rapport d’impact du premier trimestre est désormais publié, avec les finances par projet et des témoignages de bénéficiaires de l’ensemble de nos programmes.',
+    },
+    ar: {
+      title: 'تقرير الأثر الربع سنوي متاح الآن',
+      excerpt: 'يفصّل تقريرنا الأخير نفقات البرامج ونتائجها في خمس عشرة ولاية.',
+      body: 'نُشر تقرير الأثر للربع الأول، متضمّنًا البيانات المالية على مستوى المشاريع وقصص المستفيدين من مختلف برامجنا.',
+    },
+  },
+};
+
+// Events — keyed by slug (title, location, body).
+export const eventTranslations: Record<
+  string,
+  FrAr<{ title: string; location: string; body: string }>
+> = {
+  'annual-community-leaders-forum': {
+    fr: {
+      title: 'Forum annuel des responsables communautaires',
+      location: 'Paris, France',
+      body: 'Une rencontre des membres des conseils consultatifs communautaires, des partenaires et de l’équipe pour dresser le bilan de l’année et planifier la suite.',
+    },
+    ar: {
+      title: 'المنتدى السنوي لقادة المجتمع',
+      location: 'باريس، فرنسا',
+      body: 'لقاء يجمع أعضاء المجالس الاستشارية المجتمعية والشركاء والفريق لمراجعة العام والتخطيط للمستقبل.',
+    },
+  },
+  'webinar-rural-water-resilience': {
+    fr: {
+      title: 'Webinaire : résilience de l’eau en milieu rural',
+      location: 'En ligne',
+      body: 'Un webinaire public sur les techniques de gestion durable de l’eau dans les régions arides.',
+    },
+    ar: {
+      title: 'ندوة عبر الإنترنت: صمود المياه في الريف',
+      location: 'عبر الإنترنت',
+      body: 'ندوة عامة حول تقنيات الإدارة المستدامة للمياه في المناطق الجافة.',
+    },
+  },
+};
+
+// Press releases — keyed by slug (title, body).
+export const pressTranslations: Record<string, FrAr<{ title: string; body: string }>> = {
+  'src-responds-to-flooding-in-eastern-sudan': {
+    fr: {
+      title: 'SRC répond aux inondations dans l’est du Soudan',
+      body: 'SRC a déployé des équipes d’urgence eau et assainissement en réponse aux inondations saisonnières touchant les communautés rurales de l’est du Soudan.',
+    },
+    ar: {
+      title: 'SRC تستجيب للفيضانات في شرق السودان',
+      body: 'نشرت SRC فرق طوارئ للمياه والإصحاح استجابةً للفيضانات الموسمية التي تؤثّر على المجتمعات الريفية في شرق السودان.',
+    },
+  },
+  'statement-on-the-2024-annual-audit': {
+    fr: {
+      title: 'Déclaration sur l’audit annuel 2024',
+      body: 'SRC se félicite de l’achèvement de son audit annuel indépendant, réaffirmant son engagement en faveur de la transparence et de la responsabilité.',
+    },
+    ar: {
+      title: 'بيان بشأن التدقيق السنوي 2024',
+      body: 'ترحّب SRC بإتمام تدقيقها السنوي المستقل، مؤكّدةً التزامها بالشفافية والمساءلة.',
+    },
+  },
+};
+
+// Publications — keyed by slug (title, summary).
+export const publicationTranslations: Record<string, FrAr<{ title: string; summary: string }>> = {
+  'annual-report-2024': {
+    fr: {
+      title: 'Rapport annuel 2024',
+      summary:
+        'Un aperçu complet des programmes, des finances et de l’impact dans les quinze États.',
+    },
+    ar: {
+      title: 'التقرير السنوي 2024',
+      summary: 'تفصيل كامل للبرامج والموارد المالية والأثر في جميع الولايات الخمس عشرة.',
+    },
+  },
+  'water-resilience-field-brief': {
+    fr: {
+      title: 'Note de terrain sur la résilience de l’eau',
+      summary:
+        'Enseignements de trois années de projets de forages solaires dans des districts ruraux arides.',
+    },
+    ar: {
+      title: 'موجز ميداني عن صمود المياه',
+      summary:
+        'دروس من ثلاث سنوات من مشاريع الآبار العاملة بالطاقة الشمسية في المناطق الريفية الجافة.',
+    },
+  },
+};
