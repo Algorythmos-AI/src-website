@@ -21,7 +21,8 @@
     "generate:importmap": "payload generate:importmap",
     "migrate:create": "payload migrate:create",
     "migrate": "payload migrate",
-    "seed": "payload run src/seed/index.ts"
+    "seed": "payload run src/seed/index.ts",
+    "check:media": "payload run src/scripts/check-media.ts"
   },
   "dependencies": {
     "@payloadcms/db-postgres": "^3.90.1",
