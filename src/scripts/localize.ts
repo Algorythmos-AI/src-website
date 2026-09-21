@@ -53,8 +53,9 @@ async function run() {
           collection: 'programs',
           id: doc.id,
           locale,
-          draft: false,
-          data: { title: tr.title, tag: tr.tag, summary: tr.summary },
+          // Programs use drafts; publish so the translated fields land in the
+          // published version the frontend reads (not just the draft snapshot).
+          data: { title: tr.title, tag: tr.tag, summary: tr.summary, _status: 'published' },
           ...ctx,
         });
     }

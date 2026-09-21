@@ -20,7 +20,7 @@ const FALLBACK = 'en';
 // Bump to force-refresh every cached CMS read (e.g. after a media repair or seed
 // that ran with revalidation disabled). unstable_cache is tag-only with no time
 // revalidation, so it persists across deploys until the key or a tag changes.
-const CACHE_VERSION = 'v3';
+const CACHE_VERSION = 'v4';
 
 /** Published + not scheduled in the future. */
 const visibleWhere = (dateField: string, now: string): Where => ({
