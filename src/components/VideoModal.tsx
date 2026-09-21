@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
+import { useTranslations } from 'next-intl';
 import { X } from 'lucide-react';
 
 interface VideoModalProps {
@@ -13,6 +14,7 @@ interface VideoModalProps {
 
 export const VideoModal: React.FC<VideoModalProps> = ({ open, onClose, src, poster, title }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const t = useTranslations('video');
 
   useEffect(() => {
     if (!open) return;
@@ -49,7 +51,7 @@ export const VideoModal: React.FC<VideoModalProps> = ({ open, onClose, src, post
       className="fixed inset-0 z-[100] flex items-center justify-center bg-black/85 backdrop-blur-sm p-4 md:p-8 animate-in fade-in"
       role="dialog"
       aria-modal="true"
-      aria-label={title ?? 'Mission video'}
+      aria-label={title ?? t('fallbackTitle')}
       onClick={onClose}
     >
       <div
@@ -59,7 +61,7 @@ export const VideoModal: React.FC<VideoModalProps> = ({ open, onClose, src, post
         <button
           type="button"
           onClick={onClose}
-          aria-label="Close video"
+          aria-label={t('close')}
           className="absolute top-3 end-3 z-10 w-10 h-10 rounded-full bg-white/15 backdrop-blur-sm text-white flex items-center justify-center hover:bg-white/25 transition-colors"
         >
           <X size={18} />
@@ -73,7 +75,7 @@ export const VideoModal: React.FC<VideoModalProps> = ({ open, onClose, src, post
           preload="metadata"
           className="w-full h-full object-cover"
         >
-          Your browser does not support the video tag.
+          {t('unsupported')}
         </video>
       </div>
     </div>
