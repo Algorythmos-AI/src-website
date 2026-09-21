@@ -140,11 +140,11 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               className="w-12 h-12 rounded-full bg-brand-primary dark:bg-dark-primary text-white flex items-center justify-center font-serif font-bold text-lg"
               aria-hidden="true"
             >
-              ON
+              OH
             </div>
             <div>
               <p className="font-serif font-bold text-brand-primary dark:text-dark-primary">
-                Obeid NAEIM
+                Obeid HASSAN
               </p>
               <p className="text-[10px] uppercase tracking-[0.2em] text-brand-ink/70 dark:text-dark-ink/70 font-bold">
                 {t('quoteRole')}
