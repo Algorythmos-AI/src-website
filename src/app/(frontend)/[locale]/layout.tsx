@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server';
 import { routing, rtlLocales, type Locale } from '@/i18n/routing';
-import { inter, playfair, plexArabic } from '@/app/fonts';
+import { inter, playfair, plexArabic, amiri } from '@/app/fonts';
 import { ThemeProvider } from '@/context/ThemeContext';
 import { ThemeScript } from '@/app/theme-script';
 import { Navbar } from '@/components/Navbar';
@@ -63,7 +63,7 @@ export default async function LocaleLayout({
   const messages = await getMessages();
   const t = await getTranslations('a11y');
   const dir = rtlLocales.includes(locale as Locale) ? 'rtl' : 'ltr';
-  const fontVars = `${inter.variable} ${playfair.variable} ${plexArabic.variable}`;
+  const fontVars = `${inter.variable} ${playfair.variable} ${plexArabic.variable} ${amiri.variable}`;
 
   return (
     <html lang={locale} dir={dir} className={fontVars} suppressHydrationWarning>

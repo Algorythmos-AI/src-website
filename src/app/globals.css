@@ -27,7 +27,9 @@
    (Playfair Display has no Arabic glyphs). */
 [dir='rtl'] {
   --font-sans: var(--font-arabic), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-arabic), Georgia, serif;
+  /* Amiri is a classical Naskh serif with real display weight, so Arabic
+     headings carry the same editorial feel as Playfair Display for Latin. */
+  --font-serif: var(--font-arabic-serif), var(--font-arabic), Georgia, serif;
 }
 
 /* Arabic is cursive — letter-spacing breaks the joining of connected letters.
