@@ -17,6 +17,11 @@ import type {
 
 const FALLBACK = 'en';
 
+// Bump to force-refresh every cached CMS read (e.g. after a media repair or seed
+// that ran with revalidation disabled). unstable_cache is tag-only with no time
+// revalidation, so it persists across deploys until the key or a tag changes.
+const CACHE_VERSION = 'v2';
+
 /** Published + not scheduled in the future. */
 const visibleWhere = (dateField: string, now: string): Where => ({
   and: [
@@ -34,7 +39,7 @@ const visibleWhere = (dateField: string, now: string): Where => ({
  */
 function cached<T>(fn: (locale: Locale) => Promise<T>, keyBase: string, tag: string) {
   return (locale: Locale): Promise<T> =>
-    unstable_cache(() => fn(locale), [keyBase, locale], { tags: [tag] })();
+    unstable_cache(() => fn(locale), [CACHE_VERSION, keyBase, locale], { tags: [tag] })();
 }
 
 export const getPrograms = cached<Program[]>(
