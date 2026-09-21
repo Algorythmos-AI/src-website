@@ -78,7 +78,7 @@ export const ShareButtons: React.FC<ShareButtonsProps> = ({ title, url, classNam
 
   return (
     <div className={`flex items-center gap-3 ${className}`}>
-      <span className="text-[9px] uppercase tracking-[0.2em] font-black text-brand-ink/30 dark:text-dark-ink/30 mr-1">
+      <span className="text-[9px] uppercase tracking-[0.2em] font-black text-brand-ink/30 dark:text-dark-ink/30 me-1">
         Share
       </span>
       {shareLinks.map((link) => (

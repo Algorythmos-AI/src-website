@@ -57,7 +57,7 @@ const StoryCard: React.FC<StoryCardProps> = ({ image, title, category, quote, au
         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
         referrerPolicy="no-referrer"
       />
-      <div className="absolute top-4 right-4 md:opacity-0 md:group-hover:opacity-100 md:focus-within:opacity-100 transition-opacity">
+      <div className="absolute top-4 end-4 md:opacity-0 md:group-hover:opacity-100 md:focus-within:opacity-100 transition-opacity">
         <div className="bg-white/95 dark:bg-dark-surface/95 px-3 py-2 rounded-full shadow-sm">
           <ShareButtons title={title} className="text-brand-ink dark:text-dark-ink" />
         </div>
@@ -69,7 +69,7 @@ const StoryCard: React.FC<StoryCardProps> = ({ image, title, category, quote, au
     <h3 className="text-2xl md:text-3xl font-serif font-bold text-brand-primary dark:text-dark-primary mb-4 leading-tight">
       {title}
     </h3>
-    <div className="pl-5 border-l-2 border-brand-primary/15 dark:border-dark-primary/20">
+    <div className="ps-5 border-s-2 border-brand-primary/15 dark:border-dark-primary/20">
       <p className="text-base md:text-lg text-brand-ink/70 dark:text-dark-ink/70 leading-relaxed mb-3">
         “{quote}”
       </p>

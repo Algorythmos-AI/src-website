@@ -179,14 +179,14 @@ export const Donate = ({
                           setCustomAmount('');
                         }}
                         aria-pressed={isSelected}
-                        className={`relative text-left p-3.5 sm:p-4 rounded-lg border transition-all ${
+                        className={`relative text-start p-3.5 sm:p-4 rounded-lg border transition-all ${
                           isSelected
                             ? 'border-brand-primary dark:border-dark-primary bg-brand-primary/5 dark:bg-dark-primary/10'
                             : 'border-brand-primary/15 dark:border-white/10 hover:border-brand-primary/40 dark:hover:border-dark-primary/40'
                         }`}
                       >
                         {tier.recommended && (
-                          <span className="absolute top-2 right-2 text-[8px] uppercase tracking-widest font-bold text-brand-secondary dark:text-dark-secondary">
+                          <span className="absolute top-2 end-2 text-[8px] uppercase tracking-widest font-bold text-brand-secondary dark:text-dark-secondary">
                             Suggested
                           </span>
                         )}
@@ -214,7 +214,7 @@ export const Donate = ({
                   Or enter a custom amount
                 </label>
                 <div className="relative">
-                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-brand-ink/40 dark:text-dark-ink/40 font-medium">
+                  <span className="absolute start-4 top-1/2 -translate-y-1/2 text-brand-ink/40 dark:text-dark-ink/40 font-medium">
                     $
                   </span>
                   <input
@@ -228,7 +228,7 @@ export const Donate = ({
                       setCustomAmount(e.target.value);
                       setSelectedAmount(null);
                     }}
-                    className="w-full bg-brand-bg dark:bg-dark-bg/60 border border-brand-primary/15 dark:border-white/10 rounded-lg pl-9 pr-4 py-3 text-base font-medium text-brand-ink dark:text-dark-ink focus:ring-2 focus:ring-brand-accent outline-none"
+                    className="w-full bg-brand-bg dark:bg-dark-bg/60 border border-brand-primary/15 dark:border-white/10 rounded-lg ps-9 pe-4 py-3 text-base font-medium text-brand-ink dark:text-dark-ink focus:ring-2 focus:ring-brand-accent outline-none"
                   />
                 </div>
               </div>
