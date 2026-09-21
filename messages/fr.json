@@ -66,7 +66,8 @@
     "readMore": "Lire la suite",
     "previous": "Précédent",
     "next": "Suivant",
-    "back": "Retour"
+    "back": "Retour",
+    "allPrograms": "Tous les programmes"
   },
   "notFound": {
     "code": "404",
@@ -273,5 +274,28 @@
     "ctaHeading": "Contribuez au prochain rapport.",
     "ctaBody": "Chaque don finance un projet suivi, documenté et audité.",
     "ctaButton": "Soutenir notre impact"
+  },
+  "legal": {
+    "prevails": "En cas de divergence entre les versions linguistiques, le texte anglais prévaut.",
+    "privacyTitle": "Politique de confidentialité",
+    "privacyIntro": "La Communauté rurale soudanaise (SRC) respecte votre vie privée. Cette page explique quelles données personnelles nous recueillons via ce site et comment nous les utilisons.",
+    "privacyCollectH": "Données que nous recueillons",
+    "privacyCollectB": "Lorsque vous nous contactez ou vous abonnez à notre infolettre, nous recueillons les informations que vous fournissez (nom et adresse e-mail) ainsi qu’un enregistrement haché à sens unique de votre adresse IP, à des fins de sécurité et de prévention des abus. Nous ne vendons pas vos données et ne les partageons pas avec des tiers à des fins de marketing.",
+    "privacyUseH": "Utilisation des données",
+    "privacyUseB": "Nous utilisons vos coordonnées uniquement pour répondre à votre message ou, pour les abonnés ayant confirmé par e-mail (double consentement), pour envoyer notre rapport d’impact trimestriel. Vous pouvez vous désabonner à tout moment grâce au lien présent dans chaque e-mail.",
+    "privacyPayH": "Paiements",
+    "privacyPayB": "Les dons sont traités par Stripe. SRC ne reçoit ni ne conserve jamais les détails complets de votre carte.",
+    "privacyRetH": "Conservation et vos droits",
+    "privacyRetB": "Nous conservons les messages uniquement le temps nécessaire pour y répondre et respecter nos obligations d’archivage. Vous pouvez demander l’accès à vos données personnelles, leur rectification ou leur suppression en nous contactant.",
+    "privacyNote": "Ceci est un modèle de politique — SRC devrait la revoir et l’adapter avec un conseil juridique avant le lancement.",
+    "termsTitle": "Conditions d’utilisation",
+    "termsIntro": "En utilisant ce site, vous acceptez ces conditions. Le contenu est fourni à titre d’information sur la Communauté rurale soudanaise (SRC) et ses programmes.",
+    "termsDonH": "Dons",
+    "termsDonB": "Les dons effectués via ce site soutiennent les programmes de SRC. Les dons récurrents peuvent être annulés à tout moment ; contactez-nous pour toute assistance. La déductibilité fiscale dépend de votre juridiction.",
+    "termsUseH": "Utilisation acceptable",
+    "termsUseB": "Vous vous engagez à ne pas détourner l’usage du site, à ne pas tenter de le perturber et à ne pas soumettre de contenu illicite via nos formulaires.",
+    "termsContentH": "Contenu",
+    "termsContentB": "Les textes et images de ce site sont la propriété de SRC ou utilisés avec autorisation. Veuillez nous contacter avant toute réutilisation.",
+    "termsNote": "Ceci est un modèle — SRC devrait le revoir et l’adapter avec un conseil juridique avant le lancement."
   }
 }
