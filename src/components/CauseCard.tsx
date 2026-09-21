@@ -23,6 +23,15 @@ export const CauseCard: React.FC<CauseCardProps> = ({
   index,
   href,
 }) => {
+  const [failed, setFailed] = React.useState(false);
+  const imgRef = React.useRef<HTMLImageElement>(null);
+
+  // The image can fail before hydration attaches onError, so check on mount too.
+  React.useEffect(() => {
+    const el = imgRef.current;
+    if (el && el.complete && el.naturalWidth === 0) setFailed(true);
+  }, []);
+
   return (
     <motion.article
       initial={{ opacity: 0, y: 24 }}
@@ -32,9 +41,11 @@ export const CauseCard: React.FC<CauseCardProps> = ({
       className="group flex flex-col"
     >
       <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-6 bg-brand-surface dark:bg-dark-surface shadow-sm group-hover:shadow-md transition-shadow">
-        {image ? (
+        {image && !failed ? (
           <img
+            ref={imgRef}
             src={image}
+            onError={() => setFailed(true)}
             alt={title}
             loading="lazy"
             decoding="async"
