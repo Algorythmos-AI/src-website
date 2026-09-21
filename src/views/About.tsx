@@ -47,14 +47,15 @@ export const About = ({ leadership }: { leadership: LeadItem[] }) => {
       <section className="py-20 md:py-28 px-6">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start">
           <div className="relative">
-            <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-md">
+            <div className="aspect-[4/5] md:aspect-[3/2] rounded-2xl overflow-hidden shadow-md">
               <img
-                src="https://images.unsplash.com/photo-1596895307394-1d15bf597744?q=80&w=2070&auto=format&fit=crop"
+                src="/images/doc-sudan.webp"
                 alt={t('storyImageAlt')}
                 loading="lazy"
                 decoding="async"
-                className="w-full h-full object-cover"
-                referrerPolicy="no-referrer"
+                width={1581}
+                height={995}
+                className="w-full h-full object-cover object-[30%_center]"
               />
             </div>
           </div>
