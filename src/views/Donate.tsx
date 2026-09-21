@@ -2,9 +2,13 @@
 
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { Heart, Globe, ShieldCheck, ArrowRight, Lock } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
+
+/** Wrap an amount in Unicode bidi isolates so "$500" stays left-to-right inside
+ *  an Arabic (RTL) sentence. Digits are Western in every locale by design. */
+const ltrAmount = (n: number) => `⁦$${n}⁩`;
 
 export interface Tier {
   amount: number;
@@ -23,6 +27,7 @@ export const Donate = ({
   stripeEnabled: boolean;
 }) => {
   const locale = useLocale();
+  const t = useTranslations('donatePage');
   const TIERS = tiers;
   const recommended = TIERS.find((t) => t.recommended) ?? TIERS[1] ?? TIERS[0];
   const [selectedAmount, setSelectedAmount] = useState<number | null>(recommended?.amount ?? null);
@@ -58,14 +63,13 @@ export const Donate = ({
       <section className="py-20 md:py-28 px-6 bg-brand-surface dark:bg-dark-surface/40 border-b border-brand-primary/5 dark:border-white/5">
         <div className="max-w-4xl mx-auto">
           <p className="text-brand-secondary dark:text-dark-secondary text-xs font-bold uppercase tracking-[0.3em] mb-4">
-            Support our work
+            {t('eyebrow')}
           </p>
           <h1 className="text-balance text-4xl md:text-6xl font-serif font-bold text-brand-primary dark:text-dark-primary leading-tight mb-6">
-            Stand with rural Sudan.
+            {t('heading')}
           </h1>
           <p className="text-lg md:text-xl text-brand-ink/70 dark:text-dark-ink/70 leading-relaxed max-w-3xl">
-            Your contribution funds clean water, classrooms, and community-led peace councils —
-            delivered by Sudanese teams in fifteen states.
+            {t('intro')}
           </p>
         </div>
       </section>
@@ -76,10 +80,10 @@ export const Donate = ({
           {/* Left: principles */}
           <div className="lg:col-span-5">
             <p className="text-brand-secondary dark:text-dark-secondary text-xs font-bold uppercase tracking-[0.3em] mb-4">
-              Why give to SRC
+              {t('whyEyebrow')}
             </p>
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-brand-primary dark:text-dark-primary mb-10 leading-tight">
-              Direct impact, fully accounted for.
+              {t('whyHeading')}
             </h2>
 
             <ul className="space-y-8">
@@ -89,11 +93,10 @@ export const Donate = ({
                 </span>
                 <div>
                   <h3 className="font-bold text-brand-primary dark:text-dark-primary mb-1">
-                    92% to programs
+                    {t('p1Title')}
                   </h3>
                   <p className="text-sm text-brand-ink/70 dark:text-dark-ink/70 leading-relaxed">
-                    Of every dollar received, $0.92 reaches the field. The remaining $0.08 covers
-                    compliance, audit, and oversight.
+                    {t('p1Body')}
                   </p>
                 </div>
               </li>
@@ -103,11 +106,10 @@ export const Donate = ({
                 </span>
                 <div>
                   <h3 className="font-bold text-brand-primary dark:text-dark-primary mb-1">
-                    Quarterly reporting
+                    {t('p2Title')}
                   </h3>
                   <p className="text-sm text-brand-ink/70 dark:text-dark-ink/70 leading-relaxed">
-                    Every donor receives quarterly impact updates with project-level financials and
-                    beneficiary stories.
+                    {t('p2Body')}
                   </p>
                 </div>
               </li>
@@ -117,11 +119,10 @@ export const Donate = ({
                 </span>
                 <div>
                   <h3 className="font-bold text-brand-primary dark:text-dark-primary mb-1">
-                    Independently audited
+                    {t('p3Title')}
                   </h3>
                   <p className="text-sm text-brand-ink/70 dark:text-dark-ink/70 leading-relaxed">
-                    SRC's accounts are audited annually by an independent firm; the full report is
-                    published on this site.
+                    {t('p3Body')}
                   </p>
                 </div>
               </li>
@@ -138,7 +139,7 @@ export const Donate = ({
               {/* Frequency */}
               <div className="mb-8">
                 <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-ink/70 dark:text-dark-ink/70 mb-3">
-                  Frequency
+                  {t('frequency')}
                 </p>
                 <div className="inline-flex p-1 rounded-lg bg-brand-bg dark:bg-dark-bg/60 border border-brand-primary/10 dark:border-white/10">
                   {(monthlyEnabled
@@ -156,7 +157,7 @@ export const Donate = ({
                       }`}
                       aria-pressed={frequency === f}
                     >
-                      {f === 'one-time' ? 'One-time' : 'Monthly'}
+                      {f === 'one-time' ? t('oneTime') : t('monthly')}
                     </button>
                   ))}
                 </div>
@@ -165,7 +166,7 @@ export const Donate = ({
               {/* Tiers */}
               <div className="mb-6">
                 <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-ink/70 dark:text-dark-ink/70 mb-3">
-                  Choose an amount (USD)
+                  {t('chooseAmount')}
                 </p>
                 <div className="grid grid-cols-2 gap-2.5 sm:gap-3">
                   {TIERS.map((tier) => {
@@ -187,11 +188,11 @@ export const Donate = ({
                       >
                         {tier.recommended && (
                           <span className="absolute top-2 end-2 text-[8px] uppercase tracking-widest font-bold text-brand-secondary dark:text-dark-secondary">
-                            Suggested
+                            {t('suggested')}
                           </span>
                         )}
                         <p className="text-xl sm:text-2xl font-serif font-bold text-brand-primary dark:text-dark-primary mb-1">
-                          ${tier.amount}
+                          <bdi dir="ltr">${tier.amount}</bdi>
                         </p>
                         <p className="text-[10px] uppercase tracking-widest font-bold text-brand-ink/60 dark:text-dark-ink/70 mb-1">
                           {tier.label}
@@ -211,7 +212,7 @@ export const Donate = ({
                   htmlFor="custom-amount"
                   className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-ink/70 dark:text-dark-ink/70 mb-2 block"
                 >
-                  Or enter a custom amount
+                  {t('customLabel')}
                 </label>
                 <div className="relative">
                   <span className="absolute start-4 top-1/2 -translate-y-1/2 text-brand-ink/40 dark:text-dark-ink/40 font-medium">
@@ -245,9 +246,11 @@ export const Donate = ({
                 }`}
               >
                 {status === 'redirecting'
-                  ? 'Redirecting…'
-                  : `Continue with $${finalAmount > 0 ? finalAmount : '0'} ${frequency === 'monthly' ? '/ month' : ''}`}
-                <ArrowRight size={16} />
+                  ? t('redirecting')
+                  : frequency === 'monthly'
+                    ? t('continueMonthly', { amount: ltrAmount(finalAmount > 0 ? finalAmount : 0) })
+                    : t('continueOnce', { amount: ltrAmount(finalAmount > 0 ? finalAmount : 0) })}
+                <ArrowRight size={16} className="rtl:-scale-x-100" />
               </button>
 
               {status === 'error' && (
@@ -255,31 +258,31 @@ export const Donate = ({
                   aria-live="polite"
                   className="mt-3 text-center text-sm text-red-700 dark:text-red-400"
                 >
-                  Something went wrong starting checkout. Please try again.
+                  {t('errorCheckout')}
                 </p>
               )}
 
               <p className="mt-4 flex items-center justify-center gap-2 text-[10px] uppercase tracking-widest font-bold text-brand-ink/70 dark:text-dark-ink/70">
                 <Lock size={12} />
-                {stripeEnabled ? 'Secure checkout via Stripe' : 'Secure online giving coming soon'}
+                {stripeEnabled ? t('secure') : t('secureSoon')}
               </p>
 
               {stripeEnabled ? (
                 <p className="mt-6 text-xs text-brand-ink/70 dark:text-dark-ink/70 text-center leading-relaxed">
-                  SRC is a registered nonprofit. Donations are tax-deductible where allowed by law.
-                  You&apos;ll receive a receipt by email.
+                  {t('taxNote')}
                 </p>
               ) : (
                 <p className="mt-6 text-xs text-brand-ink/70 dark:text-dark-ink/70 text-center leading-relaxed">
-                  SRC is a registered nonprofit. Donations are tax-deductible where allowed by law.
-                  The secure payment portal is currently being finalized — please{' '}
-                  <Link
-                    href="/contact"
-                    className="underline hover:text-brand-primary dark:hover:text-dark-primary"
-                  >
-                    contact us
-                  </Link>{' '}
-                  for wire transfer or partner-organization donations.
+                  {t.rich('taxNoteSoon', {
+                    link: (chunks) => (
+                      <Link
+                        href="/contact"
+                        className="underline hover:text-brand-primary dark:hover:text-dark-primary"
+                      >
+                        {chunks}
+                      </Link>
+                    ),
+                  })}
                 </p>
               )}
             </motion.div>
