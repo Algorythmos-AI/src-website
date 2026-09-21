@@ -1,4 +1,5 @@
 import { Resend } from 'resend';
+import { staticT, isRtl } from '@/lib/i18n-static';
 
 const API_KEY = process.env.RESEND_API_KEY;
 const FROM = process.env.RESEND_FROM ?? 'SRC <onboarding@resend.dev>';
@@ -55,12 +56,19 @@ export function contactEmailHtml(input: {
     </div>`;
 }
 
-export function confirmEmailHtml(confirmUrl: string): string {
+export function confirmEmailSubject(locale: string): string {
+  return staticT(locale, 'newsletter')('confirmSubject');
+}
+
+export function confirmEmailHtml(confirmUrl: string, locale = 'en'): string {
+  const t = staticT(locale, 'newsletter');
+  const dir = isRtl(locale) ? 'rtl' : 'ltr';
+  const align = dir === 'rtl' ? 'right' : 'left';
   return `
-    <div style="font-family:system-ui,sans-serif;line-height:1.6">
-      <h2 style="color:#6f1e0c">Confirm your subscription</h2>
-      <p>Please confirm you'd like to receive the SRC quarterly impact report.</p>
-      <p><a href="${confirmUrl}" style="background:#6f1e0c;color:#fff;padding:10px 20px;border-radius:8px;text-decoration:none">Confirm subscription</a></p>
-      <p style="font-size:12px;color:#666">If you didn't request this, you can ignore this email.</p>
+    <div dir="${dir}" lang="${locale}" style="font-family:system-ui,sans-serif;line-height:1.6;text-align:${align}">
+      <h2 style="color:#6f1e0c">${escape(t('confirmHeading'))}</h2>
+      <p>${escape(t('confirmIntro'))}</p>
+      <p><a href="${confirmUrl}" style="background:#6f1e0c;color:#fff;padding:10px 20px;border-radius:8px;text-decoration:none">${escape(t('confirmButton'))}</a></p>
+      <p style="font-size:12px;color:#666">${escape(t('confirmIgnore'))}</p>
     </div>`;
 }

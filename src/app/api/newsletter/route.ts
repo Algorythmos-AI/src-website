@@ -3,7 +3,7 @@ import { getPayloadClient } from '@/lib/payload';
 import { newsletterSchema, MIN_FILL_MS } from '@/lib/forms/validation';
 import { checkRateLimit } from '@/lib/forms/rate-limit';
 import { verifyTurnstile } from '@/lib/forms/turnstile';
-import { sendEmail, confirmEmailHtml } from '@/lib/forms/email';
+import { sendEmail, confirmEmailHtml, confirmEmailSubject } from '@/lib/forms/email';
 import { clientIp, hashIp, hashToken, makeToken } from '@/lib/forms/security';
 
 export const runtime = 'nodejs';
@@ -75,11 +75,12 @@ export async function POST(req: Request) {
   }
 
   const origin = process.env.NEXT_PUBLIC_SITE_URL ?? new URL(req.url).origin;
-  const confirmUrl = `${origin}/api/newsletter/confirm?token=${token}&email=${encodeURIComponent(data.email)}`;
+  const locale = data.locale ?? 'en';
+  const confirmUrl = `${origin}/api/newsletter/confirm?token=${token}&email=${encodeURIComponent(data.email)}&locale=${locale}`;
   await sendEmail({
     to: data.email,
-    subject: 'Confirm your SRC subscription',
-    html: confirmEmailHtml(confirmUrl),
+    subject: confirmEmailSubject(locale),
+    html: confirmEmailHtml(confirmUrl, locale),
   });
 
   return generic();

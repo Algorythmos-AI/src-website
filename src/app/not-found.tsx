@@ -1,7 +1,10 @@
 import Link from 'next/link';
+import { staticT } from '@/lib/i18n-static';
 
-// Root-level 404 for paths that never reach a locale segment.
+// Root-level 404 for paths that never reach a locale segment. These requests
+// carry no locale, so the default-locale (English) catalogue is used.
 export default function RootNotFound() {
+  const t = staticT('en', 'notFound');
   return (
     <html lang="en">
       <body
@@ -16,10 +19,10 @@ export default function RootNotFound() {
         }}
       >
         <div style={{ textAlign: 'center', padding: '2rem' }}>
-          <h1 style={{ fontSize: '4rem', margin: 0, color: 'rgba(111,30,12,0.15)' }}>404</h1>
-          <p style={{ fontSize: '1.25rem', margin: '1rem 0 2rem' }}>
-            The horizon you seek is not here.
-          </p>
+          <h1 style={{ fontSize: '4rem', margin: 0, color: 'rgba(111,30,12,0.15)' }}>
+            {t('code')}
+          </h1>
+          <p style={{ fontSize: '1.25rem', margin: '1rem 0 2rem' }}>{t('message')}</p>
           <Link
             href="/en"
             style={{
@@ -31,7 +34,7 @@ export default function RootNotFound() {
               fontSize: '0.9rem',
             }}
           >
-            Return Home
+            {t('returnHome')}
           </Link>
         </div>
       </body>

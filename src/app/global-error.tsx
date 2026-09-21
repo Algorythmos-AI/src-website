@@ -1,8 +1,10 @@
 'use client';
 
 import { useEffect } from 'react';
+import { staticT } from '@/lib/i18n-static';
 
 // Renders only when the root layout itself throws, so it must provide <html>.
+// This is outside the locale segment, so the default-locale catalogue is used.
 export default function GlobalError({
   error,
   reset,
@@ -10,6 +12,7 @@ export default function GlobalError({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
+  const t = staticT('en', 'error');
   useEffect(() => {
     console.error(error);
   }, [error]);
@@ -28,8 +31,8 @@ export default function GlobalError({
         }}
       >
         <div style={{ textAlign: 'center', padding: '2rem' }}>
-          <h1 style={{ fontSize: '1.75rem', marginBottom: '1rem' }}>Something went wrong.</h1>
-          <p style={{ marginBottom: '2rem' }}>An unexpected error occurred. Please try again.</p>
+          <h1 style={{ fontSize: '1.75rem', marginBottom: '1rem' }}>{t('title')}</h1>
+          <p style={{ marginBottom: '2rem' }}>{t('message')}</p>
           <button
             onClick={reset}
             style={{
@@ -41,7 +44,7 @@ export default function GlobalError({
               cursor: 'pointer',
             }}
           >
-            Try again
+            {t('retry')}
           </button>
         </div>
       </body>
