@@ -297,5 +297,18 @@
     "termsContentH": "Content",
     "termsContentB": "Text and images on this site are the property of SRC or used with permission. Please contact us before reusing material.",
     "termsNote": "This is a template — SRC should review and adapt it with legal counsel before launch."
+  },
+  "newsletter": {
+    "confirmSubject": "Confirm your SRC subscription",
+    "confirmHeading": "Confirm your subscription",
+    "confirmIntro": "Please confirm you'd like to receive the SRC quarterly impact report.",
+    "confirmButton": "Confirm subscription",
+    "confirmIgnore": "If you didn't request this, you can ignore this email.",
+    "confirmedTitle": "Subscription confirmed",
+    "confirmedBody": "Thank you — you are now subscribed to SRC updates.",
+    "invalidTitle": "Invalid link",
+    "invalidIncomplete": "This confirmation link is incomplete.",
+    "invalidExpired": "This confirmation link is invalid or has expired.",
+    "returnHome": "Return home"
   }
 }

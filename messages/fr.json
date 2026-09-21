@@ -297,5 +297,18 @@
     "termsContentH": "Contenu",
     "termsContentB": "Les textes et images de ce site sont la propriété de SRC ou utilisés avec autorisation. Veuillez nous contacter avant toute réutilisation.",
     "termsNote": "Ceci est un modèle — SRC devrait le revoir et l’adapter avec un conseil juridique avant le lancement."
+  },
+  "newsletter": {
+    "confirmSubject": "Confirmez votre abonnement SRC",
+    "confirmHeading": "Confirmez votre abonnement",
+    "confirmIntro": "Veuillez confirmer que vous souhaitez recevoir le rapport d’impact trimestriel de SRC.",
+    "confirmButton": "Confirmer l’abonnement",
+    "confirmIgnore": "Si vous n’êtes pas à l’origine de cette demande, vous pouvez ignorer cet e-mail.",
+    "confirmedTitle": "Abonnement confirmé",
+    "confirmedBody": "Merci — vous êtes désormais abonné aux actualités de SRC.",
+    "invalidTitle": "Lien invalide",
+    "invalidIncomplete": "Ce lien de confirmation est incomplet.",
+    "invalidExpired": "Ce lien de confirmation est invalide ou a expiré.",
+    "returnHome": "Retour à l’accueil"
   }
 }
