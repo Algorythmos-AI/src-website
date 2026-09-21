@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { motion } from 'motion/react';
 import { Users, Droplets, BookOpen, Heart, ArrowRight, type LucideIcon } from 'lucide-react';
@@ -81,61 +82,41 @@ const StoryCard: React.FC<StoryCardProps> = ({ image, title, category, quote, au
 );
 
 export const Impact = () => {
+  const t = useTranslations('impact');
+  const ta = useTranslations('a11y');
   const stats = [
-    {
-      icon: Users,
-      value: '125,000+',
-      label: 'People reached',
-      desc: 'Families across 15 states supported with education and social services.',
-    },
-    {
-      icon: Droplets,
-      value: '82',
-      label: 'Water projects',
-      desc: 'Solar-powered boreholes serving drought-prone rural districts.',
-    },
-    {
-      icon: BookOpen,
-      value: '450+',
-      label: 'Rural classrooms',
-      desc: 'Learning spaces renovated, equipped, and staffed with trained teachers.',
-    },
-    {
-      icon: Heart,
-      value: '12',
-      label: 'Peace councils',
-      desc: 'Local mediation boards established to prevent and resolve communal conflicts.',
-    },
+    { icon: Users, value: '125,000+', label: t('stat1Label'), desc: t('stat1Desc') },
+    { icon: Droplets, value: '82', label: t('stat2Label'), desc: t('stat2Desc') },
+    { icon: BookOpen, value: '450+', label: t('stat3Label'), desc: t('stat3Desc') },
+    { icon: Heart, value: '12', label: t('stat4Label'), desc: t('stat4Desc') },
   ];
 
   const stories = [
     {
-      title: 'Water in Mayo',
-      category: 'Water & sanitation',
-      quote:
-        'Before the borehole, my children walked four hours each day for water. Now they are at the learning center, and I have a garden.',
-      author: 'Fatima, community chairperson',
+      title: t('story1Title'),
+      category: t('story1Category'),
+      quote: t('story1Quote'),
+      author: t('story1Author'),
       image:
         'https://images.unsplash.com/photo-1633215357805-310e47d9c72e?q=80&w=2070&auto=format&fit=crop',
     },
     {
-      title: 'Learning without borders',
-      category: 'Education',
-      quote:
-        'The digital library in our village was something we only saw on television. SRC brought the world to our fingertips.',
-      author: 'Ahmed, student (age 14)',
+      title: t('story2Title'),
+      category: t('story2Category'),
+      quote: t('story2Quote'),
+      author: t('story2Author'),
       image:
         'https://images.unsplash.com/photo-1608317544280-9e9916b8c54d?q=80&w=2070&auto=format&fit=crop',
     },
   ];
 
   const locations = [
-    { x: '30%', y: '40%', label: 'Al-Fashir' },
-    { x: '45%', y: '25%', label: 'Dongola' },
-    { x: '55%', y: '50%', label: 'Khartoum' },
-    { x: '65%', y: '70%', label: 'Blue Nile' },
-    { x: '40%', y: '65%', label: 'Kordofan' },
-    { x: '80%', y: '55%', label: 'Port Sudan' },
+    { x: '30%', y: '40%', label: t('loc1') },
+    { x: '45%', y: '25%', label: t('loc2') },
+    { x: '55%', y: '50%', label: t('loc3') },
+    { x: '65%', y: '70%', label: t('loc4') },
+    { x: '40%', y: '65%', label: t('loc5') },
+    { x: '80%', y: '55%', label: t('loc6') },
   ];
 
   return (
@@ -144,15 +125,13 @@ export const Impact = () => {
       <section className="py-20 md:py-28 px-6 bg-brand-surface dark:bg-dark-surface/40 border-b border-brand-primary/5 dark:border-white/5">
         <div className="max-w-4xl mx-auto">
           <p className="text-brand-secondary dark:text-dark-secondary text-xs font-bold uppercase tracking-[0.3em] mb-4">
-            Transparency & accountability
+            {t('eyebrow')}
           </p>
           <h1 className="text-balance text-4xl md:text-6xl font-serif font-bold text-brand-primary dark:text-dark-primary leading-tight mb-6">
-            Our impact, audited and reported.
+            {t('heading')}
           </h1>
           <p className="text-lg md:text-xl text-brand-ink/70 dark:text-dark-ink/70 leading-relaxed max-w-3xl">
-            Every figure on this page is verified by an independent auditor and published in our
-            annual report. Numbers reflect cumulative results from 2015 through the latest reporting
-            period.
+            {t('intro')}
           </p>
         </div>
       </section>
@@ -172,18 +151,18 @@ export const Impact = () => {
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-14">
             <div className="max-w-xl">
               <p className="text-brand-secondary dark:text-dark-secondary text-xs font-bold uppercase tracking-[0.3em] mb-3">
-                From the field
+                {t('storiesEyebrow')}
               </p>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-brand-primary dark:text-dark-primary leading-tight">
-                Stories behind the numbers.
+                {t('storiesHeading')}
               </h2>
             </div>
             <Link
               href="/work"
               className="inline-flex items-center gap-2 text-brand-primary dark:text-dark-primary font-bold text-xs uppercase tracking-widest border-b border-brand-primary/30 dark:border-dark-primary/40 pb-1 hover:border-brand-primary dark:hover:border-dark-primary transition-colors"
             >
-              See all programs
-              <ArrowRight size={14} />
+              {t('seeAll')}
+              <ArrowRight size={14} className="rtl:-scale-x-100" />
             </Link>
           </div>
 
@@ -204,14 +183,13 @@ export const Impact = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div>
               <p className="text-brand-accent text-xs font-bold uppercase tracking-[0.3em] mb-4">
-                Where we work
+                {t('mapEyebrow')}
               </p>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold mb-6 leading-tight">
-                Fifteen states. One commitment.
+                {t('mapHeading')}
               </h2>
               <p className="text-white/70 leading-relaxed mb-8 text-base md:text-lg">
-                From North Kordofan to the Blue Nile and the highlands around Port Sudan, our reach
-                is guided by local advisory boards and global humanitarian standards.
+                {t('mapBody')}
               </p>
               <ul className="space-y-3">
                 {locations.slice(0, 4).map((loc) => (
@@ -240,7 +218,7 @@ export const Impact = () => {
                 >
                   <button
                     type="button"
-                    aria-label={`${loc.label} field site`}
+                    aria-label={ta('fieldSite', { label: loc.label })}
                     className="group relative block focus:outline-none"
                   >
                     <span className="block w-3 h-3 bg-brand-accent rounded-full shadow-[0_0_16px_rgba(255,208,99,0.7)] ring-offset-2 ring-offset-brand-footer group-focus-visible:ring-2 group-focus-visible:ring-white" />
@@ -259,17 +237,15 @@ export const Impact = () => {
       <section className="py-20 md:py-24 px-6">
         <div className="max-w-4xl mx-auto bg-brand-primary dark:bg-dark-primary rounded-2xl p-10 md:p-14 text-white text-center">
           <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4 leading-tight">
-            Add to the next report.
+            {t('ctaHeading')}
           </h2>
-          <p className="text-white/80 mb-8 max-w-xl mx-auto leading-relaxed">
-            Every donation funds a project that's tracked, reported, and audited.
-          </p>
+          <p className="text-white/80 mb-8 max-w-xl mx-auto leading-relaxed">{t('ctaBody')}</p>
           <Link
             href="/donate"
             className="inline-flex items-center gap-2 bg-white text-brand-primary px-8 py-3.5 rounded-lg font-bold text-xs uppercase tracking-[0.2em] hover:bg-brand-surface transition-colors"
           >
-            Support our impact
-            <ArrowRight size={14} />
+            {t('ctaButton')}
+            <ArrowRight size={14} className="rtl:-scale-x-100" />
           </Link>
         </div>
       </section>
