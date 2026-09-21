@@ -30,6 +30,20 @@
   --font-serif: var(--font-arabic), Georgia, serif;
 }
 
+/* Arabic is cursive — letter-spacing breaks the joining of connected letters.
+   Neutralize every `tracking-*` utility under RTL. Left unlayered on purpose so
+   it wins over Tailwind's utilities layer without needing !important. */
+[dir='rtl'] [class*='tracking-'] {
+  letter-spacing: normal;
+}
+
+/* Arabic glyphs are taller; give headings a little more breathing room. */
+[dir='rtl'] h1,
+[dir='rtl'] h2,
+[dir='rtl'] h3 {
+  line-height: 1.35;
+}
+
 @layer base {
   html {
     -webkit-text-size-adjust: 100%;

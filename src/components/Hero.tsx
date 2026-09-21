@@ -80,9 +80,9 @@ export const Hero = () => {
                   aria-label="Play our mission video"
                   className="absolute inset-0 flex items-center justify-center bg-black/0 hover:bg-black/30 focus-visible:bg-black/30 transition-colors focus:outline-none"
                 >
-                  <span className="flex items-center gap-3 bg-white/95 backdrop-blur-sm rounded-full pl-4 pr-5 py-2.5 shadow-lg group-hover:scale-105 transition-transform">
+                  <span className="flex items-center gap-3 bg-white/95 backdrop-blur-sm rounded-full ps-4 pe-5 py-2.5 shadow-lg group-hover:scale-105 transition-transform">
                     <span className="w-9 h-9 rounded-full bg-brand-primary text-white flex items-center justify-center">
-                      <Play size={14} className="ml-0.5 fill-current" />
+                      <Play size={14} className="ms-0.5 fill-current rtl:-scale-x-100" />
                     </span>
                     <span className="text-[11px] uppercase tracking-[0.2em] font-bold text-brand-primary">
                       Play mission
