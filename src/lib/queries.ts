@@ -20,7 +20,7 @@ const FALLBACK = 'en';
 // Bump to force-refresh every cached CMS read (e.g. after a media repair or seed
 // that ran with revalidation disabled). unstable_cache is tag-only with no time
 // revalidation, so it persists across deploys until the key or a tag changes.
-const CACHE_VERSION = 'v6';
+const CACHE_VERSION = 'v7';
 
 /** Published + not scheduled in the future. */
 const visibleWhere = (dateField: string, now: string): Where => ({
@@ -86,7 +86,7 @@ export function getProgramBySlug(slug: string, locale: Locale): Promise<Program 
       });
       return res.docs[0] ?? null;
     },
-    ['program', slug, locale],
+    [CACHE_VERSION, 'program', slug, locale],
     { tags: ['programs'] }
   )();
 }
@@ -189,7 +189,7 @@ export function getPosts(
         totalDocs: res.totalDocs,
       };
     },
-    ['posts', locale, category, String(page)],
+    [CACHE_VERSION, 'posts', locale, category, String(page)],
     { tags: ['posts'] }
   )();
 }
@@ -220,7 +220,7 @@ export function getPostBySlug(slug: string, locale: Locale): Promise<Post | null
       });
       return res.docs[0] ?? null;
     },
-    ['post', slug, locale],
+    [CACHE_VERSION, 'post', slug, locale],
     { tags: ['posts'] }
   )();
 }
@@ -267,7 +267,7 @@ export function getEvents(locale: Locale, when: 'upcoming' | 'past'): Promise<Ev
       });
       return res.docs;
     },
-    ['events', locale, when],
+    [CACHE_VERSION, 'events', locale, when],
     { tags: ['events'] }
   )();
 }
@@ -298,7 +298,7 @@ export function getEventBySlug(slug: string, locale: Locale): Promise<Event | nu
       });
       return res.docs[0] ?? null;
     },
-    ['event', slug, locale],
+    [CACHE_VERSION, 'event', slug, locale],
     { tags: ['events'] }
   )();
 }
@@ -350,7 +350,7 @@ export function getPressBySlug(slug: string, locale: Locale): Promise<PressRelea
       });
       return res.docs[0] ?? null;
     },
-    ['press', slug, locale],
+    [CACHE_VERSION, 'press', slug, locale],
     { tags: ['press-releases'] }
   )();
 }
