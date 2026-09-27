@@ -42,7 +42,8 @@ const ASSIGNMENTS: Array<{
     slug: 'src-joins-the-sudan-education-coalition',
     file: 'edu.png',
     altEn: 'Students raising their hands in a rural Sudanese classroom during an Arabic lesson',
-    altFr: 'Des élèves lèvent la main dans une salle de classe rurale soudanaise pendant un cours d’arabe',
+    altFr:
+      'Des élèves lèvent la main dans une salle de classe rurale soudanaise pendant un cours d’arabe',
     altAr: 'طلاب يرفعون أيديهم في فصل دراسي ريفي بالسودان خلال حصة اللغة العربية',
     credit: 'SRC field team',
   },
