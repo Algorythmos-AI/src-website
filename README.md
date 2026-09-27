@@ -1,6 +1,16 @@
-# Sudanese Rural Community (SRC)
+# SRC — website
 
-A premium nonprofit website for the Sudanese Rural Community (SRC), focused on peacebuilding, education, humanitarian aid, and rural development in Sudan.
+Website of the Sudanese Rural Community (SRC), a nonprofit focused on peacebuilding, education, humanitarian aid, and rural development in Sudan.
+
+|                 |                                                                                                                                                                                                                                                                                   |
+| --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Status**      | Live                                                                                                                                                                                                                                                                              |
+| **Owner**       | [@Algorythmos-AI/maintainers](https://github.com/orgs/Algorythmos-AI/teams/maintainers)                                                                                                                                                                                           |
+| **Runs at**     | <https://www.src-rural.org> (Vercel project `src`, deploys from `main`; previews from `integration` and PRs)                                                                                                                                                                      |
+| **Run locally** | `npm ci && npm run dev`                                                                                                                                                                                                                                                           |
+| **Context**     | [Org repository map](https://github.com/Algorythmos-AI/.github-private/blob/main/profile/README.md#repository-map) · [Glossary](https://github.com/Algorythmos-AI/.github-private/blob/main/docs/glossary.md) · [Runbook](docs/RUNBOOK.md) · [Editor guide](docs/EDITOR-GUIDE.md) |
+
+---
 
 ## Tech stack
 
@@ -11,9 +21,11 @@ A premium nonprofit website for the Sudanese Rural Community (SRC), focused on p
 - Lucide icons
 - Fonts self-hosted via `next/font` (Inter, Playfair Display, IBM Plex Sans Arabic)
 
-> **Migration in progress.** This branch (`next`) is the Vite → Next.js + Payload CMS
-> migration. `main` remains the original Vite SPA and stays deployable. Payload CMS,
-> forms, and donations land in later phases (see the migration plan).
+## Branches
+
+- `integration` — where work lands. Open PRs here; each push gets a Vercel preview.
+- `main` — production. Released from `integration` by PR, merged with a merge commit
+  (not a squash) so the two branches keep a shared history.
 
 ## Run locally
 
@@ -46,7 +58,7 @@ Copy `.env.example` to `.env.local` and adjust as needed.
 
 ## Quality gates
 
-CI (`.github/workflows/ci.yml`) runs on every push and PR to `main`/`next`: typecheck,
+CI (`.github/workflows/ci.yml`) runs on every push and PR to `main`/`integration`: typecheck,
 lint, format check, i18n key parity, unit tests, production build, and a Playwright smoke
 suite. Dependabot keeps dependencies current (`.github/dependabot.yml`).
 
@@ -69,7 +81,7 @@ messages/                en.json / fr.json / ar.json
 
 ## Notes
 
-- **Donate page is a UI mock.** The `/donate` page is a visual placeholder only — no payment processor is wired up. Stripe Checkout is planned. The page no longer claims donations are "processed securely".
-- **Newsletter and contact forms** are inert placeholders that prevent default submission. They get wired to a mail provider with spam protection in a later phase.
+- **Donations** go through Stripe Checkout (`/api/checkout`, confirmed by `/api/stripe/webhook`).
+- **Contact and newsletter forms** post to `/api/contact` and `/api/newsletter`, with Turnstile spam protection and rate limiting. Setup and operations are in [docs/RUNBOOK.md](docs/RUNBOOK.md).
 - **Theme**: light/dark is toggled via the moon/sun in the navbar, persisted in `localStorage`, and applied pre-paint via an inline script in the root layout to avoid a flash of the wrong theme. System `prefers-color-scheme` is honored when no choice has been saved.
 - **i18n**: UI chrome (nav, footer, 404) is translated across all three locales; page prose is migrated to the CMS/messages incrementally in later phases.
