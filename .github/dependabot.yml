@@ -20,6 +20,8 @@ updates:
         patterns:
           - payload
           - '@payloadcms/*'
+          # Payload pins graphql as a peer (^16); move them together.
+          - graphql
       lint-test-tooling:
         patterns:
           - eslint
@@ -32,6 +34,12 @@ updates:
           - '@playwright/*'
           - '@testing-library/*'
     ignore:
+      # Majors are upgraded deliberately (peer ranges, e.g. Payload pins
+      # graphql ^16 and jsx-a11y caps eslint at 9). Security updates are
+      # unaffected — update-types only applies to version updates.
+      - dependency-name: '*'
+        update-types:
+          - version-update:semver-major
       # next is pinned to Payload's supported peer range; bump deliberately.
       - dependency-name: next
         update-types:
@@ -44,3 +52,8 @@ updates:
     target-branch: next
     schedule:
       interval: weekly
+    ignore:
+      # Action majors are upgraded deliberately.
+      - dependency-name: '*'
+        update-types:
+          - version-update:semver-major
