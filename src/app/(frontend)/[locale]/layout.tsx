@@ -21,7 +21,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'meta' });
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://src-zeta-teal.vercel.app';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.src-rural.org';
   return {
     metadataBase: new URL(siteUrl),
     title: t('title'),

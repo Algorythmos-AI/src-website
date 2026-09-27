@@ -3,10 +3,7 @@ import { routing } from '@/i18n/routing';
 import { getEventSlugs, getPostSlugs, getPressSlugs, getProgramSlugs } from '@/lib/queries';
 import { getPayloadClient } from '@/lib/payload';
 
-const BASE = (process.env.NEXT_PUBLIC_SITE_URL ?? 'https://src-zeta-teal.vercel.app').replace(
-  /\/$/,
-  ''
-);
+const BASE = (process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.src-rural.org').replace(/\/$/, '');
 
 function withAlternates(path: string): MetadataRoute.Sitemap[number] {
   const languages = Object.fromEntries(
