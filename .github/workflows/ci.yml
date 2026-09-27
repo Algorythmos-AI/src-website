@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [main, next]
+    branches: [main, integration]
   pull_request:
-    branches: [main, next]
+    branches: [main, integration]
 
 concurrency:
   group: ci-${{ github.ref }}
@@ -15,7 +15,7 @@ concurrency:
 # builds against it. PAYLOAD_SECRET is a build-only dummy.
 env:
   PAYLOAD_SECRET: ci-build-only-dummy-secret-000000000000
-  NEXT_PUBLIC_SITE_URL: https://src-zeta-teal.vercel.app
+  NEXT_PUBLIC_SITE_URL: https://www.src-rural.org
   POSTGRES_URL: postgres://src:src@localhost:5432/src
 
 jobs:

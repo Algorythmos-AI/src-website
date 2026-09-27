@@ -42,7 +42,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     '@type': 'NGO',
     name: 'Sudanese Rural Community (SRC)',
     alternateName: 'SRC',
-    url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://src-zeta-teal.vercel.app',
+    url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.src-rural.org',
     description: tMeta('description'),
     inLanguage: locale,
     areaServed: 'SD',

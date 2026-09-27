@@ -2,10 +2,10 @@ version: 2
 updates:
   - package-ecosystem: npm
     directory: /
-    # Active development lives on the `next` branch (Vite → Next.js + Payload
-    # migration). Dependabot reads this config from the default branch (main) but
-    # opens PRs against `next` so hygiene lands where it matters.
-    target-branch: next
+    # Work lands on `integration` and is released to `main` (production).
+    # Dependabot reads this config from the default branch (main) but opens PRs
+    # against `integration` so updates are previewed before they ship.
+    target-branch: integration
     schedule:
       interval: weekly
     open-pull-requests-limit: 8
@@ -49,7 +49,7 @@ updates:
       - dependency-name: lucide-react
   - package-ecosystem: github-actions
     directory: /
-    target-branch: next
+    target-branch: integration
     schedule:
       interval: weekly
     ignore:
