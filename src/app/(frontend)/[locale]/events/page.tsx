@@ -14,7 +14,11 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'sections' });
-  return { title: t('eventsTitle'), description: t('eventsSubtitle'), alternates: localeAlternates(locale, '/events') };
+  return {
+    title: t('eventsTitle'),
+    description: t('eventsSubtitle'),
+    alternates: localeAlternates(locale, '/events'),
+  };
 }
 
 function EventRow({ event, locale }: { event: Event; locale: Locale }) {
