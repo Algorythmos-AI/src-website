@@ -33,7 +33,7 @@
     "@payloadcms/plugin-seo": "^3.90.2",
     "@payloadcms/richtext-lexical": "^3.90.2",
     "@payloadcms/storage-vercel-blob": "^3.90.2",
-    "@upstash/ratelimit": "^2.1.0",
+    "@upstash/ratelimit": "^2.2.0",
     "@upstash/redis": "^1.39.0",
     "graphql": "^16.14.2",
     "lucide-react": "^0.546.0",
