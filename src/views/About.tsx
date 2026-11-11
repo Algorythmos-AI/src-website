@@ -8,7 +8,14 @@ import { Target, Users, ShieldCheck, Globe, ArrowRight } from 'lucide-react';
 
 export type LeadItem = { name: string; role: string; image?: string };
 
-export const About = ({ leadership }: { leadership: LeadItem[] }) => {
+export const About = ({
+  leadership,
+  mandateSection,
+}: {
+  leadership: LeadItem[];
+  /** Server-rendered CMS section (mission, mandate, what we do); may be null. */
+  mandateSection?: React.ReactNode;
+}) => {
   const t = useTranslations('about');
   const ta = useTranslations('a11y');
   const values = [
@@ -42,6 +49,8 @@ export const About = ({ leadership }: { leadership: LeadItem[] }) => {
           </p>
         </div>
       </section>
+
+      {mandateSection}
 
       {/* Story */}
       <section className="py-20 md:py-28 px-6">

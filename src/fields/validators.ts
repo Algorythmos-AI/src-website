@@ -12,3 +12,18 @@ export const requiredInEnglish: TextFieldValidation = (value, { req }) => {
   }
   return true;
 };
+
+/**
+ * Optional absolute https:// URL (social profile links, external pages).
+ * Empty is allowed; anything else must parse as an https URL.
+ */
+export const optionalHttpsUrl: TextFieldValidation = (value) => {
+  if (value === undefined || value === null || value === '') return true;
+  try {
+    const url = new URL(String(value));
+    if (url.protocol !== 'https:') return 'Use a full link starting with https://';
+    return true;
+  } catch {
+    return 'Use a full link starting with https://';
+  }
+};

@@ -29,6 +29,7 @@ export const Navbar = () => {
     { name: t('programs'), path: '/work' },
     { name: t('impact'), path: '/impact' },
     { name: t('news'), path: '/news' },
+    { name: t('publications'), path: '/publications' },
     { name: t('events'), path: '/events' },
     { name: t('contact'), path: '/contact' },
   ];
@@ -56,15 +57,15 @@ export const Navbar = () => {
           <span className="font-serif font-bold tracking-wide text-lg">SRC</span>
         </Link>
 
-        {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-2">
+        {/* Desktop Nav — xl and up: 7 links + language + donate overflow below ~1200px in French. */}
+        <div className="hidden xl:flex items-center gap-2">
           <div className="flex items-center gap-1 me-4">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
                 href={link.path}
                 aria-current={isActive(link.path) ? 'page' : undefined}
-                className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
+                className={`px-3 py-2 text-sm font-medium whitespace-nowrap rounded-md transition-colors ${
                   isActive(link.path)
                     ? 'bg-white/10 text-white'
                     : 'text-white/80 hover:text-white hover:bg-white/5'
@@ -94,7 +95,7 @@ export const Navbar = () => {
         </div>
 
         {/* Mobile Toggle & Mobile Theme Toggle */}
-        <div className="flex items-center gap-2 md:hidden">
+        <div className="flex items-center gap-2 xl:hidden">
           <LanguageSwitcher />
           <button
             onClick={toggleTheme}
@@ -125,7 +126,7 @@ export const Navbar = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="absolute top-full start-0 w-full bg-brand-primary dark:bg-dark-bg border-t border-white/10 px-6 py-4 flex flex-col md:hidden shadow-lg max-h-[calc(100vh-4rem)] overflow-y-auto"
+            className="absolute top-full start-0 w-full bg-brand-primary dark:bg-dark-bg border-t border-white/10 px-6 py-4 flex flex-col xl:hidden shadow-lg max-h-[calc(100vh-4rem)] overflow-y-auto"
           >
             {navLinks.map((link) => (
               <Link

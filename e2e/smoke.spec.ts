@@ -73,3 +73,28 @@ test('unknown route shows the not-found page', async ({ page }) => {
   expect(res?.status()).toBe(404);
   await expect(page.getByText(/404/).first()).toBeVisible();
 });
+
+test.describe('Primary navigation', () => {
+  const cases = [
+    { locale: 'en', label: 'Publications', openMenu: 'Open menu' },
+    { locale: 'fr', label: 'Publications', openMenu: 'Ouvrir le menu' },
+    { locale: 'ar', label: 'المنشورات', openMenu: 'فتح القائمة' },
+  ];
+
+  for (const { locale, label, openMenu } of cases) {
+    test(`links to publications and fits the header in ${locale}`, async ({ page, isMobile }) => {
+      await page.goto(`/${locale}/about`);
+      const nav = page.getByRole('navigation').first();
+      if (isMobile) {
+        await nav.getByRole('button', { name: openMenu }).click();
+      }
+      const link = nav.getByRole('link', { name: label, exact: true });
+      await expect(link).toBeVisible();
+      await expect(link).toHaveAttribute('href', `/${locale}/publications`);
+
+      // The header row must not be wider than the viewport in any language.
+      const overflow = await nav.evaluate((el) => el.scrollWidth - el.clientWidth);
+      expect(overflow, `header overflow in ${locale}`).toBeLessThanOrEqual(1);
+    });
+  }
+});

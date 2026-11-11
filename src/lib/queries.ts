@@ -13,6 +13,8 @@ import type {
   PressRelease,
   Publication,
   Category,
+  About,
+  SiteSetting,
 } from '@/payload-types';
 
 const FALLBACK = 'en';
@@ -145,6 +147,29 @@ export const getDonateSettings = cached<DonateSetting>(
   },
   'donate-settings',
   'donate-settings'
+);
+
+export const getSiteSettings = cached<SiteSetting>(
+  async (locale) => {
+    const payload = await getPayloadClient();
+    return payload.findGlobal({
+      slug: 'site-settings',
+      locale,
+      fallbackLocale: FALLBACK,
+      depth: 0,
+    });
+  },
+  'site-settings',
+  'site-settings'
+);
+
+export const getAboutContent = cached<About>(
+  async (locale) => {
+    const payload = await getPayloadClient();
+    return payload.findGlobal({ slug: 'about', locale, fallbackLocale: FALLBACK, depth: 0 });
+  },
+  'about',
+  'about'
 );
 
 // ─── News (posts) ────────────────────────────────────────────────────────────
