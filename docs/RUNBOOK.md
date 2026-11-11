@@ -18,11 +18,14 @@ for the full list. Every integration degrades gracefully when unset.
 
 ## Deploy
 
-Vercel builds on every push. The build command runs migrations first:
+Vercel builds on every push. The build command does **not** run migrations:
 
 ```
-payload migrate && next build
+payload generate:importmap && next build
 ```
+
+Pages that read new tables fall back to empty states when a migration is missing,
+so a build never fails on it, but the new content stays hidden until it is applied.
 
 CI (`.github/workflows/ci.yml`) must be green before merge: typecheck, lint,
 format, i18n parity, unit tests, migrations, build, Playwright e2e + axe.
@@ -31,7 +34,17 @@ format, i18n parity, unit tests, migrations, build, Playwright e2e + axe.
 
 - Schema changes are committed migrations (`src/migrations/`), never `push` in prod.
 - Create one after changing collections/fields: `npm run migrate:create <name>`
-- Apply: `npm run migrate` (runs automatically in the Vercel build).
+- Apply to production **before merging a release that adds migrations**, using
+  the database Vercel's production environment uses (not whatever `.env.local` holds):
+
+  ```
+  vercel env pull .env.production.local --environment=production
+  (set -a; . ./.env.production.local; set +a; npx payload migrate:status && npx payload migrate)
+  rm .env.production.local
+  ```
+
+- After deploying, check the build log has no "unavailable" warnings (e.g.
+  `Galleries unavailable`); they mean the production database is missing a migration.
 - Migrations are forward-only; for destructive changes use expand-then-contract.
 
 ## Seeding
