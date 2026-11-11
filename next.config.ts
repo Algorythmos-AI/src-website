@@ -24,7 +24,8 @@ const frontendCsp = [
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "script-src 'self' 'unsafe-inline' https://js.stripe.com https://challenges.cloudflare.com",
   "connect-src 'self' https://api.stripe.com",
-  'frame-src https://js.stripe.com https://checkout.stripe.com https://challenges.cloudflare.com',
+  // YouTube (privacy-enhanced) and Vimeo players for the Media page.
+  'frame-src https://js.stripe.com https://checkout.stripe.com https://challenges.cloudflare.com https://www.youtube-nocookie.com https://player.vimeo.com',
   "form-action 'self' https://checkout.stripe.com",
 ].join('; ');
 

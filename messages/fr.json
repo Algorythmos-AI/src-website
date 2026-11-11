@@ -21,7 +21,8 @@
     "toggleTheme": "Changer de thème",
     "openMenu": "Ouvrir le menu",
     "closeMenu": "Fermer le menu",
-    "publications": "Publications"
+    "publications": "Publications",
+    "media": "Médias"
   },
   "footer": {
     "brandBlurb": "La Communauté Rurale Soudanaise travaille aux côtés des responsables locaux pour faire progresser l'éducation, l'accès à l'eau et la consolidation de la paix menée par les communautés à travers le Soudan rural.",
@@ -70,7 +71,14 @@
     "previous": "Précédent",
     "next": "Suivant",
     "back": "Retour",
-    "allPrograms": "Tous les programmes"
+    "allPrograms": "Tous les programmes",
+    "mediaTitle": "Médias",
+    "mediaSubtitle": "Photos et vidéos du travail de SRC dans le Soudan rural.",
+    "mediaEmpty": "Les photos et vidéos seront bientôt publiées ici.",
+    "publicationNoFile": "Aucune version téléchargeable n’est encore disponible.",
+    "typeAnnualReport": "Rapport annuel",
+    "typeReport": "Rapport",
+    "typeBrief": "Note"
   },
   "notFound": {
     "code": "404",

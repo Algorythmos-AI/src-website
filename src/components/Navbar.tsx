@@ -30,6 +30,7 @@ export const Navbar = () => {
     { name: t('impact'), path: '/impact' },
     { name: t('news'), path: '/news' },
     { name: t('publications'), path: '/publications' },
+    { name: t('media'), path: '/media' },
     { name: t('events'), path: '/events' },
     { name: t('contact'), path: '/contact' },
   ];
@@ -57,7 +58,7 @@ export const Navbar = () => {
           <span className="font-serif font-bold tracking-wide text-lg">SRC</span>
         </Link>
 
-        {/* Desktop Nav — xl and up: 7 links + language + donate overflow below ~1200px in French. */}
+        {/* Desktop Nav — xl and up: 8 links + language + donate overflow below ~1200px in French. */}
         <div className="hidden xl:flex items-center gap-2">
           <div className="flex items-center gap-1 me-4">
             {navLinks.map((link) => (

@@ -12,6 +12,7 @@ import type {
   Event,
   PressRelease,
   Publication,
+  Gallery,
   Category,
   About,
   SiteSetting,
@@ -398,4 +399,55 @@ export const getPublications = cached<Publication[]>(
   },
   'publications',
   'publications'
+);
+
+export async function getPublicationSlugs(): Promise<string[]> {
+  const payload = await getPayloadClient();
+  const res = await payload.find({
+    collection: 'publications',
+    where: { _status: { equals: 'published' } },
+    depth: 0,
+    limit: 500,
+    pagination: false,
+  });
+  return res.docs.map((d) => d.slug).filter((s): s is string => Boolean(s));
+}
+
+export function getPublicationBySlug(slug: string, locale: Locale): Promise<Publication | null> {
+  return unstable_cache(
+    async () => {
+      const payload = await getPayloadClient();
+      const res = await payload.find({
+        collection: 'publications',
+        locale,
+        fallbackLocale: FALLBACK,
+        where: { slug: { equals: slug }, _status: { equals: 'published' } },
+        depth: 1,
+        limit: 1,
+      });
+      return res.docs[0] ?? null;
+    },
+    [CACHE_VERSION, 'publication', slug, locale],
+    { tags: ['publications'] }
+  )();
+}
+
+// ─── Media (galleries) ───────────────────────────────────────────────────────
+
+export const getGalleries = cached<Gallery[]>(
+  async (locale) => {
+    const payload = await getPayloadClient();
+    const res = await payload.find({
+      collection: 'galleries',
+      locale,
+      fallbackLocale: FALLBACK,
+      where: { _status: { equals: 'published' } },
+      sort: '-date',
+      depth: 1,
+      limit: 50,
+    });
+    return res.docs;
+  },
+  'galleries',
+  'galleries'
 );

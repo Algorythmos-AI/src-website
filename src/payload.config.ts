@@ -20,6 +20,7 @@ import { Posts } from '@/collections/Posts';
 import { Events } from '@/collections/Events';
 import { PressReleases } from '@/collections/PressReleases';
 import { Publications } from '@/collections/Publications';
+import { Galleries } from '@/collections/Galleries';
 import { FormSubmissions } from '@/collections/FormSubmissions';
 import { NewsletterSubscribers } from '@/collections/NewsletterSubscribers';
 import { Donations } from '@/collections/Donations';
@@ -59,6 +60,7 @@ export default buildConfig({
     Events,
     PressReleases,
     Publications,
+    Galleries,
     FormSubmissions,
     NewsletterSubscribers,
     Donations,
