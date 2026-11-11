@@ -4,7 +4,15 @@ import AxeBuilder from '@axe-core/playwright';
 // Run axe on desktop only to avoid duplicate runs across projects.
 test.skip(() => test.info().project.name !== 'chromium', 'a11y checked on desktop project');
 
-const routes = ['/en', '/en/work', '/en/news', '/en/contact', '/en/donate'];
+const routes = [
+  '/en',
+  '/en/work',
+  '/en/news',
+  '/en/contact',
+  '/en/donate',
+  '/en/publications',
+  '/en/media',
+];
 
 for (const route of routes) {
   test(`no serious/critical accessibility violations on ${route}`, async ({ page }) => {

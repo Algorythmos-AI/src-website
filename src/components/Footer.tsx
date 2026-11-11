@@ -112,6 +112,11 @@ export const Footer = ({ social = [], email }: FooterProps) => {
                 </Link>
               </li>
               <li>
+                <Link href="/media" className="hover:text-white transition-colors">
+                  {nav('media')}
+                </Link>
+              </li>
+              <li>
                 <Link href="/contact" className="hover:text-white transition-colors">
                   {nav('contact')}
                 </Link>

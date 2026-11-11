@@ -3,7 +3,9 @@ import { localeAlternates } from '@/lib/seo';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import type { Locale } from '@/i18n/routing';
 import { getPublications } from '@/lib/queries';
-import { fileUrl, mediaUrl } from '@/lib/media';
+import { Link } from '@/i18n/navigation';
+import { mediaUrl } from '@/lib/media';
+import { publicationDownload } from '@/lib/publication';
 
 export async function generateMetadata({
   params,
@@ -52,15 +54,16 @@ export default async function PublicationsPage({
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {publications.map((pub) => {
                 const cover = mediaUrl(pub.cover, 'card');
-                const file = fileUrl(pub.file);
+                const download = publicationDownload(pub, loc);
+                const href = pub.slug ? `/publications/${pub.slug}` : undefined;
                 return (
-                  <div key={pub.slug} className="flex flex-col">
+                  <div key={pub.id} className="flex flex-col">
                     <div className="relative aspect-[3/4] rounded-xl overflow-hidden mb-4 bg-brand-surface dark:bg-dark-surface shadow-sm">
                       {cover ? (
                         // eslint-disable-next-line @next/next/no-img-element
                         <img
                           src={cover}
-                          alt={pub.title}
+                          alt=""
                           loading="lazy"
                           decoding="async"
                           className="w-full h-full object-cover"
@@ -78,22 +81,33 @@ export default async function PublicationsPage({
                       </p>
                     )}
                     <h2 className="text-lg font-serif font-bold text-brand-primary dark:text-dark-primary leading-tight">
-                      {pub.title}
+                      {href ? (
+                        <Link href={href} className="hover:underline">
+                          {pub.title}
+                        </Link>
+                      ) : (
+                        pub.title
+                      )}
                     </h2>
                     {pub.summary && (
                       <p className="mt-2 text-sm text-brand-ink/70 dark:text-dark-ink/70 leading-relaxed">
                         {pub.summary}
                       </p>
                     )}
-                    {file && (
+                    {download && (
                       <a
-                        href={file}
+                        href={download.href}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="mt-4 inline-flex items-center gap-2 text-brand-primary dark:text-dark-primary font-bold text-xs uppercase tracking-widest hover:underline"
                       >
                         {t('download')} →
                       </a>
+                    )}
+                    {download?.meta && (
+                      <p className="mt-1 text-xs text-brand-ink/55 dark:text-dark-ink/65">
+                        {download.meta}
+                      </p>
                     )}
                   </div>
                 );

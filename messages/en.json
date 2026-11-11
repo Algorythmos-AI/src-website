@@ -21,7 +21,8 @@
     "toggleTheme": "Toggle theme",
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
-    "publications": "Publications"
+    "publications": "Publications",
+    "media": "Media"
   },
   "footer": {
     "brandBlurb": "The Sudanese Rural Community works alongside local leaders to advance education, water access, and community-led peacebuilding across rural Sudan.",
@@ -70,7 +71,14 @@
     "previous": "Previous",
     "next": "Next",
     "back": "Back",
-    "allPrograms": "All programs"
+    "allPrograms": "All programs",
+    "mediaTitle": "Media",
+    "mediaSubtitle": "Photos and videos from SRC’s work in rural Sudan.",
+    "mediaEmpty": "Photos and videos will be published here soon.",
+    "publicationNoFile": "A downloadable copy is not available yet.",
+    "typeAnnualReport": "Annual report",
+    "typeReport": "Report",
+    "typeBrief": "Brief"
   },
   "notFound": {
     "code": "404",

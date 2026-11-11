@@ -23,3 +23,26 @@ export function formatDateTime(
     timeZone: timeZone || undefined,
   }).format(d);
 }
+
+/** Locale-aware file size, e.g. "2.4 MB" / "2,4 Mo". Empty string for missing/invalid sizes. */
+export function formatFileSize(bytes: number | null | undefined, locale: Locale): string {
+  if (typeof bytes !== 'number' || !Number.isFinite(bytes) || bytes <= 0) return '';
+  const mb = bytes / (1024 * 1024);
+  const [value, unit] = mb >= 1 ? [mb, 'megabyte'] : [Math.max(bytes / 1024, 1), 'kilobyte'];
+  return new Intl.NumberFormat(locale, {
+    style: 'unit',
+    unit,
+    unitDisplay: 'short',
+    maximumFractionDigits: value < 10 ? 1 : 0,
+  }).format(value);
+}
+
+/** A language code ("en", "fr", "ar") as its name in the display locale. */
+export function languageName(code: string | null | undefined, locale: Locale): string {
+  if (!code) return '';
+  try {
+    return new Intl.DisplayNames([locale], { type: 'language' }).of(code) ?? '';
+  } catch {
+    return '';
+  }
+}

@@ -79,6 +79,7 @@ export interface Config {
     events: Event;
     'press-releases': PressRelease;
     publications: Publication;
+    galleries: Gallery;
     'form-submissions': FormSubmission;
     'newsletter-subscribers': NewsletterSubscriber;
     donations: Donation;
@@ -102,6 +103,7 @@ export interface Config {
     events: EventsSelect<false> | EventsSelect<true>;
     'press-releases': PressReleasesSelect<false> | PressReleasesSelect<true>;
     publications: PublicationsSelect<false> | PublicationsSelect<true>;
+    galleries: GalleriesSelect<false> | GalleriesSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
     'newsletter-subscribers': NewsletterSubscribersSelect<false> | NewsletterSubscribersSelect<true>;
     donations: DonationsSelect<false> | DonationsSelect<true>;
@@ -204,7 +206,6 @@ export interface Media {
    * Photographer / source attribution.
    */
   credit?: string | null;
-  _objectKey?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -251,7 +252,6 @@ export interface Document {
   id: number;
   title: string;
   language?: ('en' | 'fr' | 'ar') | null;
-  _objectKey?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -536,6 +536,47 @@ export interface Publication {
   _status?: ('draft' | 'published') | null;
 }
 /**
+ * Photo galleries and YouTube/Vimeo videos shown on the Media page. Public material only.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "galleries".
+ */
+export interface Gallery {
+  id: number;
+  title: string;
+  /**
+   * URL-safe identifier. Auto-generated from the title if left blank.
+   */
+  slug?: string | null;
+  /**
+   * Newest galleries are shown first.
+   */
+  date?: string | null;
+  description?: string | null;
+  /**
+   * Upload photos to Media first (alt text is required).
+   */
+  images?:
+    | {
+        image: number | Media;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Public YouTube or Vimeo links only.
+   */
+  videos?:
+    | {
+        title: string;
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "form-submissions".
  */
@@ -715,6 +756,10 @@ export interface PayloadLockedDocument {
         value: number | Publication;
       } | null)
     | ({
+        relationTo: 'galleries';
+        value: number | Gallery;
+      } | null)
+    | ({
         relationTo: 'form-submissions';
         value: number | FormSubmission;
       } | null)
@@ -805,7 +850,6 @@ export interface MediaSelect<T extends boolean = true> {
   alt?: T;
   caption?: T;
   credit?: T;
-  _objectKey?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -859,7 +903,6 @@ export interface MediaSelect<T extends boolean = true> {
 export interface DocumentsSelect<T extends boolean = true> {
   title?: T;
   language?: T;
-  _objectKey?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -1035,6 +1078,32 @@ export interface PublicationsSelect<T extends boolean = true> {
         title?: T;
         description?: T;
         image?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "galleries_select".
+ */
+export interface GalleriesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  date?: T;
+  description?: T;
+  images?:
+    | T
+    | {
+        image?: T;
+        id?: T;
+      };
+  videos?:
+    | T
+    | {
+        title?: T;
+        url?: T;
+        id?: T;
       };
   updatedAt?: T;
   createdAt?: T;
