@@ -1,15 +1,33 @@
 'use client';
 
-import { Mail, MapPin, Instagram, Twitter, Linkedin } from 'lucide-react';
+import { Mail, MapPin, Instagram, Twitter, Linkedin, Facebook } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { NewsletterForm } from '@/components/forms/NewsletterForm';
+import type { SocialLink, SocialNetwork } from '@/lib/social';
 
-export const Footer = () => {
+const SOCIAL_ICONS: Record<SocialNetwork, typeof Facebook> = {
+  facebook: Facebook,
+  twitter: Twitter,
+  instagram: Instagram,
+  linkedin: Linkedin,
+};
+
+const DEFAULT_EMAIL = 'hello@src-sudan.org';
+
+type FooterProps = {
+  /** Validated https links from Site Settings; icons without a link are hidden. */
+  social?: SocialLink[];
+  /** Contact email from Site Settings; falls back to the default address. */
+  email?: string | null;
+};
+
+export const Footer = ({ social = [], email }: FooterProps) => {
   const t = useTranslations('footer');
   const nav = useTranslations('nav');
   const sections = useTranslations('sections');
   const year = new Date().getFullYear();
+  const contactEmail = email?.trim() || DEFAULT_EMAIL;
 
   return (
     <footer className="bg-brand-footer text-brand-surface/60 pt-16 sm:pt-20 pb-10 sm:pb-12 site-footer-safe border-t border-white/5">
@@ -30,29 +48,26 @@ export const Footer = () => {
               <span className="font-serif font-bold tracking-wide text-lg text-white">SRC</span>
             </Link>
             <p className="text-sm leading-relaxed mb-6 max-w-sm">{t('brandBlurb')}</p>
-            <div className="flex gap-3">
-              <a
-                href="#"
-                aria-label={t('instagram')}
-                className="p-2 rounded-md bg-white/5 text-white/70 hover:text-brand-accent hover:bg-white/10 transition-colors"
-              >
-                <Instagram size={16} />
-              </a>
-              <a
-                href="#"
-                aria-label={t('twitter')}
-                className="p-2 rounded-md bg-white/5 text-white/70 hover:text-brand-accent hover:bg-white/10 transition-colors"
-              >
-                <Twitter size={16} />
-              </a>
-              <a
-                href="#"
-                aria-label={t('linkedin')}
-                className="p-2 rounded-md bg-white/5 text-white/70 hover:text-brand-accent hover:bg-white/10 transition-colors"
-              >
-                <Linkedin size={16} />
-              </a>
-            </div>
+            {social.length > 0 && (
+              <ul className="flex gap-3" aria-label={t('socialHeading')}>
+                {social.map(({ network, href }) => {
+                  const Icon = SOCIAL_ICONS[network];
+                  return (
+                    <li key={network}>
+                      <a
+                        href={href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={t(network)}
+                        className="inline-flex p-2 rounded-md bg-white/5 text-white/70 hover:text-brand-accent hover:bg-white/10 transition-colors"
+                      >
+                        <Icon size={16} aria-hidden="true" />
+                      </a>
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
           </div>
 
           {/* Sitemap */}
@@ -120,8 +135,8 @@ export const Footer = () => {
               </li>
               <li className="flex items-center gap-3">
                 <Mail size={14} className="shrink-0 text-brand-accent" />
-                <a href="mailto:hello@src-sudan.org" className="hover:text-white transition-colors">
-                  hello@src-sudan.org
+                <a href={`mailto:${contactEmail}`} className="hover:text-white transition-colors">
+                  {contactEmail}
                 </a>
               </li>
             </ul>

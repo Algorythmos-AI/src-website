@@ -20,7 +20,8 @@
     "donate": "Faire un don",
     "toggleTheme": "Changer de thème",
     "openMenu": "Ouvrir le menu",
-    "closeMenu": "Fermer le menu"
+    "closeMenu": "Fermer le menu",
+    "publications": "Publications"
   },
   "footer": {
     "brandBlurb": "La Communauté Rurale Soudanaise travaille aux côtés des responsables locaux pour faire progresser l'éducation, l'accès à l'eau et la consolidation de la paix menée par les communautés à travers le Soudan rural.",
@@ -38,11 +39,13 @@
     "terms": "Conditions",
     "annualReport": "Rapport annuel",
     "instagram": "Instagram",
-    "twitter": "Twitter",
+    "twitter": "X (Twitter)",
     "linkedin": "LinkedIn",
     "consent": "J'accepte de recevoir la newsletter de SRC et la politique de confidentialité.",
     "subscribeSuccess": "Presque terminé — vérifiez votre boîte mail pour confirmer.",
-    "subscribeError": "Une erreur s'est produite. Veuillez réessayer."
+    "subscribeError": "Une erreur s'est produite. Veuillez réessayer.",
+    "facebook": "Facebook",
+    "socialHeading": "Suivre SRC"
   },
   "sections": {
     "newsTitle": "Actualités",
@@ -237,7 +240,11 @@
     "leadEyebrow": "Notre direction",
     "leadHeading": "L’équipe derrière SRC.",
     "leadIntro": "Des responsables élus et des cadres supérieurs guident la mission, les finances et les opérations de terrain de l’organisation.",
-    "governance": "En savoir plus sur notre gouvernance"
+    "governance": "En savoir plus sur notre gouvernance",
+    "mandateEyebrow": "Qui nous sommes",
+    "missionHeading": "Notre mission",
+    "mandateHeading": "Notre mandat",
+    "whatWeDoHeading": "Ce que nous faisons"
   },
   "impact": {
     "eyebrow": "Transparence et responsabilité",

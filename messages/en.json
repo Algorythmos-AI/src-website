@@ -20,7 +20,8 @@
     "donate": "Donate",
     "toggleTheme": "Toggle theme",
     "openMenu": "Open menu",
-    "closeMenu": "Close menu"
+    "closeMenu": "Close menu",
+    "publications": "Publications"
   },
   "footer": {
     "brandBlurb": "The Sudanese Rural Community works alongside local leaders to advance education, water access, and community-led peacebuilding across rural Sudan.",
@@ -38,11 +39,13 @@
     "terms": "Terms",
     "annualReport": "Annual report",
     "instagram": "Instagram",
-    "twitter": "Twitter",
+    "twitter": "X (Twitter)",
     "linkedin": "LinkedIn",
     "consent": "I agree to receive the SRC newsletter and accept the privacy policy.",
     "subscribeSuccess": "Almost there — check your inbox to confirm your subscription.",
-    "subscribeError": "Something went wrong. Please try again."
+    "subscribeError": "Something went wrong. Please try again.",
+    "facebook": "Facebook",
+    "socialHeading": "Follow SRC"
   },
   "sections": {
     "newsTitle": "News",
@@ -237,7 +240,11 @@
     "leadEyebrow": "Our leadership",
     "leadHeading": "The team behind SRC.",
     "leadIntro": "Elected officers and senior staff guide the organization's mission, finances, and field operations.",
-    "governance": "Read about our governance"
+    "governance": "Read about our governance",
+    "mandateEyebrow": "Who we are",
+    "missionHeading": "Our mission",
+    "mandateHeading": "Our mandate",
+    "whatWeDoHeading": "What we do"
   },
   "impact": {
     "eyebrow": "Transparency & accountability",

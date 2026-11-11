@@ -1158,8 +1158,9 @@ export interface SiteSetting {
     field?: string | null;
   };
   social?: {
-    instagram?: string | null;
+    facebook?: string | null;
     twitter?: string | null;
+    instagram?: string | null;
     linkedin?: string | null;
   };
   defaultSeo?: {
@@ -1260,6 +1261,9 @@ export interface Impact {
  */
 export interface About {
   id: number;
+  /**
+   * What SRC exists to do (one or two short paragraphs).
+   */
   mission?: {
     root: {
       type: string;
@@ -1275,6 +1279,34 @@ export interface About {
     };
     [k: string]: unknown;
   } | null;
+  /**
+   * SRC’s formal mandate: who it serves, where, and on what basis.
+   */
+  mandate?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Main areas of work, shown as cards.
+   */
+  whatWeDo?:
+    | {
+        title: string;
+        text?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   values?:
     | {
         title: string;
@@ -1322,8 +1354,9 @@ export interface SiteSettingsSelect<T extends boolean = true> {
   social?:
     | T
     | {
-        instagram?: T;
+        facebook?: T;
         twitter?: T;
+        instagram?: T;
         linkedin?: T;
       };
   defaultSeo?:
@@ -1429,6 +1462,14 @@ export interface ImpactSelect<T extends boolean = true> {
  */
 export interface AboutSelect<T extends boolean = true> {
   mission?: T;
+  mandate?: T;
+  whatWeDo?:
+    | T
+    | {
+        title?: T;
+        text?: T;
+        id?: T;
+      };
   values?:
     | T
     | {
