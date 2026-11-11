@@ -1,10 +1,13 @@
 import type { GlobalConfig } from 'payload';
 import { anyone, isAdminOrEditor } from '@/access';
+import { optionalHttpsUrl } from '@/fields/validators';
+import { revalidateGlobal } from '@/hooks/revalidate';
 
 export const SiteSettings: GlobalConfig = {
   slug: 'site-settings',
   admin: { group: 'Settings' },
   access: { read: anyone, update: isAdminOrEditor },
+  hooks: { afterChange: [revalidateGlobal('site-settings')] },
   fields: [
     {
       type: 'group',
@@ -20,9 +23,11 @@ export const SiteSettings: GlobalConfig = {
       type: 'group',
       name: 'social',
       fields: [
-        { name: 'instagram', type: 'text' },
-        { name: 'twitter', type: 'text' },
-        { name: 'linkedin', type: 'text' },
+        // Full profile URLs. Empty fields are hidden in the site footer.
+        { name: 'facebook', type: 'text', validate: optionalHttpsUrl },
+        { name: 'twitter', label: 'X (Twitter)', type: 'text', validate: optionalHttpsUrl },
+        { name: 'instagram', type: 'text', validate: optionalHttpsUrl },
+        { name: 'linkedin', type: 'text', validate: optionalHttpsUrl },
       ],
     },
     {

@@ -31,7 +31,8 @@ of the edit view.
 | **News**                            | Blog posts. Assign a Category; set `Published At` (a future date stays hidden until then). |
 | **Events**                          | Upcoming/past split automatically by start date. Add a registration link.                  |
 | **Press releases**                  | Statements, with an optional PDF attachment.                                               |
-| **Publications**                    | Reports/briefs with a cover image and a downloadable PDF.                                  |
+| **Publications**                    | Reports/briefs with a cover image and a downloadable PDF; each gets its own page.          |
+| **Galleries**                       | The Media page: photo galleries and public YouTube/Vimeo videos.                           |
 | **Team members**                    | The About page leadership grid.                                                            |
 | **Partners / Stories / Categories** | Supporting content.                                                                        |
 
@@ -46,6 +47,44 @@ of the edit view.
 
 - Upload images to **Media** (auto-resized; alt text is required for accessibility).
 - Upload PDFs to **Documents** and attach them to press releases or publications.
+
+## Step by step
+
+### Post a news update
+
+1. **News → Create new**. Enter the English title, an excerpt (shown on the
+   news list) and the body. Add a hero image from Media.
+2. Pick a **Category** and set **Published At** (today, or a future date to
+   schedule it).
+3. Optional: switch the locale to Français / العربية and translate.
+4. Set the status to **Published**. It appears on `/news` within seconds.
+
+### Add a report or publication
+
+1. **Documents → Create new**: upload the PDF, give it a title and choose its
+   **Language**. The site shows the language and file size next to the
+   download button.
+2. **Publications → Create new**: title, type (Annual report / Report /
+   Brief), year and a short summary. Attach the PDF from Documents and a cover
+   image from Media.
+3. **Publish**. It is listed on `/publications`, newest year first, and gets
+   its own page at `/publications/<slug>`.
+
+One PDF per language? Upload each as its own Document and create one
+publication per language, or attach the main-language PDF and mention the
+others in the summary.
+
+### Add a photo gallery or video to the Media page
+
+1. Upload the photos to **Media** first (alt text is required).
+2. **Galleries → Create new**: title, date, optional description.
+3. Under **Photos**, add a row per photo and pick it from Media.
+4. Under **Videos**, add a title and a **public YouTube or Vimeo link** (e.g.
+   `https://www.youtube.com/watch?v=…`). Other links are rejected.
+5. **Publish**. Newest galleries are shown first on `/media`.
+
+**Evidence videos never go in Galleries or Media.** They are handled
+separately by an admin and are not listed anywhere on the site.
 
 ## Tips
 

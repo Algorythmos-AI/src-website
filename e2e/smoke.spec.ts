@@ -11,6 +11,7 @@ const paths = [
   '/events',
   '/press',
   '/publications',
+  '/media',
 ];
 
 test.describe('English routes', () => {
@@ -72,4 +73,50 @@ test('unknown route shows the not-found page', async ({ page }) => {
   const res = await page.goto('/en/this-route-does-not-exist');
   expect(res?.status()).toBe(404);
   await expect(page.getByText(/404/).first()).toBeVisible();
+});
+
+test.describe('Primary navigation', () => {
+  const cases = [
+    { locale: 'en', label: 'Publications', media: 'Media', openMenu: 'Open menu' },
+    { locale: 'fr', label: 'Publications', media: 'Médias', openMenu: 'Ouvrir le menu' },
+    { locale: 'ar', label: 'المنشورات', media: 'الوسائط', openMenu: 'فتح القائمة' },
+  ];
+
+  for (const { locale, label, media, openMenu } of cases) {
+    test(`links to publications and media and fits the header in ${locale}`, async ({
+      page,
+      isMobile,
+    }) => {
+      await page.goto(`/${locale}/about`);
+      const nav = page.getByRole('navigation').first();
+      if (isMobile) {
+        await nav.getByRole('button', { name: openMenu }).click();
+      }
+      const link = nav.getByRole('link', { name: label, exact: true });
+      await expect(link).toBeVisible();
+      await expect(link).toHaveAttribute('href', `/${locale}/publications`);
+      const mediaLink = nav.getByRole('link', { name: media, exact: true });
+      await expect(mediaLink).toBeVisible();
+      await expect(mediaLink).toHaveAttribute('href', `/${locale}/media`);
+
+      // The header row must not be wider than the viewport in any language.
+      const overflow = await nav.evaluate((el) => el.scrollWidth - el.clientWidth);
+      expect(overflow, `header overflow in ${locale}`).toBeLessThanOrEqual(1);
+    });
+  }
+});
+
+test('unknown publication slug shows the not-found page', async ({ page }) => {
+  const res = await page.goto('/en/publications/this-report-does-not-exist');
+  expect(res?.status()).toBe(404);
+  await expect(page.getByText(/404/).first()).toBeVisible();
+});
+
+test('media page allows the YouTube and Vimeo players in its CSP', async ({ request }) => {
+  const res = await request.get('/en/media');
+  expect(res.status()).toBe(200);
+  const csp = res.headers()['content-security-policy'] ?? '';
+  expect(csp).toContain('frame-src');
+  expect(csp).toContain('https://www.youtube-nocookie.com');
+  expect(csp).toContain('https://player.vimeo.com');
 });

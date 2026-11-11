@@ -20,7 +20,9 @@
     "donate": "تبرّع",
     "toggleTheme": "تبديل السمة",
     "openMenu": "فتح القائمة",
-    "closeMenu": "إغلاق القائمة"
+    "closeMenu": "إغلاق القائمة",
+    "publications": "المنشورات",
+    "media": "الوسائط"
   },
   "footer": {
     "brandBlurb": "يعمل المجتمع الريفي السوداني جنبًا إلى جنب مع القادة المحليين للنهوض بالتعليم والوصول إلى المياه وبناء السلام بقيادة المجتمعات في جميع أنحاء الريف السوداني.",
@@ -38,11 +40,13 @@
     "terms": "الشروط",
     "annualReport": "التقرير السنوي",
     "instagram": "إنستغرام",
-    "twitter": "تويتر",
+    "twitter": "إكس (تويتر)",
     "linkedin": "لينكدإن",
     "consent": "أوافق على تلقّي نشرة SRC وعلى سياسة الخصوصية.",
     "subscribeSuccess": "اقتربت — تحقّق من بريدك لتأكيد الاشتراك.",
-    "subscribeError": "حدث خطأ ما. يُرجى المحاولة مرة أخرى."
+    "subscribeError": "حدث خطأ ما. يُرجى المحاولة مرة أخرى.",
+    "facebook": "فيسبوك",
+    "socialHeading": "تابع SRC"
   },
   "sections": {
     "newsTitle": "الأخبار",
@@ -67,7 +71,14 @@
     "previous": "السابق",
     "next": "التالي",
     "back": "رجوع",
-    "allPrograms": "جميع البرامج"
+    "allPrograms": "جميع البرامج",
+    "mediaTitle": "الوسائط",
+    "mediaSubtitle": "صور ومقاطع فيديو من عمل SRC في ريف السودان.",
+    "mediaEmpty": "ستُنشر الصور ومقاطع الفيديو هنا قريبًا.",
+    "publicationNoFile": "لا تتوفر نسخة قابلة للتنزيل بعد.",
+    "typeAnnualReport": "التقرير السنوي",
+    "typeReport": "تقرير",
+    "typeBrief": "موجز"
   },
   "notFound": {
     "code": "404",
@@ -237,7 +248,11 @@
     "leadEyebrow": "قيادتنا",
     "leadHeading": "الفريق وراء SRC.",
     "leadIntro": "يوجّه المسؤولون المنتخَبون وكبار الموظفين رسالة المنظمة وشؤونها المالية وعملياتها الميدانية.",
-    "governance": "اقرأ المزيد عن حوكمتنا"
+    "governance": "اقرأ المزيد عن حوكمتنا",
+    "mandateEyebrow": "من نحن",
+    "missionHeading": "رسالتنا",
+    "mandateHeading": "ولايتنا",
+    "whatWeDoHeading": "ما نقوم به"
   },
   "impact": {
     "eyebrow": "الشفافية والمساءلة",

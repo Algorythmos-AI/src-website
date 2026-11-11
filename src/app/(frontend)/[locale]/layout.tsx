@@ -8,6 +8,8 @@ import { ThemeProvider } from '@/context/ThemeContext';
 import { ThemeScript } from '@/app/theme-script';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
+import { getSiteSettings } from '@/lib/queries';
+import { toSocialLinks, type SocialLink } from '@/lib/social';
 import '@/app/globals.css';
 
 export function generateStaticParams() {
@@ -63,6 +65,16 @@ export default async function LocaleLayout({
   const messages = await getMessages();
   const t = await getTranslations('a11y');
   const dir = rtlLocales.includes(locale as Locale) ? 'rtl' : 'ltr';
+  // Footer data comes from the CMS; a failed read must not take the page down.
+  let social: SocialLink[] = [];
+  let contactEmail: string | null = null;
+  try {
+    const settings = await getSiteSettings(locale);
+    social = toSocialLinks(settings.social);
+    contactEmail = settings.contact?.email ?? null;
+  } catch (err) {
+    console.error('Footer settings unavailable:', (err as Error).message);
+  }
   const fontVars = `${inter.variable} ${playfair.variable} ${plexArabic.variable} ${amiri.variable}`;
 
   return (
@@ -79,7 +91,7 @@ export default async function LocaleLayout({
             </a>
             <Navbar />
             <main id="main">{children}</main>
-            <Footer />
+            <Footer social={social} email={contactEmail} />
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>

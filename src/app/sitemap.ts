@@ -1,7 +1,12 @@
 import type { MetadataRoute } from 'next';
 import { routing } from '@/i18n/routing';
-import { getEventSlugs, getPostSlugs, getPressSlugs, getProgramSlugs } from '@/lib/queries';
-import { getPayloadClient } from '@/lib/payload';
+import {
+  getEventSlugs,
+  getPostSlugs,
+  getPressSlugs,
+  getProgramSlugs,
+  getPublicationSlugs,
+} from '@/lib/queries';
 
 const BASE = (process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.src-rural.org').replace(/\/$/, '');
 
@@ -27,6 +32,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/events',
     '/press',
     '/publications',
+    '/media',
   ];
 
   let dynamicPaths: string[] = [];
@@ -36,25 +42,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       getPostSlugs(),
       getEventSlugs(),
       getPressSlugs(),
-      getPayloadClient()
-        .then((p) =>
-          p.find({
-            collection: 'publications',
-            where: { _status: { equals: 'published' } },
-            depth: 0,
-            limit: 500,
-            pagination: false,
-          })
-        )
-        .then((r) => r.docs.map((d) => d.slug).filter((s): s is string => Boolean(s))),
+      getPublicationSlugs(),
     ]);
     dynamicPaths = [
       ...programs.map((s) => `/work/${s}`),
       ...posts.map((s) => `/news/${s}`),
       ...events.map((s) => `/events/${s}`),
       ...press.map((s) => `/press/${s}`),
-      ...publications.map(() => ''), // publications have no detail route
-    ].filter(Boolean);
+      ...publications.map((s) => `/publications/${s}`),
+    ];
   } catch {
     // DB unavailable at build → ship the static routes only.
   }

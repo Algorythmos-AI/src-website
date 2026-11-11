@@ -20,7 +20,9 @@
     "donate": "Donate",
     "toggleTheme": "Toggle theme",
     "openMenu": "Open menu",
-    "closeMenu": "Close menu"
+    "closeMenu": "Close menu",
+    "publications": "Publications",
+    "media": "Media"
   },
   "footer": {
     "brandBlurb": "The Sudanese Rural Community works alongside local leaders to advance education, water access, and community-led peacebuilding across rural Sudan.",
@@ -38,11 +40,13 @@
     "terms": "Terms",
     "annualReport": "Annual report",
     "instagram": "Instagram",
-    "twitter": "Twitter",
+    "twitter": "X (Twitter)",
     "linkedin": "LinkedIn",
     "consent": "I agree to receive the SRC newsletter and accept the privacy policy.",
     "subscribeSuccess": "Almost there — check your inbox to confirm your subscription.",
-    "subscribeError": "Something went wrong. Please try again."
+    "subscribeError": "Something went wrong. Please try again.",
+    "facebook": "Facebook",
+    "socialHeading": "Follow SRC"
   },
   "sections": {
     "newsTitle": "News",
@@ -67,7 +71,14 @@
     "previous": "Previous",
     "next": "Next",
     "back": "Back",
-    "allPrograms": "All programs"
+    "allPrograms": "All programs",
+    "mediaTitle": "Media",
+    "mediaSubtitle": "Photos and videos from SRC’s work in rural Sudan.",
+    "mediaEmpty": "Photos and videos will be published here soon.",
+    "publicationNoFile": "A downloadable copy is not available yet.",
+    "typeAnnualReport": "Annual report",
+    "typeReport": "Report",
+    "typeBrief": "Brief"
   },
   "notFound": {
     "code": "404",
@@ -237,7 +248,11 @@
     "leadEyebrow": "Our leadership",
     "leadHeading": "The team behind SRC.",
     "leadIntro": "Elected officers and senior staff guide the organization's mission, finances, and field operations.",
-    "governance": "Read about our governance"
+    "governance": "Read about our governance",
+    "mandateEyebrow": "Who we are",
+    "missionHeading": "Our mission",
+    "mandateHeading": "Our mandate",
+    "whatWeDoHeading": "What we do"
   },
   "impact": {
     "eyebrow": "Transparency & accountability",
