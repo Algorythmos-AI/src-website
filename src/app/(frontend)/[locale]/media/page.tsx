@@ -26,7 +26,12 @@ export default async function MediaPage({ params }: { params: Promise<{ locale: 
   const t = await getTranslations('sections');
   const loc = locale as Locale;
 
-  const galleries = await getGalleries(loc);
+  // Before the galleries migration has run (e.g. a preview build against an
+  // older database) render the empty state rather than failing the build.
+  const galleries = await getGalleries(loc).catch((err: unknown) => {
+    console.error('Galleries unavailable:', err instanceof Error ? err.message : err);
+    return [];
+  });
 
   return (
     <div className="bg-brand-bg dark:bg-dark-bg pt-24 transition-colors">
