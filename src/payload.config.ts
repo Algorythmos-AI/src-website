@@ -7,6 +7,7 @@ import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
 import { seoPlugin } from '@payloadcms/plugin-seo';
 import { redirectsPlugin } from '@payloadcms/plugin-redirects';
 import sharp from 'sharp';
+import { isLocalDatabase } from '@/lib/db-url';
 
 import { Users } from '@/collections/Users';
 import { Media } from '@/collections/Media';
@@ -80,8 +81,9 @@ export default buildConfig({
   csrf: [siteUrl],
   db: postgresAdapter({
     pool: { connectionString: process.env.POSTGRES_URL },
-    // Auto-sync schema in dev; production uses committed migrations.
-    push: process.env.NODE_ENV !== 'production',
+    // Auto-sync schema only against a local database in dev. Remote databases (Neon, including
+    // production) change only through committed migrations, so `next dev` can never alter them.
+    push: process.env.NODE_ENV !== 'production' && isLocalDatabase(process.env.POSTGRES_URL),
   }),
   sharp,
   secret: process.env.PAYLOAD_SECRET ?? '',
