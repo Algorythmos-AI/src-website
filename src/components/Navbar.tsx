@@ -12,10 +12,9 @@ export const Navbar = () => {
   const t = useTranslations('nav');
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(
-    () => typeof window !== 'undefined' && window.scrollY > 50
-  );
-  const { theme, toggleTheme } = useTheme();
+  // Start unscrolled on both server and client; the effect syncs the real position after hydration.
+  const [scrolled, setScrolled] = useState(false);
+  const { toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -84,7 +83,9 @@ export const Navbar = () => {
             className="p-2 rounded-md hover:bg-white/10 transition-colors text-white"
             aria-label={t('toggleTheme')}
           >
-            {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
+            {/* Icon follows the .dark class set before hydration, so server and client markup match. */}
+            <Moon size={18} className="dark:hidden" aria-hidden="true" />
+            <Sun size={18} className="hidden dark:block" aria-hidden="true" />
           </button>
 
           <Link
@@ -103,7 +104,9 @@ export const Navbar = () => {
             className="p-2.5 rounded-md hover:bg-white/10 transition-colors text-white touch-manipulation"
             aria-label={t('toggleTheme')}
           >
-            {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
+            {/* Icon follows the .dark class set before hydration, so server and client markup match. */}
+            <Moon size={20} className="dark:hidden" aria-hidden="true" />
+            <Sun size={20} className="hidden dark:block" aria-hidden="true" />
           </button>
 
           <button
